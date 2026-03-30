@@ -61,12 +61,9 @@ export default function Footer() {
 
         <div className="section-divider mb-8 md:mb-10" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="text-center">
           <p className="text-xs md:text-sm text-[var(--muted)]">
             &copy; {new Date().getFullYear()} Blip. All rights reserved.
-          </p>
-          <p className="text-xs md:text-sm text-[var(--muted)]">
-            Australia
           </p>
         </div>
       </div>
