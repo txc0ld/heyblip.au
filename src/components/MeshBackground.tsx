@@ -11,7 +11,7 @@ const SPAWN_INTERVAL = 900;
 const PULSE_INTERVAL = 3500;
 const PULSE_COUNT_MIN = 1;
 const PULSE_COUNT_MAX = 3;
-const PULSE_HEX = 0xccff00;
+const PULSE_HEX = 0x6600ff;
 
 /* ─── THEMES ─────────────────────────────────────────────── */
 const TH = {
@@ -19,13 +19,13 @@ const TH = {
     bg: 0x000000,
     node: 0xffffff,
     edge: 0xffffff,
-    edgeOp: 0.12,
+    edgeOp: 0.18,
   },
   light: {
     bg: 0xffffff,
     node: 0x111111,
     edge: 0x000000,
-    edgeOp: 0.1,
+    edgeOp: 0.15,
   },
 };
 
@@ -199,9 +199,9 @@ export default function MeshBackground() {
     glowC.height = 64;
     const gc = glowC.getContext("2d")!;
     const grd = gc.createRadialGradient(32, 32, 0, 32, 32, 32);
-    grd.addColorStop(0, "rgba(204,255,0,0.45)");
-    grd.addColorStop(0.35, "rgba(204,255,0,0.1)");
-    grd.addColorStop(1, "rgba(204,255,0,0)");
+    grd.addColorStop(0, "rgba(102,0,255,0.5)");
+    grd.addColorStop(0.35, "rgba(102,0,255,0.12)");
+    grd.addColorStop(1, "rgba(102,0,255,0)");
     gc.fillStyle = grd;
     gc.fillRect(0, 0, 64, 64);
     const glowTex = new THREE.CanvasTexture(glowC);
@@ -284,7 +284,7 @@ export default function MeshBackground() {
           n.fadeIn = Math.min(1, n.fadeIn + 0.02);
           const s = n.fadeIn;
           m.scale.set(s, s, s);
-          (m.material as THREE.MeshBasicMaterial).opacity = n.fadeIn * 0.85;
+          (m.material as THREE.MeshBasicMaterial).opacity = n.fadeIn;
         }
 
         if (n.pulse > 0.008) {
@@ -305,7 +305,7 @@ export default function MeshBackground() {
           (m.material as THREE.MeshBasicMaterial).color.copy(baseC);
           if (n.fadeIn >= 1) {
             m.scale.set(1, 1, 1);
-            (m.material as THREE.MeshBasicMaterial).opacity = 0.85;
+            (m.material as THREE.MeshBasicMaterial).opacity = 1;
           }
         }
       }
@@ -357,7 +357,6 @@ export default function MeshBackground() {
     <div
       ref={mountEl}
       className="absolute inset-0 z-0 pointer-events-none"
-      style={{ opacity: 0.5 }}
       aria-hidden="true"
     />
   );
