@@ -65,7 +65,7 @@ export default function HowItWorks() {
               transition={{ duration: 0.6, ease }}
               className="group text-center lg:text-left"
             >
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl glass-strong flex items-center justify-center text-xl md:text-2xl font-bold text-gradient-accent mx-auto lg:mx-0 mb-5 md:mb-6 group-hover:glow-accent-sm transition-all duration-300 group-hover:scale-105">
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-xl md:text-2xl font-bold text-[var(--accent)] mx-auto lg:mx-0 mb-5 md:mb-6 group-hover:glow-accent-sm transition-all duration-300 group-hover:scale-105">
                 {step.number}
               </div>
               <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">{step.title}</h3>

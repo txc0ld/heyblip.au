@@ -106,9 +106,17 @@ body {
   -webkit-backdrop-filter: blur(60px);
 }
 
-[data-theme="light"] .glass-strong {
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+[data-theme="light"] .glass-strong,
+[data-theme="system"] .glass-strong {
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="system"] .glass-strong {
+    background: rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
 }
 
 .glow-accent {
