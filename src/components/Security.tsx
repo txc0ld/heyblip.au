@@ -7,7 +7,7 @@ import { ease } from "@/lib/animations";
 export default function Security() {
   return (
     <section id="security" className="relative py-16 md:py-24 px-4 sm:px-6">
-      <div className="section-divider mb-16 md:mb-24" />
+      <div className="section-divider mb-0" />
 
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 lg:gap-28 items-center">
@@ -18,7 +18,7 @@ export default function Security() {
             viewport={{ once: true, margin: "-120px" }}
             transition={{ duration: 0.7, ease }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-8 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-6 md:mb-8">
               Your messages.
               <br />
               Your business.
@@ -34,10 +34,10 @@ export default function Security() {
             </p>
             <a
               href="/tech"
-              className="inline-flex items-center gap-2.5 text-sm md:text-base text-[var(--accent-light)] hover:text-[var(--foreground)] transition-all duration-300 font-medium group"
+              className="inline-flex items-center gap-2.5 text-sm md:text-base text-[var(--accent-light)] hover:text-[var(--foreground)] transition-all duration-200 font-medium group"
             >
               See the technical specs
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="transition-transform duration-300 group-hover:translate-x-1">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="transition-transform duration-200 group-hover:translate-x-1">
                 <path d="M6 4l4 4-4 4" />
               </svg>
             </a>

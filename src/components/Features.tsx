@@ -46,7 +46,7 @@ const features = [
 export default function Features() {
   return (
     <section id="features" className="relative py-16 md:py-24 px-4 sm:px-6">
-      <div className="section-divider mb-16 md:mb-24" />
+      <div className="section-divider mb-0" />
 
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -54,9 +54,9 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.7, ease }}
-          className="text-center mb-16 md:mb-24"
+          className="text-center mb-14 md:mb-20"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-6 md:mb-8">
             Everything you need.
             <br />
             Nothing you don&apos;t.
@@ -80,9 +80,9 @@ export default function Features() {
                 key={feature.title}
                 variants={childFadeUp}
                 transition={{ duration: 0.6, ease }}
-                className="glass rounded-3xl p-6 sm:p-8 md:p-10 group hover:bg-[var(--card-bg-hover)] transition-all duration-300 hover:scale-[1.015]"
+                className="glass rounded-3xl p-6 sm:p-8 md:p-10 group hover:bg-[var(--card-bg-hover)] transition-all duration-200 hover:scale-[1.015]"
               >
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent-light)] mb-5 md:mb-6 group-hover:bg-[var(--accent)]/20 transition-colors duration-300">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent-light)] mb-5 md:mb-6 group-hover:bg-[var(--accent)]/20 transition-colors duration-200">
                   <Icon size={22} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">{feature.title}</h3>

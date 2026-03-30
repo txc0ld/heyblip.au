@@ -45,7 +45,7 @@ const steps = [
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="relative py-16 md:py-24 px-4 sm:px-6">
-      <div className="section-divider mb-16 md:mb-24" />
+      <div className="section-divider mb-0" />
 
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -53,9 +53,9 @@ export default function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.7, ease }}
-          className="text-center mb-16 md:mb-24"
+          className="text-center mb-14 md:mb-20"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-6 md:mb-8">
             Dead simple.
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto leading-relaxed">
@@ -77,7 +77,7 @@ export default function HowItWorks() {
               transition={{ duration: 0.6, ease }}
               className="group text-center lg:text-left"
             >
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-xl md:text-2xl font-bold text-[var(--accent)] mx-auto lg:mx-0 mb-5 md:mb-6 group-hover:glow-accent-sm transition-all duration-300 group-hover:scale-105">
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-xl md:text-2xl font-bold text-[var(--accent)] mx-auto lg:mx-0 mb-5 md:mb-6 group-hover:glow-accent-sm transition-all duration-200 group-hover:scale-105">
                 {step.number}
               </div>
               <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">{step.title}</h3>

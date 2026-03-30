@@ -356,7 +356,7 @@ export default function MeshBackground() {
   return (
     <div
       ref={mountEl}
-      className="absolute inset-0 z-0 pointer-events-none"
+      className="absolute inset-0 z-0 pointer-events-none will-change-transform"
       aria-hidden="true"
     />
   );

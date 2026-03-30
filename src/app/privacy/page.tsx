@@ -1,11 +1,14 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ease } from "@/lib/animations";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export default function PrivacyPage() {
+  useEffect(() => { document.title = "Privacy Policy — Blip"; }, []);
+
   return (
     <main className="mesh-gradient relative overflow-hidden">
       <Nav />
@@ -16,7 +19,7 @@ export default function PrivacyPage() {
           transition={{ duration: 0.6, ease }}
           className="max-w-3xl mx-auto"
         >
-          <a href="/" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors mb-8">
+          <a href="/" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-all duration-200 mb-8">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M10 4l-4 4 4 4" /></svg>
             Back to home
           </a>

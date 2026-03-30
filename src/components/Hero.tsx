@@ -63,14 +63,14 @@ export default function Hero() {
               className="flex flex-col sm:flex-row items-center lg:items-start gap-3 sm:gap-4 w-full sm:w-auto mb-10 md:mb-12"
             >
               <a
-                href="#pricing"
-                className="w-full sm:w-auto px-8 lg:px-10 py-3.5 lg:py-4 rounded-full bg-[var(--accent)] text-white font-semibold text-base hover:bg-[var(--accent-light)] transition-all duration-300 glow-accent-sm hover:glow-accent hover:scale-[1.02] text-center"
+                href="https://apps.apple.com/app/blip"
+                className="w-full sm:w-auto px-8 py-3 md:px-10 md:py-3.5 rounded-full bg-[var(--accent)] text-white font-semibold text-base hover:bg-[var(--accent-light)] transition-all duration-200 glow-accent-sm hover:glow-accent hover:scale-[1.02] text-center"
               >
                 Download for iOS
               </a>
               <a
                 href="#how-it-works"
-                className="w-full sm:w-auto px-8 lg:px-10 py-3.5 lg:py-4 rounded-full border border-[var(--border-strong)] text-[var(--muted-strong)] font-medium text-base hover:text-[var(--foreground)] hover:border-[var(--muted)] transition-all duration-300 hover:scale-[1.02] text-center"
+                className="w-full sm:w-auto px-8 py-3 md:px-10 md:py-3.5 rounded-full border border-[var(--border-strong)] text-[var(--muted-strong)] font-medium text-base hover:text-[var(--foreground)] hover:border-[var(--muted)] transition-all duration-200 hover:scale-[1.02] text-center"
               >
                 How does it work?
               </a>

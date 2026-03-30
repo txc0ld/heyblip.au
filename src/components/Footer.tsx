@@ -11,13 +11,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 lg:gap-14 mb-14 md:mb-20">
           <div>
-            <div className="mb-5">
+            <div className="mb-6">
               <Image
                 src={resolved === "light" ? "/Blipblacklogo.png" : "/Blipwhitelogo.png"}
                 alt="Blip"
-                width={80}
-                height={32}
-                className="h-[18px] md:h-[20px] w-auto scale-[2.5] origin-left"
+                width={200}
+                height={80}
+                className="h-12 md:h-14 w-auto"
               />
             </div>
             <p className="text-sm md:text-[15px] text-[var(--muted)] leading-relaxed md:leading-[1.7]">

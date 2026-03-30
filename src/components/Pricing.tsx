@@ -54,7 +54,7 @@ const plans = [
 export default function Pricing() {
   return (
     <section id="pricing" className="relative py-16 md:py-24 px-4 sm:px-6">
-      <div className="section-divider mb-16 md:mb-24" />
+      <div className="section-divider mb-0" />
 
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -62,9 +62,9 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.7, ease }}
-          className="text-center mb-16 md:mb-24"
+          className="text-center mb-14 md:mb-20"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-6 md:mb-8">
             Simple pricing.
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto leading-relaxed">
@@ -84,7 +84,7 @@ export default function Pricing() {
               key={plan.name}
               variants={childFadeUp}
               transition={{ duration: 0.6, ease }}
-              className={`rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col transition-all duration-300 hover:scale-[1.015] ${
+              className={`rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col transition-all duration-200 hover:scale-[1.015] ${
                 plan.accent
                   ? "glass-strong border-[var(--accent)]/30 relative overflow-hidden"
                   : "glass"
@@ -138,8 +138,8 @@ export default function Pricing() {
               </ul>
 
               <a
-                href="#"
-                className={`w-full py-3.5 rounded-full text-center text-sm md:text-base font-semibold transition-all duration-300 ${
+                href="https://apps.apple.com/app/blip"
+                className={`w-full px-8 py-3 md:px-10 md:py-3.5 rounded-full text-center text-sm md:text-base font-semibold transition-all duration-200 ${
                   plan.accent
                     ? "bg-[var(--accent)] text-white hover:bg-[var(--accent-light)] glow-accent-sm hover:glow-accent hover:scale-[1.02]"
                     : "border border-[var(--border-strong)] text-[var(--muted-strong)] hover:text-[var(--foreground)] hover:border-[var(--muted)] hover:scale-[1.02]"

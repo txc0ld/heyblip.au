@@ -45,7 +45,7 @@ export default function Nav() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-[var(--foreground)] after:transition-all after:duration-300 hover:after:w-full"
+                className="text-sm text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-[var(--foreground)] after:transition-all after:duration-200 hover:after:w-full"
               >
                 {link.label}
               </a>
@@ -56,7 +56,7 @@ export default function Nav() {
             <ThemeToggle />
             <a
               href="#pricing"
-              className="text-sm px-5 py-2.5 rounded-full bg-[var(--accent)] text-white font-medium hover:bg-[var(--accent-light)] transition-colors duration-200"
+              className="text-sm px-5 py-2 rounded-full bg-[var(--accent)] text-white font-medium hover:bg-[var(--accent-light)] transition-all duration-200"
             >
               Get Blip
             </a>
@@ -104,7 +104,7 @@ export default function Nav() {
                 <a
                   href="#pricing"
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm px-5 py-2.5 rounded-full bg-[var(--accent)] text-white font-medium text-center mt-1"
+                  className="text-sm px-5 py-2 rounded-full bg-[var(--accent)] text-white font-medium text-center mt-1 transition-all duration-200"
                 >
                   Get Blip
                 </a>
