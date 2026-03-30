@@ -8,7 +8,7 @@ const steps = [
     number: "01",
     title: "Download & open",
     description:
-      "Get Blip from the App Store. Open it when you arrive at the festival. That's it — no account needed.",
+      "Get Blip from the App Store. Create a quick profile and you're ready to go — takes less than a minute.",
   },
   {
     number: "02",
