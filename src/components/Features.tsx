@@ -5,75 +5,40 @@ import { ease, stagger } from "@/lib/animations";
 
 const features = [
   {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
-        <circle cx="8" cy="10" r="1.5" fill="currentColor" />
-        <circle cx="16" cy="10" r="1.5" fill="currentColor" />
-        <circle cx="12" cy="15" r="1.5" fill="currentColor" />
-        <path d="M8 10l4 5m4-5l-4 5" strokeWidth="1" />
-      </svg>
-    ),
-    title: "Bluetooth Mesh",
+    emoji: "📡",
+    title: "Works without signal",
     description:
-      "Your message hops from phone to phone through the crowd. No cell towers, no Wi-Fi, no internet required.",
+      "No Wi-Fi, no mobile data, no problem. Blip uses Bluetooth to pass messages through people around you.",
   },
   {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="3" y="11" width="18" height="11" rx="2" />
-        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-        <circle cx="12" cy="16" r="1.5" fill="currentColor" />
-      </svg>
-    ),
-    title: "End-to-End Encrypted",
+    emoji: "👥",
+    title: "Find your crew",
     description:
-      "Noise XX protocol with Ed25519 signatures. Relay nodes see only encrypted bytes — never your messages.",
+      "See who's nearby, add friends with a tap, and always know where your group is — even in a crowd of 100,000.",
   },
   {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-      </svg>
-    ),
-    title: "Find Your Friends",
+    emoji: "💬",
+    title: "Chat, voice notes & photos",
     description:
-      "See who's nearby on the mesh. Add friends, share your location, and never lose your crew in the crowd.",
+      "Send texts, voice messages, and photos to friends. Just like any chat app — except it works when nothing else does.",
   },
   {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-        <line x1="12" y1="9" x2="12" y2="13" />
-        <circle cx="12" cy="16" r="0.5" fill="currentColor" />
-      </svg>
-    ),
-    title: "SOS Alerts",
+    emoji: "🚨",
+    title: "Emergency SOS",
     description:
-      "Emergency alerts bypass all throttling and reach every device in the mesh. Always relayed at 100%.",
+      "Send an SOS alert that reaches every phone around you instantly. No throttling, no delays. Safety first.",
   },
   {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-      </svg>
-    ),
-    title: "Scales to 100K+",
+    emoji: "🔒",
+    title: "Private by default",
     description:
-      "Adaptive relay probability, congestion backoff, and 3-tier Bloom filter dedup. Designed for Glastonbury-scale crowds.",
+      "Your messages are encrypted before they leave your phone. Nobody between you and your friend can read them — not even us.",
   },
   {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <path d="M8 21h8M12 17v4" />
-      </svg>
-    ),
-    title: "Stage Channels",
+    emoji: "🎪",
+    title: "Built for festivals",
     description:
-      "Auto-join location-based chat channels for each stage. Share the vibe with everyone around you.",
+      "Stage channels, crowd density info, lost & found, meeting points — everything you need for the perfect festival experience.",
   },
 ];
 
@@ -96,10 +61,12 @@ export default function Features() {
           className="text-center mb-20"
         >
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-gradient mb-4">
-            Built for the crowd.
+            Everything you need.
+            <br />
+            Nothing you don&apos;t.
           </h2>
           <p className="text-lg text-[var(--muted)] max-w-lg mx-auto">
-            Everything you need when cell towers fail and the music is too loud to yell.
+            Blip is the app you wish you had at your last festival.
           </p>
         </motion.div>
 
@@ -117,9 +84,7 @@ export default function Features() {
               transition={{ duration: 0.5, ease }}
               className="glass rounded-3xl p-8 group hover:bg-[var(--card-bg-hover)] transition-colors duration-300"
             >
-              <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent-light)] mb-5 group-hover:bg-[var(--accent)]/20 transition-colors duration-300">
-                {feature.icon}
-              </div>
+              <div className="text-3xl mb-5">{feature.emoji}</div>
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
               <p className="text-sm text-[var(--muted)] leading-relaxed">
                 {feature.description}

@@ -1,19 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ease, stagger } from "@/lib/animations";
-
-const protocols = [
-  { label: "Noise XX Handshake", detail: "Curve25519 + ChaChaPoly + SHA256" },
-  { label: "Ed25519 Signatures", detail: "Every packet signed, tamper-proof" },
-  { label: "Bloom Filter Dedup", detail: "3-tier (60s/10m/2h) prevents relay loops" },
-  { label: "TTL-Exempt Signing", detail: "Relay nodes modify TTL without breaking sigs" },
-];
-
-const item = {
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 },
-};
+import { ease } from "@/lib/animations";
 
 export default function Security() {
   return (
@@ -22,7 +10,6 @@ export default function Security() {
 
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left: copy */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -30,40 +17,30 @@ export default function Security() {
             transition={{ duration: 0.6, ease }}
           >
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-gradient mb-6">
-              Encrypted by default.
+              Your messages.
+              <br />
+              Your business.
             </h2>
-            <p className="text-lg text-[var(--muted)] leading-relaxed mb-8">
-              Every message is end-to-end encrypted before it leaves your phone.
-              Relay nodes forward opaque bytes — they can see the packet exists,
-              but never the content. Even SOS alerts are signed so they can't be forged.
+            <p className="text-lg text-[var(--muted)] leading-relaxed mb-6">
+              When your message passes through other phones to reach your friend,
+              those phones can&apos;t read it. It&apos;s scrambled before it leaves
+              your device and only unscrambled on your friend&apos;s.
             </p>
-            <div className="glass rounded-2xl p-6">
-              <p className="text-xs text-[var(--muted)] uppercase tracking-widest mb-4 font-medium">
-                Protocol Stack
-              </p>
-              <motion.div
-                variants={stagger}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                className="space-y-3"
-              >
-                {protocols.map((p) => (
-                  <motion.div
-                    key={p.label}
-                    variants={item}
-                    transition={{ duration: 0.4, ease }}
-                    className="flex items-center justify-between"
-                  >
-                    <span className="text-sm font-medium">{p.label}</span>
-                    <span className="text-xs text-[var(--muted)]">{p.detail}</span>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
+            <p className="text-lg text-[var(--muted)] leading-relaxed mb-8">
+              No accounts. No phone numbers. No data collection. Just you and
+              your crew.
+            </p>
+            <a
+              href="/tech"
+              className="inline-flex items-center gap-2 text-sm text-[var(--accent-light)] hover:text-white transition-colors duration-200 font-medium"
+            >
+              See the technical specs
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M6 4l4 4-4 4" />
+              </svg>
+            </a>
           </motion.div>
 
-          {/* Right: visual */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -72,7 +49,6 @@ export default function Security() {
             className="flex items-center justify-center"
           >
             <div className="relative w-72 h-72">
-              {/* Concentric rings */}
               {[1, 2, 3].map((ring) => (
                 <div
                   key={ring}
@@ -84,13 +60,9 @@ export default function Security() {
                   }}
                 />
               ))}
-              {/* Center lock */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-3xl bg-[var(--accent)]/20 border border-[var(--accent)]/30 flex items-center justify-center glow-accent">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-light)" strokeWidth="1.5">
-                    <rect x="3" y="11" width="18" height="11" rx="2" />
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                  </svg>
+                  <span className="text-4xl">🔒</span>
                 </div>
               </div>
             </div>

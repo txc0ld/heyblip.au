@@ -8,8 +8,9 @@ import { ease } from "@/lib/animations";
 const links = [
   { label: "Features", href: "#features" },
   { label: "How it Works", href: "#how-it-works" },
-  { label: "Security", href: "#security" },
+  { label: "Privacy", href: "#security" },
   { label: "Pricing", href: "#pricing" },
+  { label: "Tech Specs", href: "/tech" },
 ];
 
 export default function Nav() {

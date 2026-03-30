@@ -6,27 +6,27 @@ import { ease, stagger } from "@/lib/animations";
 const steps = [
   {
     number: "01",
-    title: "Open Blip",
+    title: "Download & open",
     description:
-      "Launch the app at the festival. Bluetooth starts scanning and advertising automatically.",
+      "Get Blip from the App Store. Open it when you arrive at the festival. That's it — no account needed.",
   },
   {
     number: "02",
-    title: "Find your crew",
+    title: "Find your friends",
     description:
-      "Nearby Blip users appear on the mesh. Add friends with a tap — no phone number needed.",
+      "People with Blip show up automatically. Tap to add them as a friend — works just like any social app.",
   },
   {
     number: "03",
-    title: "Messages hop through",
+    title: "Send a message",
     description:
-      "Your message relays from phone to phone through the crowd. Up to 7 hops, reaching hundreds of metres.",
+      "Type and send. Your message jumps from phone to phone through the crowd until it reaches your friend.",
   },
   {
     number: "04",
-    title: "Stay connected",
+    title: "Never lose anyone",
     description:
-      "End-to-end encrypted DMs, group chats, voice notes, and SOS alerts — all over Bluetooth mesh.",
+      "Share your location, send voice notes, or hit SOS if you need help. All without a single bar of signal.",
   },
 ];
 
@@ -49,10 +49,10 @@ export default function HowItWorks() {
           className="text-center mb-20"
         >
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-gradient mb-4">
-            Four taps to mesh.
+            Dead simple.
           </h2>
           <p className="text-lg text-[var(--muted)] max-w-lg mx-auto">
-            No accounts, no QR codes, no server setup. Just Bluetooth and your crew.
+            If you can send a text, you can use Blip. No setup, no tech knowledge required.
           </p>
         </motion.div>
 
@@ -63,7 +63,7 @@ export default function HowItWorks() {
           viewport={{ once: true, margin: "-80px" }}
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          {steps.map((step, i) => (
+          {steps.map((step) => (
             <motion.div
               key={step.number}
               variants={item}

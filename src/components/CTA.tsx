@@ -8,7 +8,6 @@ export default function CTA() {
     <section className="relative py-32 px-6">
       <div className="section-divider mb-32" />
 
-      {/* Background glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-[var(--accent)] opacity-[0.06] blur-[100px] pointer-events-none" />
 
       <motion.div
@@ -19,10 +18,11 @@ export default function CTA() {
         className="relative z-10 max-w-3xl mx-auto text-center"
       >
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gradient mb-6">
-          Ready for the drop?
+          Festival season is coming.
         </h2>
         <p className="text-lg text-[var(--muted)] max-w-xl mx-auto mb-10">
-          Download Blip before your next festival. When the towers go down, the mesh goes up.
+          Download Blip before you go. When the towers go down and the bass drops,
+          you&apos;ll be glad you did.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
@@ -33,7 +33,7 @@ export default function CTA() {
           </a>
         </div>
         <p className="text-xs text-[var(--muted)] mt-6">
-          Requires iOS 17+. Bluetooth LE required.
+          Free to try. Requires iPhone with iOS 17+.
         </p>
       </motion.div>
     </section>
