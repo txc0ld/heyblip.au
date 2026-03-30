@@ -14,23 +14,36 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center pt-24 md:pt-32 pb-20 md:pb-40 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 xl:gap-0 items-center">
 
-          {/* ── Left: copy ── */}
+        {/* ── Desktop: side-by-side grid ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 xl:gap-0 items-center">
+
+          {/* Left column: badge + (mobile: mesh) + copy */}
           <motion.div
             variants={stagger}
             initial="initial"
             animate="animate"
             className="relative z-10 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
+            {/* Badge */}
             <motion.div
               variants={childFadeUp}
               transition={{ duration: 0.6, ease }}
-              className="glass rounded-full px-5 py-2 text-xs md:text-sm font-medium tracking-wide text-[var(--muted-strong)] uppercase mb-7 md:mb-8"
+              className="glass rounded-full px-5 py-2 text-xs md:text-sm font-medium tracking-wide text-[var(--muted-strong)] uppercase mb-6 md:mb-8"
             >
               No signal? No problem.
             </motion.div>
 
+            {/* Mobile mesh — sits right below badge, above headline */}
+            <motion.div
+              variants={childFadeUp}
+              transition={{ duration: 0.8, ease }}
+              className="lg:hidden w-full max-w-xs aspect-square mx-auto mb-8 rounded-2xl overflow-hidden glass"
+            >
+              <MeshBackground />
+            </motion.div>
+
+            {/* Headline */}
             <motion.h1
               variants={childFadeUp}
               transition={{ duration: 0.7, ease }}
@@ -41,6 +54,7 @@ export default function Hero() {
               friends again.
             </motion.h1>
 
+            {/* Description */}
             <motion.p
               variants={childFadeUp}
               transition={{ duration: 0.7, ease }}
@@ -51,6 +65,7 @@ export default function Hero() {
               until they reach your friends — like a digital whisper chain.
             </motion.p>
 
+            {/* CTAs */}
             <motion.div
               variants={childFadeUp}
               transition={{ duration: 0.7, ease }}
@@ -70,6 +85,7 @@ export default function Hero() {
               </a>
             </motion.div>
 
+            {/* Logo */}
             <motion.div
               variants={childFadeUp}
               transition={{ duration: 0.9, ease, delay: 0.05 }}
@@ -85,14 +101,14 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ── Right: mesh visualization ── */}
+          {/* Right column: mesh (desktop only) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease, delay: 0.15 }}
-            className="relative w-full"
+            className="hidden lg:block relative w-full"
           >
-            <div className="relative aspect-square max-w-[520px] mx-auto lg:ml-auto lg:mr-0 rounded-3xl overflow-hidden glass">
+            <div className="relative aspect-square max-w-[520px] ml-auto mr-0 rounded-3xl overflow-hidden glass">
               <MeshBackground />
             </div>
           </motion.div>

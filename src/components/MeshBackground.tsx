@@ -7,7 +7,7 @@ import { useTheme } from "./ThemeProvider";
 /* ─── CONFIG ─────────────────────────────────────────────── */
 const MAX_NODES = 60;
 const INITIAL_NODES = 6;
-const SPAWN_INTERVAL = 900;
+const SPAWN_INTERVAL = 450;
 const PULSE_INTERVAL = 3500;
 const PULSE_COUNT_MIN = 1;
 const PULSE_COUNT_MAX = 3;
