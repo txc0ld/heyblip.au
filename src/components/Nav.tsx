@@ -29,9 +29,9 @@ export default function Nav() {
             <Image
               src="/logo-white.png"
               alt="Blip"
-              width={80}
-              height={32}
-              className="h-7 w-auto"
+              width={160}
+              height={64}
+              className="h-14 w-auto"
               priority
             />
           </a>
