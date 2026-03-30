@@ -19,10 +19,6 @@ export default function AcceptableUsePage() {
           transition={{ duration: 0.6, ease }}
           className="max-w-3xl mx-auto"
         >
-          <a href="/" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-all duration-200 mb-12">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M10 4l-4 4 4 4" /></svg>
-            Back to home
-          </a>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gradient mb-6">Acceptable Use Policy</h1>
           <p className="text-sm text-[var(--muted)] mb-14">Last updated: March 2026</p>
 
