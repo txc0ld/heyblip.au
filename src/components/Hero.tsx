@@ -38,7 +38,7 @@ export default function Hero() {
             <motion.h1
               variants={childFadeUp}
               transition={{ duration: 0.7, ease }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-gradient mb-6 md:mb-7"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-gradient mb-8 md:mb-10"
             >
               Never lose your
               <br />
