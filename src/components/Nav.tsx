@@ -27,8 +27,8 @@ export default function Nav() {
       transition={{ duration: 0.5, ease }}
       className="fixed top-0 left-0 right-0 z-50"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-3 sm:py-4">
-        <div className="glass rounded-2xl px-4 sm:px-5 md:px-6 py-2 sm:py-3 flex items-center justify-between">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-3 md:py-4">
+        <div className="glass rounded-2xl px-4 sm:px-5 md:px-8 py-2.5 sm:py-3 md:py-4 flex items-center justify-between">
           <a href="/" className="flex items-center group">
             <Image
               src={resolved === "light" ? "/Blipblacklogo.png" : "/Blipwhitelogo.png"}
@@ -40,12 +40,12 @@ export default function Nav() {
             />
           </a>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8 lg:gap-10">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200"
+                className="text-sm text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-[var(--foreground)] after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
               </a>

@@ -6,64 +6,69 @@ import { ease } from "@/lib/animations";
 
 export default function Security() {
   return (
-    <section id="security" className="relative py-16 md:py-32 px-4 sm:px-6">
-      <div className="section-divider mb-16 md:mb-32" />
+    <section id="security" className="relative py-20 md:py-40 px-4 sm:px-6">
+      <div className="section-divider mb-20 md:mb-40" />
 
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 lg:gap-28 items-center">
+          {/* Copy */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 0.7, ease }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gradient mb-4 sm:mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-gradient mb-5 md:mb-8">
               Your messages.
               <br />
               Your business.
             </h2>
-            <p className="text-base sm:text-lg text-[var(--muted)] leading-relaxed mb-4 sm:mb-6">
+            <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] leading-relaxed md:leading-[1.7] mb-5 md:mb-6">
               When your message passes through other phones to reach your friend,
               those phones can&apos;t read it. It&apos;s scrambled before it leaves
               your device and only unscrambled on your friend&apos;s.
             </p>
-            <p className="text-base sm:text-lg text-[var(--muted)] leading-relaxed mb-6 sm:mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] leading-relaxed md:leading-[1.7] mb-8 md:mb-10">
               No accounts. No phone numbers. No data collection. Just you and
               your crew.
             </p>
             <a
               href="/tech"
-              className="inline-flex items-center gap-2 text-sm text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors duration-200 font-medium"
+              className="inline-flex items-center gap-2.5 text-sm md:text-base text-[var(--accent-light)] hover:text-[var(--foreground)] transition-all duration-300 font-medium group"
             >
               See the technical specs
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="transition-transform duration-300 group-hover:translate-x-1">
                 <path d="M6 4l4 4-4 4" />
               </svg>
             </a>
           </motion.div>
 
+          {/* Visual */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease, delay: 0.15 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 0.8, ease, delay: 0.1 }}
             className="flex items-center justify-center"
           >
-            <div className="relative w-48 h-48 md:w-72 md:h-72">
-              {[1, 2, 3].map((ring) => (
+            <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80">
+              {/* Concentric rings with breathing animation */}
+              {[1, 2, 3, 4].map((ring) => (
                 <div
                   key={ring}
-                  className="absolute inset-0 rounded-full border border-[var(--accent)]/10"
+                  className="absolute rounded-full border"
                   style={{
-                    inset: `${ring * 16}px`,
-                    animation: `pulse ${2 + ring * 0.5}s ease-in-out infinite`,
-                    opacity: 0.3 / ring,
+                    inset: `${ring * 18}px`,
+                    borderColor: `rgba(102, 0, 255, ${0.15 / ring})`,
+                    animation: `breathe ${2.5 + ring * 0.6}s ease-in-out infinite`,
+                    animationDelay: `${ring * 0.3}s`,
                   }}
                 />
               ))}
+              {/* Center icon */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl bg-[var(--accent)]/20 border border-[var(--accent)]/30 flex items-center justify-center glow-accent text-[var(--accent-light)]">
-                  <ShieldCheck size={32} strokeWidth={1.5} className="md:w-10 md:h-10" />
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-[var(--accent)]/15 border border-[var(--accent)]/25 flex items-center justify-center glow-accent text-[var(--accent-light)]">
+                  <ShieldCheck size={36} strokeWidth={1.5} className="md:w-11 md:h-11" />
                 </div>
               </div>
             </div>
@@ -72,9 +77,9 @@ export default function Security() {
       </div>
 
       <style jsx>{`
-        @keyframes pulse {
-          0%, 100% { transform: scale(1); opacity: 0.15; }
-          50% { transform: scale(1.05); opacity: 0.25; }
+        @keyframes breathe {
+          0%, 100% { transform: scale(1); opacity: 0.4; }
+          50% { transform: scale(1.08); opacity: 0.7; }
         }
       `}</style>
     </section>

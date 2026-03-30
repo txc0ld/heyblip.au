@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ease, stagger } from "@/lib/animations";
+import { ease, stagger, childFadeUp } from "@/lib/animations";
 
 const plans = [
   {
@@ -51,28 +51,23 @@ const plans = [
   },
 ];
 
-const item = {
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-};
-
 export default function Pricing() {
   return (
-    <section id="pricing" className="relative py-16 md:py-32 px-4 sm:px-6">
-      <div className="section-divider mb-16 md:mb-32" />
+    <section id="pricing" className="relative py-20 md:py-40 px-4 sm:px-6">
+      <div className="section-divider mb-20 md:mb-40" />
 
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease }}
-          className="text-center mb-12 md:mb-20"
+          viewport={{ once: true, margin: "-120px" }}
+          transition={{ duration: 0.7, ease }}
+          className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gradient mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-gradient mb-5 md:mb-6">
             Simple pricing.
           </h2>
-          <p className="text-base sm:text-lg text-[var(--muted)] max-w-lg mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto leading-relaxed">
             SOS alerts are always free. Pay only for messaging at festivals.
           </p>
         </motion.div>
@@ -82,14 +77,14 @@ export default function Pricing() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-7 lg:gap-8"
         >
           {plans.map((plan) => (
             <motion.div
               key={plan.name}
-              variants={item}
-              transition={{ duration: 0.5, ease }}
-              className={`rounded-3xl p-6 sm:p-8 flex flex-col ${
+              variants={childFadeUp}
+              transition={{ duration: 0.6, ease }}
+              className={`rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col transition-all duration-300 hover:scale-[1.015] ${
                 plan.accent
                   ? "glass-strong border-[var(--accent)]/30 relative overflow-hidden"
                   : "glass"
@@ -99,28 +94,28 @@ export default function Pricing() {
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent" />
               )}
 
-              <div className="mb-5 sm:mb-6">
-                <p className="text-sm text-[var(--muted)] font-medium mb-2">
+              <div className="mb-6 md:mb-8">
+                <p className="text-sm text-[var(--muted)] font-medium mb-2 md:mb-3">
                   {plan.name}
                 </p>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-bold">{plan.price}</span>
+                  <span className="text-4xl md:text-5xl font-bold">{plan.price}</span>
                   {plan.period && (
-                    <span className="text-sm text-[var(--muted)]">
+                    <span className="text-sm md:text-base text-[var(--muted)]">
                       {plan.period}
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-[var(--muted)] mt-2">
+                <p className="text-sm md:text-[15px] text-[var(--muted)] mt-2 md:mt-3">
                   {plan.description}
                 </p>
               </div>
 
-              <ul className="space-y-3 mb-6 sm:mb-8 flex-1">
+              <ul className="space-y-3 md:space-y-4 mb-8 md:mb-10 flex-1">
                 {plan.features.map((feature) => (
                   <li
                     key={feature}
-                    className="flex items-center gap-3 text-sm text-[var(--muted-strong)]"
+                    className="flex items-center gap-3 text-sm md:text-[15px] text-[var(--muted-strong)]"
                   >
                     <svg
                       width="16"
@@ -144,10 +139,10 @@ export default function Pricing() {
 
               <a
                 href="#"
-                className={`w-full py-3 rounded-full text-center text-sm font-semibold transition-all duration-200 ${
+                className={`w-full py-3.5 rounded-full text-center text-sm md:text-base font-semibold transition-all duration-300 ${
                   plan.accent
-                    ? "bg-[var(--accent)] text-white hover:bg-[var(--accent-light)] glow-accent-sm hover:glow-accent"
-                    : "border border-[var(--border-strong)] text-[var(--muted-strong)] hover:text-[var(--foreground)] hover:border-[var(--muted)]"
+                    ? "bg-[var(--accent)] text-white hover:bg-[var(--accent-light)] glow-accent-sm hover:glow-accent hover:scale-[1.02]"
+                    : "border border-[var(--border-strong)] text-[var(--muted-strong)] hover:text-[var(--foreground)] hover:border-[var(--muted)] hover:scale-[1.02]"
                 }`}
               >
                 {plan.cta}

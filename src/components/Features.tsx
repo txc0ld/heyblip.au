@@ -2,7 +2,7 @@
 
 import { Wifi, Users, MessageCircle, AlertTriangle, Lock, Tent } from "lucide-react";
 import { motion } from "framer-motion";
-import { ease, stagger } from "@/lib/animations";
+import { ease, stagger, childFadeUp } from "@/lib/animations";
 
 const features = [
   {
@@ -43,30 +43,25 @@ const features = [
   },
 ];
 
-const item = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-};
-
 export default function Features() {
   return (
-    <section id="features" className="relative py-16 md:py-32 px-4 sm:px-6">
-      <div className="section-divider mb-16 md:mb-32" />
+    <section id="features" className="relative py-20 md:py-40 px-4 sm:px-6">
+      <div className="section-divider mb-20 md:mb-40" />
 
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease }}
-          className="text-center mb-12 md:mb-20"
+          viewport={{ once: true, margin: "-120px" }}
+          transition={{ duration: 0.7, ease }}
+          className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gradient mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-gradient mb-5 md:mb-6">
             Everything you need.
             <br />
             Nothing you don&apos;t.
           </h2>
-          <p className="text-base sm:text-lg text-[var(--muted)] max-w-lg mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto leading-relaxed">
             Blip is the app you wish you had at your last festival.
           </p>
         </motion.div>
@@ -76,22 +71,22 @@ export default function Features() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 lg:gap-8"
         >
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
               <motion.div
                 key={feature.title}
-                variants={item}
-                transition={{ duration: 0.5, ease }}
-                className="glass rounded-3xl p-6 sm:p-8 group hover:bg-[var(--card-bg-hover)] transition-colors duration-300"
+                variants={childFadeUp}
+                transition={{ duration: 0.6, ease }}
+                className="glass rounded-3xl p-6 sm:p-8 md:p-10 group hover:bg-[var(--card-bg-hover)] transition-all duration-300 hover:scale-[1.015]"
               >
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent-light)] mb-4 sm:mb-5 group-hover:bg-[var(--accent)]/20 transition-colors duration-300">
-                  <Icon size={20} strokeWidth={1.5} />
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent-light)] mb-5 md:mb-6 group-hover:bg-[var(--accent)]/20 transition-colors duration-300">
+                  <Icon size={22} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                <p className="text-sm text-[var(--muted)] leading-relaxed">
+                <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">{feature.title}</h3>
+                <p className="text-sm md:text-[15px] text-[var(--muted)] leading-relaxed md:leading-[1.7]">
                   {feature.description}
                 </p>
               </motion.div>

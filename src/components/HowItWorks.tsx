@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ease, stagger } from "@/lib/animations";
+import { ease, stagger, childFadeUp } from "@/lib/animations";
 
 const steps = [
   {
@@ -30,28 +30,23 @@ const steps = [
   },
 ];
 
-const item = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-};
-
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="relative py-16 md:py-32 px-4 sm:px-6">
-      <div className="section-divider mb-16 md:mb-32" />
+    <section id="how-it-works" className="relative py-20 md:py-40 px-4 sm:px-6">
+      <div className="section-divider mb-20 md:mb-40" />
 
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease }}
-          className="text-center mb-12 md:mb-20"
+          viewport={{ once: true, margin: "-120px" }}
+          transition={{ duration: 0.7, ease }}
+          className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gradient mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-gradient mb-5 md:mb-6">
             Dead simple.
           </h2>
-          <p className="text-base sm:text-lg text-[var(--muted)] max-w-lg mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto leading-relaxed">
             If you can send a text, you can use Blip. No setup, no tech knowledge required.
           </p>
         </motion.div>
@@ -61,24 +56,22 @@ export default function HowItWorks() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10"
         >
           {steps.map((step) => (
             <motion.div
               key={step.number}
-              variants={item}
-              transition={{ duration: 0.5, ease }}
-              className="relative flex gap-4 sm:gap-6 group"
+              variants={childFadeUp}
+              transition={{ duration: 0.6, ease }}
+              className="group text-center lg:text-left"
             >
-              <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl glass-strong flex items-center justify-center text-lg sm:text-xl font-bold text-gradient-accent group-hover:glow-accent-sm transition-shadow duration-300">
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl glass-strong flex items-center justify-center text-xl md:text-2xl font-bold text-gradient-accent mx-auto lg:mx-0 mb-5 md:mb-6 group-hover:glow-accent-sm transition-all duration-300 group-hover:scale-105">
                 {step.number}
               </div>
-              <div>
-                <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-1.5">{step.title}</h3>
-                <p className="text-sm text-[var(--muted)] leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
+              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">{step.title}</h3>
+              <p className="text-sm md:text-[15px] text-[var(--muted)] leading-relaxed md:leading-[1.7]">
+                {step.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>
