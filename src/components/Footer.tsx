@@ -17,7 +17,7 @@ export default function Footer() {
                 alt="Blip"
                 width={80}
                 height={32}
-                className="h-7 md:h-8 w-auto"
+                className="h-[18px] md:h-[20px] w-auto scale-[2.5] origin-left"
               />
             </div>
             <p className="text-sm md:text-[15px] text-[var(--muted)] leading-relaxed md:leading-[1.7]">
