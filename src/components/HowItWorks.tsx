@@ -37,8 +37,8 @@ const item = {
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="relative py-32 px-6">
-      <div className="section-divider mb-32" />
+    <section id="how-it-works" className="relative py-16 md:py-32 px-4 sm:px-6">
+      <div className="section-divider mb-16 md:mb-32" />
 
       <div className="max-w-5xl mx-auto">
         <motion.div
@@ -46,12 +46,12 @@ export default function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-gradient mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gradient mb-4">
             Dead simple.
           </h2>
-          <p className="text-lg text-[var(--muted)] max-w-lg mx-auto">
+          <p className="text-base sm:text-lg text-[var(--muted)] max-w-lg mx-auto">
             If you can send a text, you can use Blip. No setup, no tech knowledge required.
           </p>
         </motion.div>
@@ -61,20 +61,20 @@ export default function HowItWorks() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
         >
           {steps.map((step) => (
             <motion.div
               key={step.number}
               variants={item}
               transition={{ duration: 0.5, ease }}
-              className="relative flex gap-6 group"
+              className="relative flex gap-4 sm:gap-6 group"
             >
-              <div className="flex-shrink-0 w-14 h-14 rounded-2xl glass-strong flex items-center justify-center text-xl font-bold text-gradient-accent group-hover:glow-accent-sm transition-shadow duration-300">
+              <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl glass-strong flex items-center justify-center text-lg sm:text-xl font-bold text-gradient-accent group-hover:glow-accent-sm transition-shadow duration-300">
                 {step.number}
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-1.5">{step.title}</h3>
+                <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-1.5">{step.title}</h3>
                 <p className="text-sm text-[var(--muted)] leading-relaxed">
                   {step.description}
                 </p>

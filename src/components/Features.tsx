@@ -49,8 +49,8 @@ const item = {
 
 export default function Features() {
   return (
-    <section id="features" className="relative py-32 px-6">
-      <div className="section-divider mb-32" />
+    <section id="features" className="relative py-16 md:py-32 px-4 sm:px-6">
+      <div className="section-divider mb-16 md:mb-32" />
 
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -58,14 +58,14 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-gradient mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gradient mb-4">
             Everything you need.
             <br />
             Nothing you don&apos;t.
           </h2>
-          <p className="text-lg text-[var(--muted)] max-w-lg mx-auto">
+          <p className="text-base sm:text-lg text-[var(--muted)] max-w-lg mx-auto">
             Blip is the app you wish you had at your last festival.
           </p>
         </motion.div>
@@ -75,16 +75,16 @@ export default function Features() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         >
           {features.map((feature) => (
             <motion.div
               key={feature.title}
               variants={item}
               transition={{ duration: 0.5, ease }}
-              className="glass rounded-3xl p-8 group hover:bg-[var(--card-bg-hover)] transition-colors duration-300"
+              className="glass rounded-3xl p-6 sm:p-8 group hover:bg-[var(--card-bg-hover)] transition-colors duration-300"
             >
-              <div className="text-3xl mb-5">{feature.emoji}</div>
+              <div className="text-3xl mb-4 sm:mb-5">{feature.emoji}</div>
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
               <p className="text-sm text-[var(--muted)] leading-relaxed">
                 {feature.description}

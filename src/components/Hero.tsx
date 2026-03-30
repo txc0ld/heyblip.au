@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ease, stagger } from "@/lib/animations";
+import { useTheme } from "./ThemeProvider";
 
 const item = {
   initial: { opacity: 0, y: 24 },
@@ -10,15 +11,17 @@ const item = {
 };
 
 export default function Hero() {
+  const { resolved } = useTheme();
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-32 px-6">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24 pb-16 md:pb-32 px-4 sm:px-6">
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[var(--accent)] opacity-[0.07] blur-[120px] pointer-events-none" />
 
       <motion.div
         variants={stagger}
         initial="initial"
         animate="animate"
-        className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center gap-6"
+        className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center gap-5 sm:gap-6"
       >
         <motion.div
           variants={item}
@@ -31,7 +34,7 @@ export default function Hero() {
         <motion.h1
           variants={item}
           transition={{ duration: 0.6, ease }}
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-gradient"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.15] sm:leading-[1.08] text-gradient"
         >
           Never lose your
           <br />
@@ -41,7 +44,7 @@ export default function Hero() {
         <motion.p
           variants={item}
           transition={{ duration: 0.6, ease }}
-          className="text-lg sm:text-xl text-[var(--muted)] max-w-xl leading-relaxed"
+          className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl leading-relaxed"
         >
           At festivals, phone signal dies. Blip doesn&apos;t need it.
           Your messages pass through other phones in the crowd
@@ -51,17 +54,17 @@ export default function Hero() {
         <motion.div
           variants={item}
           transition={{ duration: 0.6, ease }}
-          className="flex flex-col sm:flex-row items-center gap-4 mt-4"
+          className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-2 sm:mt-4 w-full sm:w-auto"
         >
           <a
             href="#pricing"
-            className="px-8 py-3.5 rounded-full bg-[var(--accent)] text-white font-semibold text-base hover:bg-[var(--accent-light)] transition-all duration-200 glow-accent-sm hover:glow-accent"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[var(--accent)] text-white font-semibold text-base hover:bg-[var(--accent-light)] transition-all duration-200 glow-accent-sm hover:glow-accent text-center"
           >
             Download for iOS
           </a>
           <a
             href="#how-it-works"
-            className="px-8 py-3.5 rounded-full border border-[var(--border-strong)] text-[var(--muted-strong)] font-medium text-base hover:text-white hover:border-[var(--muted)] transition-all duration-200"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-[var(--border-strong)] text-[var(--muted-strong)] font-medium text-base hover:text-[var(--foreground)] hover:border-[var(--muted)] transition-all duration-200 text-center"
           >
             How does it work?
           </a>
@@ -70,14 +73,14 @@ export default function Hero() {
         <motion.div
           variants={item}
           transition={{ duration: 0.8, ease, delay: 0.1 }}
-          className="mt-20"
+          className="mt-8 sm:mt-12 md:mt-20"
         >
           <Image
-            src="/logo-white.png"
+            src={resolved === "light" ? "/logo-dark-wide.png" : "/logo-white.png"}
             alt="Blip"
             width={320}
             height={128}
-            className="h-24 sm:h-32 w-auto opacity-90"
+            className="h-16 sm:h-20 md:h-32 w-auto opacity-90"
             priority
           />
         </motion.div>

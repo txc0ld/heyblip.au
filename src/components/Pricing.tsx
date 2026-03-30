@@ -58,8 +58,8 @@ const item = {
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="relative py-32 px-6">
-      <div className="section-divider mb-32" />
+    <section id="pricing" className="relative py-16 md:py-32 px-4 sm:px-6">
+      <div className="section-divider mb-16 md:mb-32" />
 
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -67,12 +67,12 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-gradient mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gradient mb-4">
             Simple pricing.
           </h2>
-          <p className="text-lg text-[var(--muted)] max-w-lg mx-auto">
+          <p className="text-base sm:text-lg text-[var(--muted)] max-w-lg mx-auto">
             SOS alerts are always free. Pay only for messaging at festivals.
           </p>
         </motion.div>
@@ -82,14 +82,14 @@ export default function Pricing() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6"
         >
           {plans.map((plan) => (
             <motion.div
               key={plan.name}
               variants={item}
               transition={{ duration: 0.5, ease }}
-              className={`rounded-3xl p-8 flex flex-col ${
+              className={`rounded-3xl p-6 sm:p-8 flex flex-col ${
                 plan.accent
                   ? "glass-strong border-[var(--accent)]/30 relative overflow-hidden"
                   : "glass"
@@ -99,12 +99,12 @@ export default function Pricing() {
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent" />
               )}
 
-              <div className="mb-6">
+              <div className="mb-5 sm:mb-6">
                 <p className="text-sm text-[var(--muted)] font-medium mb-2">
                   {plan.name}
                 </p>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold">{plan.price}</span>
+                  <span className="text-3xl sm:text-4xl font-bold">{plan.price}</span>
                   {plan.period && (
                     <span className="text-sm text-[var(--muted)]">
                       {plan.period}
@@ -116,7 +116,7 @@ export default function Pricing() {
                 </p>
               </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
+              <ul className="space-y-3 mb-6 sm:mb-8 flex-1">
                 {plan.features.map((feature) => (
                   <li
                     key={feature}
@@ -147,7 +147,7 @@ export default function Pricing() {
                 className={`w-full py-3 rounded-full text-center text-sm font-semibold transition-all duration-200 ${
                   plan.accent
                     ? "bg-[var(--accent)] text-white hover:bg-[var(--accent-light)] glow-accent-sm hover:glow-accent"
-                    : "border border-[var(--border-strong)] text-[var(--muted-strong)] hover:text-white hover:border-[var(--muted)]"
+                    : "border border-[var(--border-strong)] text-[var(--muted-strong)] hover:text-[var(--foreground)] hover:border-[var(--muted)]"
                 }`}
               >
                 {plan.cta}
