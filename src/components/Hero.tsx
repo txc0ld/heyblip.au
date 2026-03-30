@@ -1,17 +1,20 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ease, stagger, childFadeUp } from "@/lib/animations";
 import { useTheme } from "./ThemeProvider";
 
+const MeshBackground = dynamic(() => import("./MeshBackground"), { ssr: false });
+
 export default function Hero() {
   const { resolved } = useTheme();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-28 pb-16 md:pb-40 px-4 sm:px-6">
-      {/* Ambient glow — more visible on desktop */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] md:w-[1000px] h-[300px] md:h-[500px] rounded-full bg-[var(--accent)] opacity-[0.08] md:opacity-[0.06] blur-[100px] md:blur-[160px] pointer-events-none" />
+    <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-28 pb-16 md:pb-40 px-4 sm:px-6 overflow-hidden">
+      {/* 3D mesh network background */}
+      <MeshBackground />
 
       <motion.div
         variants={stagger}
