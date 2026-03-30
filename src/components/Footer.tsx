@@ -30,9 +30,9 @@ export default function Footer() {
               Product
             </p>
             <ul className="space-y-2.5 md:space-y-3">
-              <li><a href="#features" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Features</a></li>
-              <li><a href="#pricing" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Pricing</a></li>
-              <li><a href="#security" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Privacy</a></li>
+              <li><a href="/#features" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Features</a></li>
+              <li><a href="/#how-it-works" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">How it Works</a></li>
+              <li><a href="/#pricing" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Pricing</a></li>
               <li><a href="/tech" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Tech Specs</a></li>
             </ul>
           </div>
@@ -44,16 +44,17 @@ export default function Footer() {
             <ul className="space-y-2.5 md:space-y-3">
               <li><a href="/privacy" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Privacy Policy</a></li>
               <li><a href="/terms" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Terms of Service</a></li>
+              <li><a href="/acceptable-use" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Acceptable Use</a></li>
             </ul>
           </div>
 
           <div>
             <p className="text-xs uppercase tracking-[0.15em] text-[var(--muted)] font-semibold mb-4 md:mb-5">
-              Connect
+              Support
             </p>
             <ul className="space-y-2.5 md:space-y-3">
-              <li><a href="https://github.com/txc0ld/FezChat" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">GitHub</a></li>
-              <li><a href="mailto:hello@heyblip.au" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Contact</a></li>
+              <li><a href="mailto:hello@heyblip.au" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Contact Us</a></li>
+              <li><a href="mailto:support@heyblip.au" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Help & Support</a></li>
             </ul>
           </div>
         </div>
@@ -65,7 +66,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Blip. All rights reserved.
           </p>
           <p className="text-xs md:text-sm text-[var(--muted)]">
-            Sydney, Australia
+            Australia
           </p>
         </div>
       </div>
