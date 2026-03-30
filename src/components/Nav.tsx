@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ease } from "@/lib/animations";
 import { useTheme } from "./ThemeProvider";
@@ -61,24 +62,17 @@ export default function Nav() {
             </a>
           </div>
 
-          <div className="flex md:hidden items-center gap-2">
-            <ThemeToggle />
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 text-[var(--muted)]"
-              aria-label="Toggle menu"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                {mobileOpen ? (
-                  <path d="M6 6l12 12M6 18L18 6" />
-                ) : (
-                  <path d="M4 8h16M4 16h16" />
-                )}
-              </svg>
-            </button>
-          </div>
+          {/* Mobile: just the hamburger */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden p-2 text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
+          </button>
         </div>
 
+        {/* Mobile menu — theme toggle lives here */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -99,9 +93,18 @@ export default function Nav() {
                     {link.label}
                   </a>
                 ))}
+
+                <div className="section-divider my-1" />
+
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-[var(--muted)]">Theme</span>
+                  <ThemeToggle />
+                </div>
+
                 <a
                   href="#pricing"
-                  className="text-sm px-5 py-2.5 rounded-full bg-[var(--accent)] text-white font-medium text-center mt-2"
+                  onClick={() => setMobileOpen(false)}
+                  className="text-sm px-5 py-2.5 rounded-full bg-[var(--accent)] text-white font-medium text-center mt-1"
                 >
                   Get Blip
                 </a>

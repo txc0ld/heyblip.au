@@ -1,41 +1,42 @@
 "use client";
 
+import { Wifi, Users, MessageCircle, AlertTriangle, Lock, Tent } from "lucide-react";
 import { motion } from "framer-motion";
 import { ease, stagger } from "@/lib/animations";
 
 const features = [
   {
-    emoji: "📡",
+    icon: Wifi,
     title: "Works without signal",
     description:
       "No Wi-Fi, no mobile data, no problem. Blip uses Bluetooth to pass messages through people around you.",
   },
   {
-    emoji: "👥",
+    icon: Users,
     title: "Find your crew",
     description:
       "See who's nearby, add friends with a tap, and always know where your group is — even in a crowd of 100,000.",
   },
   {
-    emoji: "💬",
+    icon: MessageCircle,
     title: "Chat, voice notes & photos",
     description:
       "Send texts, voice messages, and photos to friends. Just like any chat app — except it works when nothing else does.",
   },
   {
-    emoji: "🚨",
+    icon: AlertTriangle,
     title: "Emergency SOS",
     description:
       "Send an SOS alert that reaches every phone around you instantly. No throttling, no delays. Safety first.",
   },
   {
-    emoji: "🔒",
+    icon: Lock,
     title: "Private by default",
     description:
       "Your messages are encrypted before they leave your phone. Nobody between you and your friend can read them — not even us.",
   },
   {
-    emoji: "🎪",
+    icon: Tent,
     title: "Built for festivals",
     description:
       "Stage channels, crowd density info, lost & found, meeting points — everything you need for the perfect festival experience.",
@@ -77,20 +78,25 @@ export default function Features() {
           viewport={{ once: true, margin: "-80px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         >
-          {features.map((feature) => (
-            <motion.div
-              key={feature.title}
-              variants={item}
-              transition={{ duration: 0.5, ease }}
-              className="glass rounded-3xl p-6 sm:p-8 group hover:bg-[var(--card-bg-hover)] transition-colors duration-300"
-            >
-              <div className="text-3xl mb-4 sm:mb-5">{feature.emoji}</div>
-              <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-              <p className="text-sm text-[var(--muted)] leading-relaxed">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
+          {features.map((feature) => {
+            const Icon = feature.icon;
+            return (
+              <motion.div
+                key={feature.title}
+                variants={item}
+                transition={{ duration: 0.5, ease }}
+                className="glass rounded-3xl p-6 sm:p-8 group hover:bg-[var(--card-bg-hover)] transition-colors duration-300"
+              >
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent-light)] mb-4 sm:mb-5 group-hover:bg-[var(--accent)]/20 transition-colors duration-300">
+                  <Icon size={20} strokeWidth={1.5} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                <p className="text-sm text-[var(--muted)] leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

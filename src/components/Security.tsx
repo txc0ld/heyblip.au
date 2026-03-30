@@ -1,5 +1,6 @@
 "use client";
 
+import { ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { ease } from "@/lib/animations";
 
@@ -61,8 +62,8 @@ export default function Security() {
                 />
               ))}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl bg-[var(--accent)]/20 border border-[var(--accent)]/30 flex items-center justify-center glow-accent">
-                  <span className="text-3xl md:text-4xl">🔒</span>
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl bg-[var(--accent)]/20 border border-[var(--accent)]/30 flex items-center justify-center glow-accent text-[var(--accent-light)]">
+                  <ShieldCheck size={32} strokeWidth={1.5} className="md:w-10 md:h-10" />
                 </div>
               </div>
             </div>
