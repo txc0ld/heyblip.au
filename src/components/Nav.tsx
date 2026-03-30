@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ease } from "@/lib/animations";
 
@@ -24,14 +25,15 @@ export default function Nav() {
       <div className="mx-auto max-w-7xl px-6 py-4">
         <div className="glass rounded-2xl px-6 py-3 flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-lg bg-[var(--accent)] flex items-center justify-center glow-accent-sm transition-shadow group-hover:shadow-[0_0_40px_var(--accent-glow-strong)]">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="3" fill="white" />
-                <circle cx="8" cy="8" r="6" stroke="white" strokeWidth="1.5" strokeDasharray="3 3" />
-              </svg>
-            </div>
-            <span className="text-lg font-bold tracking-tight">Blip</span>
+          <a href="/" className="flex items-center group">
+            <Image
+              src="/logo-white.png"
+              alt="Blip"
+              width={80}
+              height={32}
+              className="h-7 w-auto"
+              priority
+            />
           </a>
 
           {/* Desktop links */}

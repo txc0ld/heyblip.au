@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="border-t border-[var(--border)] py-16 px-6">
@@ -5,14 +7,14 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-7 h-7 rounded-md bg-[var(--accent)] flex items-center justify-center">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                  <circle cx="8" cy="8" r="3" fill="white" />
-                  <circle cx="8" cy="8" r="6" stroke="white" strokeWidth="1.5" strokeDasharray="3 3" />
-                </svg>
-              </div>
-              <span className="text-base font-bold">Blip</span>
+            <div className="mb-4">
+              <Image
+                src="/logo-white.png"
+                alt="Blip"
+                width={72}
+                height={28}
+                className="h-6 w-auto"
+              />
             </div>
             <p className="text-sm text-[var(--muted)] leading-relaxed">
               Bluetooth mesh chat for festivals. Made in Australia.

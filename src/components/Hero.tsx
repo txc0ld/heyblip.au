@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ease, stagger, fadeUp } from "@/lib/animations";
 
@@ -71,27 +72,20 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Phone mockup placeholder */}
+        {/* Logo visual */}
         <motion.div
           variants={item}
           transition={{ duration: 0.8, ease, delay: 0.1 }}
-          className="mt-16 w-full max-w-md aspect-[9/16] rounded-[40px] glass-strong relative overflow-hidden"
+          className="mt-20"
         >
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-2xl bg-[var(--accent)] mx-auto mb-4 flex items-center justify-center glow-accent">
-                <svg width="28" height="28" viewBox="0 0 16 16" fill="none">
-                  <circle cx="8" cy="8" r="3" fill="white" />
-                  <circle cx="8" cy="8" r="6" stroke="white" strokeWidth="1.5" strokeDasharray="3 3" />
-                </svg>
-              </div>
-              <p className="text-sm text-[var(--muted)]">App preview</p>
-            </div>
-          </div>
-          {/* Simulated status bar */}
-          <div className="absolute top-0 inset-x-0 h-12 flex items-center justify-center">
-            <div className="w-28 h-6 rounded-full bg-black/50" />
-          </div>
+          <Image
+            src="/logo-white.png"
+            alt="Blip"
+            width={320}
+            height={128}
+            className="h-24 sm:h-32 w-auto opacity-90"
+            priority
+          />
         </motion.div>
       </motion.div>
     </section>
