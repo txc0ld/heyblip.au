@@ -16,7 +16,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto w-full">
 
         {/* ── Desktop: side-by-side grid ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 xl:gap-0 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-16 xl:gap-20 items-center max-w-6xl mx-auto">
 
           {/* Left column: badge + (mobile: mesh) + copy */}
           <motion.div
@@ -108,7 +108,7 @@ export default function Hero() {
             transition={{ duration: 1, ease, delay: 0.15 }}
             className="hidden lg:block relative w-full"
           >
-            <div className="relative aspect-square max-w-[520px] ml-auto mr-0 rounded-3xl overflow-hidden glass">
+            <div className="relative aspect-square w-[420px] xl:w-[480px] rounded-3xl overflow-hidden glass">
               <MeshBackground />
             </div>
           </motion.div>
