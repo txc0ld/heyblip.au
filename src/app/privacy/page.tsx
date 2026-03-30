@@ -19,12 +19,12 @@ export default function PrivacyPage() {
           transition={{ duration: 0.6, ease }}
           className="max-w-3xl mx-auto"
         >
-          <a href="/" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-all duration-200 mb-8">
+          <a href="/" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-all duration-200 mb-12">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M10 4l-4 4 4 4" /></svg>
             Back to home
           </a>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gradient mb-4">Privacy Policy</h1>
-          <p className="text-sm text-[var(--muted)] mb-12">Last updated: March 2026</p>
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gradient mb-6">Privacy Policy</h1>
+          <p className="text-sm text-[var(--muted)] mb-14">Last updated: March 2026</p>
 
           <div className="space-y-10 text-[var(--muted-strong)] text-[15px] leading-[1.8]">
             <div>
