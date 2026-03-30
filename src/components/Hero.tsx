@@ -12,7 +12,7 @@ export default function Hero() {
   const { resolved } = useTheme();
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 md:pt-32 pb-20 md:pb-40 px-4 sm:px-6 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-32 md:pt-44 pb-12 md:pb-16 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto w-full">
 
         {/* ── Desktop: side-by-side grid ── */}
