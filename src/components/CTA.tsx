@@ -5,8 +5,8 @@ import { ease } from "@/lib/animations";
 
 export default function CTA() {
   return (
-    <section className="relative py-20 md:py-40 px-4 sm:px-6">
-      <div className="section-divider mb-20 md:mb-40" />
+    <section className="relative py-16 md:py-24 px-4 sm:px-6">
+      <div className="section-divider mb-16 md:mb-24" />
 
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] md:w-[800px] h-[250px] md:h-[400px] rounded-full bg-[var(--accent)] opacity-[0.05] md:opacity-[0.04] blur-[80px] md:blur-[140px] pointer-events-none" />
 
@@ -17,7 +17,7 @@ export default function CTA() {
         transition={{ duration: 0.7, ease }}
         className="relative z-10 max-w-3xl mx-auto text-center"
       >
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4.5rem] font-bold tracking-tight text-gradient mb-5 md:mb-8">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-5 md:mb-8">
           Festival season is coming.
         </h2>
         <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto mb-10 md:mb-14 leading-relaxed md:leading-[1.7]">

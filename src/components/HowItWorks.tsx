@@ -32,8 +32,8 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="relative py-20 md:py-40 px-4 sm:px-6">
-      <div className="section-divider mb-20 md:mb-40" />
+    <section id="how-it-works" className="relative py-16 md:py-24 px-4 sm:px-6">
+      <div className="section-divider mb-16 md:mb-24" />
 
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -43,7 +43,7 @@ export default function HowItWorks() {
           transition={{ duration: 0.7, ease }}
           className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-gradient mb-5 md:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-5 md:mb-6">
             Dead simple.
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto leading-relaxed">

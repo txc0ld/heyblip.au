@@ -25,16 +25,7 @@ export default function Hero() {
             animate="animate"
             className="relative z-10 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
-            {/* Badge */}
-            <motion.div
-              variants={childFadeUp}
-              transition={{ duration: 0.6, ease }}
-              className="glass rounded-full px-5 py-2 text-xs md:text-sm font-medium tracking-wide text-[var(--muted-strong)] uppercase mb-6 md:mb-8"
-            >
-              No signal? No problem.
-            </motion.div>
-
-            {/* Mobile mesh — sits right below badge, above headline */}
+            {/* Mobile mesh — first visual on mobile */}
             <motion.div
               variants={childFadeUp}
               transition={{ duration: 0.8, ease }}

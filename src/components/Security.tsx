@@ -6,8 +6,8 @@ import { ease } from "@/lib/animations";
 
 export default function Security() {
   return (
-    <section id="security" className="relative py-20 md:py-40 px-4 sm:px-6">
-      <div className="section-divider mb-20 md:mb-40" />
+    <section id="security" className="relative py-16 md:py-24 px-4 sm:px-6">
+      <div className="section-divider mb-16 md:mb-24" />
 
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 lg:gap-28 items-center">
@@ -18,7 +18,7 @@ export default function Security() {
             viewport={{ once: true, margin: "-120px" }}
             transition={{ duration: 0.7, ease }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-gradient mb-5 md:mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-5 md:mb-8">
               Your messages.
               <br />
               Your business.

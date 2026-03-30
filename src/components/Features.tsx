@@ -45,8 +45,8 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="relative py-20 md:py-40 px-4 sm:px-6">
-      <div className="section-divider mb-20 md:mb-40" />
+    <section id="features" className="relative py-16 md:py-24 px-4 sm:px-6">
+      <div className="section-divider mb-16 md:mb-24" />
 
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -56,7 +56,7 @@ export default function Features() {
           transition={{ duration: 0.7, ease }}
           className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-gradient mb-5 md:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-4 md:mb-5">
             Everything you need.
             <br />
             Nothing you don&apos;t.
