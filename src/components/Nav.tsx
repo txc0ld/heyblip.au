@@ -31,7 +31,7 @@ export default function Nav() {
         <div className="glass rounded-2xl px-4 sm:px-5 md:px-6 py-2 sm:py-3 flex items-center justify-between">
           <a href="/" className="flex items-center group">
             <Image
-              src={resolved === "light" ? "/logo-dark.png" : "/logo-white.png"}
+              src={resolved === "light" ? "/Blipblacklogo.png" : "/Blipwhitelogo.png"}
               alt="Blip"
               width={160}
               height={64}

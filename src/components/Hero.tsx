@@ -76,7 +76,7 @@ export default function Hero() {
           className="mt-8 sm:mt-12 md:mt-20"
         >
           <Image
-            src={resolved === "light" ? "/logo-dark-wide.png" : "/logo-white.png"}
+            src={resolved === "light" ? "/Blipblacklogo.png" : "/Blipwhitelogo.png"}
             alt="Blip"
             width={320}
             height={128}

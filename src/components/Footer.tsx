@@ -1,6 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { useTheme } from "./ThemeProvider";
 
 export default function Footer() {
+  const { resolved } = useTheme();
+
   return (
     <footer className="border-t border-[var(--border)] py-12 sm:py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
@@ -8,18 +13,11 @@ export default function Footer() {
           <div>
             <div className="mb-4">
               <Image
-                src="/logo-white.png"
+                src={resolved === "light" ? "/Blipblacklogo.png" : "/Blipwhitelogo.png"}
                 alt="Blip"
                 width={72}
                 height={28}
-                className="h-6 w-auto dark:block hidden"
-              />
-              <Image
-                src="/logo-dark.png"
-                alt="Blip"
-                width={72}
-                height={28}
-                className="h-6 w-auto dark:hidden block"
+                className="h-6 w-auto"
               />
             </div>
             <p className="text-sm text-[var(--muted)] leading-relaxed">
