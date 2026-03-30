@@ -55,7 +55,7 @@ export default function HowItWorks() {
           transition={{ duration: 0.7, ease }}
           className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-4 md:mb-5">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-6 md:mb-8">
             Dead simple.
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto leading-relaxed">

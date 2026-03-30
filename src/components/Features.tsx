@@ -56,7 +56,7 @@ export default function Features() {
           transition={{ duration: 0.7, ease }}
           className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-4 md:mb-5">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-6 md:mb-8">
             Everything you need.
             <br />
             Nothing you don&apos;t.
