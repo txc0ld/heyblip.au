@@ -18,7 +18,7 @@ export default function Security() {
             viewport={{ once: true, margin: "-120px" }}
             transition={{ duration: 0.7, ease }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-5 md:mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-8 md:mb-12">
               Your messages.
               <br />
               Your business.

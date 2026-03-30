@@ -17,7 +17,7 @@ export default function CTA() {
         transition={{ duration: 0.7, ease }}
         className="relative z-10 max-w-3xl mx-auto text-center"
       >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-5 md:mb-8">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-8 md:mb-12">
           Festival season is coming.
         </h2>
         <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto mb-10 md:mb-14 leading-relaxed md:leading-[1.7]">
