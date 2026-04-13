@@ -19,7 +19,7 @@ const plans = [
     accent: false,
   },
   {
-    name: "Festival Pass",
+    name: "Event Pass",
     price: "$4.99",
     period: "/ festival",
     description: "Unlimited messaging for one event.",
@@ -31,7 +31,7 @@ const plans = [
       "Friend finder map",
       "Priority relay",
     ],
-    cta: "Get Festival Pass",
+    cta: "Get Event Pass",
     accent: true,
   },
   {
@@ -40,7 +40,7 @@ const plans = [
     period: "/ year",
     description: "All festivals, all year. Best value.",
     features: [
-      "Everything in Festival Pass",
+      "Everything in Event Pass",
       "Unlimited festivals",
       "Profile verification badge",
       "Early access to features",
@@ -93,6 +93,12 @@ export default function Pricing() {
               {plan.accent && (
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent" />
               )}
+
+              <div className="mb-4">
+                <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-[var(--accent)]/15 text-[var(--accent-light)] border border-[var(--accent)]/25">
+                  Coming Soon
+                </span>
+              </div>
 
               <div className="mb-6 md:mb-8">
                 <p className="text-sm text-[var(--muted)] font-medium mb-2 md:mb-3">
@@ -150,6 +156,10 @@ export default function Pricing() {
             </motion.div>
           ))}
         </motion.div>
+
+        <p className="text-center text-sm text-[var(--muted)] mt-8 md:mt-12 max-w-lg mx-auto leading-relaxed">
+          Pricing is indicative and subject to change. Blip is currently free during the beta period.
+        </p>
       </div>
     </section>
   );
