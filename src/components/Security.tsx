@@ -29,8 +29,9 @@ export default function Security() {
               your device and only unscrambled on your friend&apos;s.
             </p>
             <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] leading-relaxed md:leading-[1.7] mb-8 md:mb-10">
-              No accounts. No phone numbers. No data collection. Just you and
-              your crew.
+              End-to-end encrypted by default. Your messages are scrambled
+              before they leave your device — relay nodes and even our servers
+              can&apos;t read them.
             </p>
             <a
               href="/tech"
