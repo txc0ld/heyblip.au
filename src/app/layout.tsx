@@ -10,23 +10,23 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Blip — Mesh Chat for Festivals",
+  title: "Blip — Mesh Chat for Events",
   description:
-    "Stay connected with your crew at festivals — no signal required. Blip uses Bluetooth mesh to relay messages through the crowd.",
+    "Stay connected with your crew at events — festivals, concerts, sporting events, and more. Blip uses Bluetooth mesh to relay messages through the crowd when signal dies.",
   metadataBase: new URL("https://heyblip.au"),
   openGraph: {
-    title: "Blip — Mesh Chat for Festivals",
+    title: "Blip — Mesh Chat for Events",
     description:
-      "Stay connected with your crew at festivals — no signal required.",
+      "Stay connected with your crew at events — festivals, concerts, sporting events. No signal required.",
     url: "https://heyblip.au",
     siteName: "Blip",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blip — Mesh Chat for Festivals",
+    title: "Blip — Mesh Chat for Events",
     description:
-      "Stay connected with your crew at festivals — no signal required.",
+      "Stay connected with your crew at events — festivals, concerts, sporting events. No signal required.",
   },
 };
 

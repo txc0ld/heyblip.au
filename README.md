@@ -1,6 +1,6 @@
 # heyblip.au
 
-Marketing website for **Blip** — Bluetooth mesh chat for festivals.
+Marketing website for **Blip** — Bluetooth mesh chat for events.
 
 **Live:** [heyblip.au](https://heyblip.au) / [heyblipau.vercel.app](https://heyblipau.vercel.app)
 

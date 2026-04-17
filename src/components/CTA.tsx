@@ -18,11 +18,11 @@ export default function CTA() {
         className="relative z-10 max-w-3xl mx-auto text-center"
       >
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-6 md:mb-8">
-          Festival season is coming.
+          Your next event is coming.
         </h2>
         <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto mb-10 md:mb-14 leading-relaxed md:leading-[1.7]">
-          Download Blip before you go. When the towers go down and the bass drops,
-          you&apos;ll be glad you did.
+          Download Blip before you go. When the towers go down and the crowd
+          closes in, you&apos;ll be glad you did.
         </p>
         <a
           href="https://apps.apple.com/app/blip"

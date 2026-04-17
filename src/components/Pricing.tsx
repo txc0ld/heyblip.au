@@ -19,9 +19,9 @@ const plans = [
     accent: false,
   },
   {
-    name: "Festival Pass",
+    name: "Event Pass",
     price: "$4.99",
-    period: "/ festival",
+    period: "/ event",
     description: "Unlimited messaging for one event.",
     features: [
       "Unlimited messages",
@@ -31,17 +31,17 @@ const plans = [
       "Friend finder map",
       "Priority relay",
     ],
-    cta: "Get Festival Pass",
+    cta: "Get Event Pass",
     accent: true,
   },
   {
     name: "Season",
     price: "$14.99",
     period: "/ year",
-    description: "All festivals, all year. Best value.",
+    description: "All events, all year. Best value.",
     features: [
-      "Everything in Festival Pass",
-      "Unlimited festivals",
+      "Everything in Event Pass",
+      "Unlimited events",
       "Profile verification badge",
       "Early access to features",
       "Support development",
@@ -68,7 +68,7 @@ export default function Pricing() {
             Simple pricing.
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto leading-relaxed">
-            SOS alerts are always free. Pay only for messaging at festivals.
+            SOS alerts are always free. Pay only for messaging at events.
           </p>
         </motion.div>
 

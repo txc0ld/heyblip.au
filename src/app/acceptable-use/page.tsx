@@ -25,7 +25,7 @@ export default function AcceptableUsePage() {
           <div className="space-y-10 text-[var(--muted-strong)] text-[15px] leading-[1.8]">
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">Purpose</h2>
-              <p>This Acceptable Use Policy outlines the expected behaviour of all Blip users. Blip is built to keep people safe and connected at festivals — we expect all users to use the platform responsibly.</p>
+              <p>This Acceptable Use Policy outlines the expected behaviour of all Blip users. Blip is built to keep people safe and connected at events — festivals, concerts, sporting events, and other high-density gatherings. We expect all users to use the platform responsibly.</p>
             </div>
 
             <div>

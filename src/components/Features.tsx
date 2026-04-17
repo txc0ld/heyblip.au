@@ -37,9 +37,9 @@ const features = [
   },
   {
     icon: Tent,
-    title: "Built for festivals",
+    title: "Built for events",
     description:
-      "Stage channels, crowd density info, lost & found, meeting points — everything you need for the perfect festival experience.",
+      "Stage channels, crowd density info, lost & found, meeting points — made for festivals, concerts, sporting events, and ultra marathons.",
   },
 ];
 
@@ -62,7 +62,7 @@ export default function Features() {
             Nothing you don&apos;t.
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto leading-relaxed">
-            Blip is the app you wish you had at your last festival.
+            Blip is the app you wish you had at your last event.
           </p>
         </motion.div>
 

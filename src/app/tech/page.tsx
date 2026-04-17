@@ -106,7 +106,7 @@ export default function TechPage() {
             </h1>
             <p className="text-lg text-[var(--muted)] max-w-2xl">
               The engineering behind Blip&apos;s BLE mesh network. Built for
-              festival-scale crowds with end-to-end encryption, adaptive gossip
+              event-scale crowds with end-to-end encryption, adaptive gossip
               routing, and Ed25519 packet authentication.
             </p>
           </motion.div>

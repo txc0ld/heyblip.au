@@ -51,9 +51,10 @@ export default function Hero() {
               transition={{ duration: 0.7, ease }}
               className="text-base sm:text-lg lg:text-xl text-[var(--muted)] max-w-lg leading-relaxed lg:leading-[1.7] mb-8 md:mb-10"
             >
-              At festivals, phone signal dies. Blip doesn&apos;t need it.
-              Your messages pass through other phones in the crowd
-              until they reach your friends — like a digital whisper chain.
+              At festivals, concerts, sporting events, and ultra marathons,
+              phone signal dies. Blip doesn&apos;t need it. Your messages pass
+              through other phones in the crowd until they reach your friends —
+              like a digital whisper chain.
             </motion.p>
 
             {/* CTAs */}

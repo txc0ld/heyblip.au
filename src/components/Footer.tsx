@@ -21,7 +21,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-sm md:text-[15px] text-[var(--muted)] leading-relaxed md:leading-[1.7]">
-              Bluetooth mesh chat for festivals. Made in Australia.
+              Bluetooth mesh chat for events. Made in Australia.
             </p>
           </div>
 
