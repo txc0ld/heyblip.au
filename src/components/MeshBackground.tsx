@@ -1,7 +1,22 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
+import {
+  AdditiveBlending,
+  CanvasTexture,
+  Color,
+  CylinderGeometry,
+  Material,
+  Mesh,
+  MeshBasicMaterial,
+  PerspectiveCamera,
+  Scene,
+  SphereGeometry,
+  Sprite,
+  SpriteMaterial,
+  Vector3,
+  WebGLRenderer,
+} from "three";
 import { useTheme } from "./ThemeProvider";
 
 /* ─── CONFIG ─────────────────────────────────────────────── */
@@ -30,17 +45,17 @@ const TH = {
 };
 
 /* ─── HELPERS ────────────────────────────────────────────── */
-function irregularPos(existing: THREE.Vector3[], idx: number) {
+function irregularPos(existing: Vector3[], idx: number) {
   if (idx < INITIAL_NODES) {
     const spread = 4;
-    return new THREE.Vector3(
+    return new Vector3(
       (Math.random() - 0.5) * spread * 2,
       (Math.random() - 0.5) * spread * 2,
       (Math.random() - 0.5) * spread * 2
     );
   }
   const parent = existing[Math.floor(Math.random() * existing.length)];
-  const dir = new THREE.Vector3(
+  const dir = new Vector3(
     Math.random() - 0.5,
     Math.random() - 0.5,
     Math.random() - 0.5
@@ -53,20 +68,20 @@ function irregularPos(existing: THREE.Vector3[], idx: number) {
 export default function MeshBackground() {
   const mountEl = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<{
-    renderer: THREE.WebGLRenderer;
+    renderer: WebGLRenderer;
     graph: {
       nodes: Array<{
-        pos: THREE.Vector3;
+        pos: Vector3;
         pulse: number;
         decay: number;
-        mesh: THREE.Mesh;
+        mesh: Mesh;
         fadeIn: number;
       }>;
       edges: Array<{
-        mat: THREE.MeshBasicMaterial;
+        mat: MeshBasicMaterial;
         fadeIn: number;
       }>;
-      positions: THREE.Vector3[];
+      positions: Vector3[];
       nextId: number;
     };
   } | null>(null);
@@ -84,7 +99,7 @@ export default function MeshBackground() {
     let w = el.clientWidth;
     let h = el.clientHeight;
 
-    const renderer = new THREE.WebGLRenderer({
+    const renderer = new WebGLRenderer({
       antialias: true,
       alpha: true,
     });
@@ -93,32 +108,32 @@ export default function MeshBackground() {
     renderer.setClearColor(TH[themeRef.current].bg, 0); // transparent
     el.appendChild(renderer.domElement);
 
-    const scene = new THREE.Scene();
-    const cam = new THREE.PerspectiveCamera(42, w / h, 0.1, 300);
+    const scene = new Scene();
+    const cam = new PerspectiveCamera(42, w / h, 0.1, 300);
     cam.position.set(0, 0, 28);
 
     const graph = {
       nodes: [] as Array<{
-        pos: THREE.Vector3;
+        pos: Vector3;
         pulse: number;
         decay: number;
-        mesh: THREE.Mesh;
+        mesh: Mesh;
         fadeIn: number;
       }>,
       edges: [] as Array<{
         a: number;
         b: number;
-        line: THREE.Mesh;
-        mat: THREE.MeshBasicMaterial;
+        line: Mesh;
+        mat: MeshBasicMaterial;
         fadeIn: number;
       }>,
-      positions: [] as THREE.Vector3[],
+      positions: [] as Vector3[],
       nextId: 0,
     };
 
     const geoSizes = [0.06, 0.09, 0.13, 0.18];
-    const geos = geoSizes.map((r) => new THREE.SphereGeometry(r, 8, 6));
-    const edgeCylGeo = new THREE.CylinderGeometry(1, 1, 1, 4, 1);
+    const geos = geoSizes.map((r) => new SphereGeometry(r, 8, 6));
+    const edgeCylGeo = new CylinderGeometry(1, 1, 1, 4, 1);
 
     function addNode() {
       if (graph.nodes.length >= MAX_NODES) return null;
@@ -126,12 +141,12 @@ export default function MeshBackground() {
       const pos = irregularPos(graph.positions, id);
       const sizeIdx = Math.floor(Math.random() * geos.length);
       const tm = TH[themeRef.current];
-      const mat = new THREE.MeshBasicMaterial({
+      const mat = new MeshBasicMaterial({
         color: tm.node,
         transparent: true,
         opacity: 0,
       });
-      const mesh = new THREE.Mesh(geos[sizeIdx], mat);
+      const mesh = new Mesh(geos[sizeIdx], mat);
       mesh.position.copy(pos);
       mesh.scale.set(0.01, 0.01, 0.01);
       scene.add(mesh);
@@ -153,17 +168,17 @@ export default function MeshBackground() {
       const b = graph.nodes[bIdx];
       if (!a || !b) return;
       const tm = TH[themeRef.current];
-      const dir = new THREE.Vector3().subVectors(b.pos, a.pos);
+      const dir = new Vector3().subVectors(b.pos, a.pos);
       const len = dir.length();
-      const mid = new THREE.Vector3().addVectors(a.pos, b.pos).multiplyScalar(0.5);
+      const mid = new Vector3().addVectors(a.pos, b.pos).multiplyScalar(0.5);
       const thickness = 0.01 + Math.random() * 0.006;
 
-      const mat = new THREE.MeshBasicMaterial({
+      const mat = new MeshBasicMaterial({
         color: tm.edge,
         transparent: true,
         opacity: 0,
       });
-      const mesh = new THREE.Mesh(edgeCylGeo, mat);
+      const mesh = new Mesh(edgeCylGeo, mat);
       mesh.position.copy(mid);
       mesh.scale.set(thickness, len, thickness);
       mesh.lookAt(b.pos);
@@ -204,19 +219,19 @@ export default function MeshBackground() {
     grd.addColorStop(1, "rgba(102,0,255,0)");
     gc.fillStyle = grd;
     gc.fillRect(0, 0, 64, 64);
-    const glowTex = new THREE.CanvasTexture(glowC);
+    const glowTex = new CanvasTexture(glowC);
 
     const GLOW_POOL = 6;
-    const glows: THREE.Sprite[] = [];
+    const glows: Sprite[] = [];
     for (let i = 0; i < GLOW_POOL; i++) {
-      const sm = new THREE.SpriteMaterial({
+      const sm = new SpriteMaterial({
         map: glowTex,
         transparent: true,
         opacity: 0,
-        blending: THREE.AdditiveBlending,
+        blending: AdditiveBlending,
         depthWrite: false,
       });
-      const s = new THREE.Sprite(sm);
+      const s = new Sprite(sm);
       s.scale.set(1.4, 1.4, 1);
       s.visible = false;
       scene.add(s);
@@ -240,7 +255,7 @@ export default function MeshBackground() {
     window.addEventListener("resize", onResize);
 
     let raf: number;
-    const pulseCol = new THREE.Color(PULSE_HEX);
+    const pulseCol = new Color(PULSE_HEX);
 
     const loop = () => {
       raf = requestAnimationFrame(loop);
@@ -275,7 +290,7 @@ export default function MeshBackground() {
       }
 
       // Update nodes
-      const baseC = new THREE.Color(tm.node);
+      const baseC = new Color(tm.node);
       let gi = 0;
 
       for (const n of graph.nodes) {
@@ -284,13 +299,13 @@ export default function MeshBackground() {
           n.fadeIn = Math.min(1, n.fadeIn + 0.02);
           const s = n.fadeIn;
           m.scale.set(s, s, s);
-          (m.material as THREE.MeshBasicMaterial).opacity = n.fadeIn;
+          (m.material as MeshBasicMaterial).opacity = n.fadeIn;
         }
 
         if (n.pulse > 0.008) {
           n.pulse *= n.decay;
           const c = baseC.clone().lerp(pulseCol, n.pulse);
-          (m.material as THREE.MeshBasicMaterial).color.copy(c);
+          (m.material as MeshBasicMaterial).color.copy(c);
           const sc = n.fadeIn * (1 + n.pulse * 2);
           m.scale.set(sc, sc, sc);
 
@@ -302,10 +317,10 @@ export default function MeshBackground() {
           }
         } else {
           n.pulse = 0;
-          (m.material as THREE.MeshBasicMaterial).color.copy(baseC);
+          (m.material as MeshBasicMaterial).color.copy(baseC);
           if (n.fadeIn >= 1) {
             m.scale.set(1, 1, 1);
-            (m.material as THREE.MeshBasicMaterial).opacity = 1;
+            (m.material as MeshBasicMaterial).opacity = 1;
           }
         }
       }
@@ -328,7 +343,7 @@ export default function MeshBackground() {
       window.removeEventListener("resize", onResize);
       renderer.dispose();
       geos.forEach((g) => g.dispose());
-      graph.nodes.forEach((n) => (n.mesh.material as THREE.Material).dispose());
+      graph.nodes.forEach((n) => (n.mesh.material as Material).dispose());
       graph.edges.forEach((e) => e.mat.dispose());
       edgeCylGeo.dispose();
       glows.forEach((s) => s.material.dispose());
@@ -343,10 +358,10 @@ export default function MeshBackground() {
     if (!s) return;
     const tm = TH[resolved];
     s.renderer.setClearColor(tm.bg, 0);
-    const bc = new THREE.Color(tm.node);
-    const ec = new THREE.Color(tm.edge);
+    const bc = new Color(tm.node);
+    const ec = new Color(tm.edge);
     s.graph.nodes.forEach((n) => {
-      if (n.pulse <= 0) (n.mesh.material as THREE.MeshBasicMaterial).color.copy(bc);
+      if (n.pulse <= 0) (n.mesh.material as MeshBasicMaterial).color.copy(bc);
     });
     s.graph.edges.forEach((e) => {
       e.mat.color.copy(ec);
