@@ -105,7 +105,7 @@ export default function TermsPage() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">15. Contact</h2>
-              <p>For questions about these Terms, contact us at <a href="mailto:legal@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">legal@heyblip.au</a>.</p>
+              <p>For questions about these Terms, contact us at <a href="mailto:support@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">support@heyblip.au</a>.</p>
             </div>
           </div>
         </motion.div>

@@ -60,7 +60,7 @@ export default function AcceptableUsePage() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">Reporting</h2>
-              <p>If you encounter a user violating this policy, you can block them directly in the app or report the issue to <a href="mailto:safety@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">safety@heyblip.au</a>.</p>
+              <p>If you encounter a user violating this policy, you can block them directly in the app or report the issue to <a href="mailto:support@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">support@heyblip.au</a>.</p>
             </div>
           </div>
         </motion.div>

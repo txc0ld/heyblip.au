@@ -93,7 +93,7 @@ export default function OrganisersPage() {
                 Thanks — we&apos;ve got it.
               </h2>
               <p className="text-[var(--muted)] text-base leading-relaxed max-w-md mx-auto">
-                We&apos;ll reply within a few business days from <span className="text-[var(--foreground)]">hello@heyblip.au</span>.
+                We&apos;ll reply within a few business days from <span className="text-[var(--foreground)]">support@heyblip.au</span>.
                 Keep an eye on your spam folder just in case.
               </p>
             </motion.div>
