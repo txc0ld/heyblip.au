@@ -11,8 +11,9 @@ import ThemeToggle from "./ThemeToggle";
 const links = [
   { label: "Features", href: "/#features" },
   { label: "How it Works", href: "/#how-it-works" },
-  { label: "Privacy", href: "/#security" },
+  { label: "Security", href: "/#security" },
   { label: "Pricing", href: "/#pricing" },
+  { label: "FAQ", href: "/#faq" },
   { label: "For Organisers", href: "/organisers" },
   { label: "Tech Specs", href: "/tech" },
 ];
@@ -56,7 +57,7 @@ export default function Nav() {
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
             <a
-              href="/#pricing"
+              href="https://apps.apple.com/app/blip"
               className="text-sm px-5 py-2 rounded-full bg-[var(--accent)] text-white font-medium hover:bg-[var(--accent-light)] transition-all duration-200"
             >
               Get Blip
@@ -103,7 +104,7 @@ export default function Nav() {
                 </div>
 
                 <a
-                  href="/#pricing"
+                  href="https://apps.apple.com/app/blip"
                   onClick={() => setMobileOpen(false)}
                   className="text-sm px-5 py-2 rounded-full bg-[var(--accent)] text-white font-medium text-center mt-1 transition-all duration-200"
                 >

@@ -3,13 +3,15 @@
 import { motion } from "framer-motion";
 import { ease } from "@/lib/animations";
 import Nav from "@/components/Nav";
+import Breadcrumb from "@/components/Breadcrumb";
 import Footer from "@/components/Footer";
 
 export default function TermsClient() {
   return (
     <main className="mesh-gradient relative overflow-hidden">
       <Nav />
-      <section className="pt-32 pb-20 px-4 sm:px-6">
+      <Breadcrumb items={[{ label: "Terms of Service" }]} />
+      <section className="pt-8 md:pt-10 pb-20 px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

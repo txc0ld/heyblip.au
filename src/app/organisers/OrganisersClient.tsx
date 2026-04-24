@@ -5,6 +5,7 @@ import { useFormStatus } from "react-dom";
 import { motion } from "framer-motion";
 import { ease } from "@/lib/animations";
 import Nav from "@/components/Nav";
+import Breadcrumb from "@/components/Breadcrumb";
 import Footer from "@/components/Footer";
 import { submitOrganiserApplication, type OrganiserFormState } from "./actions";
 
@@ -52,8 +53,9 @@ export default function OrganisersClient() {
   return (
     <main className="mesh-gradient relative overflow-hidden">
       <Nav />
+      <Breadcrumb items={[{ label: "For Organisers" }]} />
 
-      <section className="pt-32 md:pt-40 pb-20 md:pb-28 px-4 sm:px-6">
+      <section className="pt-8 md:pt-12 pb-20 md:pb-28 px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

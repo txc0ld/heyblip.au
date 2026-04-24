@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useTheme } from "./ThemeProvider";
 
 export default function Footer() {
@@ -11,7 +12,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 lg:gap-14 mb-14 md:mb-20">
           <div>
-            <div className="mb-6">
+            <Link href="/" aria-label="Blip — home" className="inline-block mb-6">
               <Image
                 src={resolved === "light" ? "/Blipblacklogo.png" : "/Blipwhitelogo.png"}
                 alt="Blip"
@@ -19,7 +20,7 @@ export default function Footer() {
                 height={80}
                 className="h-12 md:h-14 w-auto"
               />
-            </div>
+            </Link>
             <p className="text-sm md:text-[15px] text-[var(--muted)] leading-relaxed md:leading-[1.7]">
               Bluetooth mesh chat for festivals. Made in Australia.
             </p>
@@ -33,6 +34,7 @@ export default function Footer() {
               <li><a href="/#features" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Features</a></li>
               <li><a href="/#how-it-works" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">How it Works</a></li>
               <li><a href="/#pricing" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Pricing</a></li>
+              <li><a href="/#faq" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">FAQ</a></li>
               <li><a href="/organisers" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">For Organisers</a></li>
               <li><a href="/tech" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Tech Specs</a></li>
             </ul>
@@ -54,8 +56,7 @@ export default function Footer() {
               Support
             </p>
             <ul className="space-y-2.5 md:space-y-3">
-              <li><a href="mailto:support@heyblip.au" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Contact Us</a></li>
-              <li><a href="mailto:support@heyblip.au" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Help & Support</a></li>
+              <li><a href="mailto:support@heyblip.au" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">support@heyblip.au</a></li>
             </ul>
           </div>
         </div>

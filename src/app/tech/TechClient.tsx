@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ease, stagger } from "@/lib/animations";
 import Nav from "@/components/Nav";
+import Breadcrumb from "@/components/Breadcrumb";
 import Footer from "@/components/Footer";
 
 const item = {
@@ -88,8 +89,9 @@ export default function TechClient() {
   return (
     <main className="mesh-gradient relative overflow-hidden">
       <Nav />
+      <Breadcrumb items={[{ label: "Tech Specs" }]} />
 
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-8 md:pt-10 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
