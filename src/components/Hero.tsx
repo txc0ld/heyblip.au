@@ -1,16 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ease, stagger, childFadeUp } from "@/lib/animations";
-import { useTheme } from "./ThemeProvider";
 
 const MeshBackground = dynamic(() => import("./MeshBackground"), { ssr: false });
 
 export default function Hero() {
-  const { resolved } = useTheme();
-
   return (
     <section className="relative min-h-screen flex items-center pt-32 md:pt-44 pb-12 md:pb-16 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto w-full">
@@ -74,21 +70,6 @@ export default function Hero() {
               >
                 How does it work?
               </a>
-            </motion.div>
-
-            {/* Logo */}
-            <motion.div
-              variants={childFadeUp}
-              transition={{ duration: 0.9, ease, delay: 0.05 }}
-            >
-              <Image
-                src={resolved === "light" ? "/Blipblacklogo.png" : "/Blipwhitelogo.png"}
-                alt="Blip"
-                width={200}
-                height={80}
-                className="h-8 sm:h-10 lg:h-12 w-auto opacity-[0.7]"
-                priority
-              />
             </motion.div>
           </motion.div>
 
