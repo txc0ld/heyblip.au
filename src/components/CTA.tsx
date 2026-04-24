@@ -5,8 +5,8 @@ import { ease } from "@/lib/animations";
 
 export default function CTA() {
   return (
-    <section className="relative pt-44 md:pt-60 pb-16 md:pb-24 px-4 sm:px-6">
-      <div className="section-divider mb-0" />
+    <section className="relative pt-16 md:pt-24 pb-16 md:pb-24 px-4 sm:px-6">
+      <div className="section-divider mb-20 md:mb-28" />
 
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] md:w-[800px] h-[250px] md:h-[400px] rounded-full bg-[var(--accent)] opacity-[0.05] md:opacity-[0.04] blur-[80px] md:blur-[140px] pointer-events-none" />
 
