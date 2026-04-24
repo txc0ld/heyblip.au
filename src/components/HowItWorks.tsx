@@ -45,7 +45,7 @@ const steps = [
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="relative py-16 md:py-24 px-4 sm:px-6">
-      <div className="section-divider mb-0" />
+      <div className="section-divider mb-12 md:mb-16" />
 
       <div className="max-w-6xl mx-auto">
         <motion.div

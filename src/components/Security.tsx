@@ -7,7 +7,7 @@ import { ease } from "@/lib/animations";
 export default function Security() {
   return (
     <section id="security" className="relative py-16 md:py-24 px-4 sm:px-6">
-      <div className="section-divider mb-0" />
+      <div className="section-divider mb-12 md:mb-16" />
 
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 lg:gap-28 items-center">
