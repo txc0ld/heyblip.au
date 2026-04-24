@@ -7,6 +7,7 @@ import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
 import Security from "@/components/Security";
+import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
@@ -24,6 +25,7 @@ export default function Home() {
       <HowItWorks />
       <Security />
       <Pricing />
+      <FAQ />
       <CTA />
       <Footer />
     </motion.main>
