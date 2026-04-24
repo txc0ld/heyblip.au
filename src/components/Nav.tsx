@@ -13,6 +13,7 @@ const links = [
   { label: "How it Works", href: "#how-it-works" },
   { label: "Privacy", href: "#security" },
   { label: "Pricing", href: "#pricing" },
+  { label: "For Organisers", href: "/organisers" },
   { label: "Tech Specs", href: "/tech" },
 ];
 
