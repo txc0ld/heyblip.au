@@ -28,7 +28,7 @@ const benefits = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="relative pt-28 md:pt-40 pb-16 md:pb-24 px-4 sm:px-6">
+    <section id="pricing" className="relative pt-44 md:pt-60 pb-16 md:pb-24 px-4 sm:px-6">
       <div className="section-divider mb-0" />
 
       <div className="max-w-3xl mx-auto">
