@@ -16,9 +16,9 @@ export default function Footer() {
               <Image
                 src={resolved === "light" ? "/Blipblacklogo.png" : "/Blipwhitelogo.png"}
                 alt="Blip"
-                width={200}
-                height={80}
-                className="h-12 md:h-14 w-auto"
+                width={400}
+                height={160}
+                className="h-24 md:h-28 w-auto"
               />
             </Link>
             <p className="text-sm md:text-[15px] text-[var(--muted)] leading-relaxed md:leading-[1.7]">

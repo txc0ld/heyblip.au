@@ -35,9 +35,9 @@ export default function Nav() {
             <Image
               src={resolved === "light" ? "/Blipblacklogo.png" : "/Blipwhitelogo.png"}
               alt="Blip"
-              width={160}
-              height={64}
-              className="h-10 sm:h-12 md:h-14 w-auto"
+              width={320}
+              height={128}
+              className="h-20 sm:h-24 md:h-28 w-auto"
               priority
             />
           </a>
