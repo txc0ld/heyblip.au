@@ -65,7 +65,7 @@ export default function Footer() {
 
         <div className="text-center">
           <p className="text-xs md:text-sm text-[var(--muted)]">
-            &copy; {new Date().getFullYear()} Blip. All rights reserved.
+            &copy; {new Date().getFullYear()} HeyBlip. All rights reserved.
           </p>
         </div>
       </div>
