@@ -90,11 +90,11 @@ export async function submitOrganiserApplication(
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.error("[organisers] RESEND_API_KEY not set");
-    return { ok: false, error: "Form is temporarily unavailable. Please email support@heyblip.au directly." };
+    return { ok: false, error: "Form is temporarily unavailable. Please email hello@heyblip.au directly." };
   }
 
-  const fromAddress = process.env.ORGANISERS_EMAIL_FROM || "Blip Support <support@heyblip.au>";
-  const toAddress = process.env.ORGANISERS_EMAIL_TO || "support@heyblip.au";
+  const fromAddress = process.env.ORGANISERS_EMAIL_FROM || "Blip <hello@heyblip.au>";
+  const toAddress = process.env.ORGANISERS_EMAIL_TO || "hello@heyblip.au";
 
   const subject = `Organiser application — ${fields.eventName}`;
 
@@ -155,12 +155,12 @@ export async function submitOrganiserApplication(
 
     if (result.error) {
       console.error("[organisers] Resend error:", result.error);
-      return { ok: false, error: "Couldn't send your application. Please try again or email support@heyblip.au." };
+      return { ok: false, error: "Couldn't send your application. Please try again or email hello@heyblip.au." };
     }
 
     return { ok: true };
   } catch (err) {
     console.error("[organisers] Send failed:", err);
-    return { ok: false, error: "Couldn't send your application. Please try again or email support@heyblip.au." };
+    return { ok: false, error: "Couldn't send your application. Please try again or email hello@heyblip.au." };
   }
 }

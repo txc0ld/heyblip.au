@@ -41,7 +41,12 @@ Free. No subscriptions gating core messaging.
 - Privacy policy: https://heyblip.au/privacy
 - Terms of service: https://heyblip.au/terms
 - Acceptable use: https://heyblip.au/acceptable-use
+- General: hello@heyblip.au
 - Support: support@heyblip.au
+- Billing: billing@heyblip.au
+- Abuse reports: abuse@heyblip.au
+- Legal: legal@heyblip.au
+- Privacy: privacy@heyblip.au
 `,
 
   "/tech": `# Technical Specs — Blip Mesh Protocol
@@ -123,11 +128,11 @@ Running a festival, concert, ultra marathon, or sporting event? Apply to partner
 
 ## Apply
 
-Submit an application at https://heyblip.au/organisers. We reply within a few business days from support@heyblip.au.
+Submit an application at https://heyblip.au/organisers. We reply within a few business days from hello@heyblip.au.
 
 Fields required: event name, event type, date, venue, city, country, expected attendance, your name, email, phone (optional), website/socials (optional), description.
 
-Contact: support@heyblip.au
+Contact: hello@heyblip.au
 `,
 
   "/privacy": `# Privacy Policy — Blip
@@ -162,9 +167,9 @@ Cloudflare (hosting), Neon (Postgres), Resend (email), Apple APNs (push), Sentry
 
 ## Your rights
 
-Delete account + server data from app settings. Request a data copy via support@heyblip.au. Australian + GDPR access/correct/delete rights.
+Delete account + server data from app settings. Request a data copy via privacy@heyblip.au. Australian + GDPR access/correct/delete rights.
 
-Contact: support@heyblip.au
+Contact: privacy@heyblip.au
 `,
 
   "/terms": `# Terms of Service — Blip
@@ -180,7 +185,7 @@ The terms governing your use of Blip, the Bluetooth mesh chat app for festivals 
 - No warranty is provided. Use at your own risk.
 - We may update these Terms. Continued use after changes constitutes acceptance.
 
-Contact: support@heyblip.au
+Contact: legal@heyblip.au
 `,
 
   "/acceptable-use": `# Acceptable Use Policy — Blip
@@ -202,7 +207,7 @@ Violations may result in temporary or permanent account suspension. Serious case
 
 ## Reporting
 
-Block users directly in the app, or report to support@heyblip.au.
+Block users directly in the app, or report to abuse@heyblip.au.
 `,
 };
 

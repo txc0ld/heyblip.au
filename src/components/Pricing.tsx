@@ -115,6 +115,9 @@ export default function Pricing() {
             >
               Get Verified
             </a>
+            <p className="text-center text-xs md:text-sm text-[var(--muted)] mt-5">
+              Billing questions? <a href="mailto:billing@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">billing@heyblip.au</a>
+            </p>
           </motion.div>
         </motion.div>
       </div>

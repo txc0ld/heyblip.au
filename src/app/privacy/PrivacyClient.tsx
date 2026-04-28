@@ -85,7 +85,7 @@ export default function PrivacyClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">Your Rights</h2>
-              <p>You can delete your account and all associated server-side data at any time from the app settings. You may request a copy of the data we hold about you. Under Australian privacy law and, where applicable, the GDPR, you have the right to access, correct, or delete your personal data. For any privacy-related enquiries, contact us at <a href="mailto:support@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">support@heyblip.au</a>.</p>
+              <p>You can delete your account and all associated server-side data at any time from the app settings. You may request a copy of the data we hold about you. Under Australian privacy law and, where applicable, the GDPR, you have the right to access, correct, or delete your personal data. For any privacy-related enquiries, contact us at <a href="mailto:privacy@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">privacy@heyblip.au</a>.</p>
             </div>
 
             <div>
@@ -100,7 +100,7 @@ export default function PrivacyClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">Contact</h2>
-              <p>For privacy questions or data requests, email us at <a href="mailto:support@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">support@heyblip.au</a>.</p>
+              <p>For privacy questions or data requests, email us at <a href="mailto:privacy@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">privacy@heyblip.au</a>.</p>
             </div>
           </div>
         </motion.div>

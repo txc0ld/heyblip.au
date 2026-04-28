@@ -10,12 +10,13 @@ type Crumb = {
 
 type Props = {
   items: Crumb[];
+  showHome?: boolean;
 };
 
 const SITE_URL = "https://heyblip.au";
 
-export default function Breadcrumb({ items }: Props) {
-  const trail: Crumb[] = [{ label: "Home", href: "/" }, ...items];
+export default function Breadcrumb({ items, showHome = true }: Props) {
+  const trail: Crumb[] = showHome ? [{ label: "Home", href: "/" }, ...items] : items;
 
   const jsonLd = {
     "@context": "https://schema.org",

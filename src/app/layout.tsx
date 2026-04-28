@@ -80,12 +80,44 @@ const jsonLdOrganization = {
   url: SITE_URL,
   logo: `${SITE_URL}/Blipwhitelogo.png`,
   sameAs: [] as string[],
-  contactPoint: {
-    "@type": "ContactPoint",
-    email: "support@heyblip.au",
-    contactType: "customer support",
-    availableLanguage: ["en"],
-  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      email: "hello@heyblip.au",
+      contactType: "general enquiries",
+      availableLanguage: ["en"],
+    },
+    {
+      "@type": "ContactPoint",
+      email: "support@heyblip.au",
+      contactType: "customer support",
+      availableLanguage: ["en"],
+    },
+    {
+      "@type": "ContactPoint",
+      email: "billing@heyblip.au",
+      contactType: "billing support",
+      availableLanguage: ["en"],
+    },
+    {
+      "@type": "ContactPoint",
+      email: "abuse@heyblip.au",
+      contactType: "abuse reporting",
+      availableLanguage: ["en"],
+    },
+    {
+      "@type": "ContactPoint",
+      email: "legal@heyblip.au",
+      contactType: "legal",
+      availableLanguage: ["en"],
+    },
+    {
+      "@type": "ContactPoint",
+      email: "privacy@heyblip.au",
+      contactType: "privacy",
+      availableLanguage: ["en"],
+    },
+  ],
 };
 
 const jsonLdWebsite = {

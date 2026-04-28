@@ -53,7 +53,7 @@ export default function OrganisersClient() {
   return (
     <main className="mesh-gradient relative overflow-hidden">
       <Nav />
-      <Breadcrumb items={[{ label: "For Organisers" }]} />
+      <Breadcrumb showHome={false} items={[{ label: "For Organisers" }]} />
 
       <section className="pt-8 md:pt-12 pb-20 md:pb-28 px-4 sm:px-6">
         <motion.div
@@ -91,7 +91,7 @@ export default function OrganisersClient() {
                 Thanks — we&apos;ve got it.
               </h2>
               <p className="text-[var(--muted)] text-base leading-relaxed max-w-md mx-auto">
-                We&apos;ll reply within a few business days from <span className="text-[var(--foreground)]">support@heyblip.au</span>.
+                We&apos;ll reply within a few business days from <span className="text-[var(--foreground)]">hello@heyblip.au</span>.
                 Keep an eye on your spam folder just in case.
               </p>
             </motion.div>
