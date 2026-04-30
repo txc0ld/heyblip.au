@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import ThemeProvider from "@/components/ThemeProvider";
+import { SOCIAL_IMAGE } from "@/lib/seo";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -51,11 +52,13 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     locale: "en_AU",
     type: "website",
+    images: [SOCIAL_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
+    images: [SOCIAL_IMAGE],
   },
   robots: {
     index: true,

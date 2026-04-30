@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SOCIAL_IMAGE } from "@/lib/seo";
 import OrganisersClient from "./OrganisersClient";
 
 const TITLE = "For Organisers — Mesh Comms for Festivals & Events";
@@ -14,11 +15,13 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: "/organisers",
     type: "website",
+    images: [SOCIAL_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
+    images: [SOCIAL_IMAGE],
   },
 };
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SOCIAL_IMAGE } from "@/lib/seo";
 import PrivacyClient from "./PrivacyClient";
 
 const TITLE = "Privacy Policy — Blip";
@@ -14,11 +15,13 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: "/privacy",
     type: "article",
+    images: [SOCIAL_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
+    images: [SOCIAL_IMAGE],
   },
 };
 
