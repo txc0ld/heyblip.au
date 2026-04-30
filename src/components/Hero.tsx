@@ -45,12 +45,14 @@ function PhoneMockup() {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden px-4 pb-28 pt-28 sm:px-6 md:pb-36 md:pt-32">
-      <EventRadar />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,transparent_0%,transparent_34%,var(--background)_78%)] opacity-80" />
+    <section className="relative overflow-hidden px-4 pb-20 pt-28 sm:px-6 md:pb-28 md:pt-32 lg:min-h-screen lg:pb-36">
+      <div className="absolute inset-x-0 bottom-0 top-[25rem] opacity-55 sm:top-[23rem] md:opacity-70 lg:inset-0 lg:opacity-100">
+        <EventRadar />
+      </div>
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,var(--background)_0%,var(--background)_38%,rgba(0,0,0,0.78)_58%,var(--background)_100%)] lg:bg-[radial-gradient(circle_at_50%_42%,transparent_0%,transparent_34%,var(--background)_78%)] lg:opacity-80" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-72 bg-gradient-to-b from-transparent via-[var(--background)]/88 to-[var(--background)]" />
 
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-8rem)] max-w-7xl grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_360px] xl:grid-cols-[1fr_400px]">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-start gap-8 lg:min-h-[calc(100vh-8rem)] lg:grid-cols-[1fr_360px] lg:items-center xl:grid-cols-[1fr_400px]">
         <motion.div
           variants={stagger}
           initial="initial"
@@ -65,7 +67,7 @@ export default function Hero() {
           <motion.h1
             variants={childFadeUp}
             transition={{ duration: 0.7, ease }}
-            className="max-w-5xl text-[clamp(3.35rem,9vw,8.9rem)] font-black leading-[0.82] tracking-[-0.055em] text-[var(--foreground)]"
+            className="max-w-5xl text-[clamp(3rem,17vw,4.4rem)] font-black leading-[0.86] tracking-[-0.05em] text-[var(--foreground)] sm:text-[clamp(4.4rem,14vw,6rem)] lg:text-[clamp(3.35rem,9vw,8.9rem)] lg:leading-[0.82] lg:tracking-[-0.055em]"
           >
             Never lose your friends again.
           </motion.h1>
@@ -73,13 +75,13 @@ export default function Hero() {
           <motion.div
             variants={childFadeUp}
             transition={{ duration: 0.7, ease }}
-            className="mt-8 grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-[1fr_0.9fr]"
+            className="mt-6 grid max-w-4xl grid-cols-1 gap-6 md:mt-8 md:grid-cols-[1fr_0.9fr]"
           >
-            <p className="text-lg leading-relaxed text-[var(--muted-strong)] md:text-xl">
+            <p className="max-w-xl text-base leading-relaxed text-[var(--muted-strong)] sm:text-lg md:text-xl">
               Blip keeps people reachable at crowded events by relaying messages
               phone-to-phone over Bluetooth. No reception required nearby.
             </p>
-            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3 md:grid-cols-1">
+            <div className="hidden grid-cols-1 gap-2.5 sm:grid-cols-3 md:grid md:grid-cols-1">
               {trustSignals.map((signal) => (
                 <div key={signal.label} className="flex items-center justify-between border-b border-[var(--border)] py-2.5 last:border-b-0">
                   <span className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--muted)]">{signal.label}</span>
@@ -87,6 +89,9 @@ export default function Hero() {
                 </div>
               ))}
             </div>
+            <p className="border-l border-[var(--accent)]/50 pl-4 text-sm font-semibold text-[var(--muted-strong)] md:hidden">
+              Bluetooth mesh. Encrypted relay. SOS priority.
+            </p>
           </motion.div>
 
           <motion.div
@@ -108,6 +113,25 @@ export default function Hero() {
               <MapPin size={18} strokeWidth={1.8} />
               For event teams
             </a>
+          </motion.div>
+
+          <motion.div
+            variants={childFadeUp}
+            transition={{ duration: 0.7, ease }}
+            className="relative mt-10 flex justify-center lg:hidden"
+          >
+            <div className="device-shell w-[58vw] min-w-[190px] max-w-[238px]">
+              <div className="pointer-events-none absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-b-2xl bg-black/72" />
+              <div className="relative aspect-[736/1600] overflow-hidden rounded-[1.75rem] bg-black">
+                <Image
+                  src="/app-screens/intro-chat.jpeg"
+                  alt="Blip onboarding screen explaining chat at events without signal"
+                  fill
+                  sizes="238px"
+                  className="object-cover"
+                />
+              </div>
+            </div>
           </motion.div>
         </motion.div>
 
