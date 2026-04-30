@@ -1,9 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 const MARKDOWN: Record<string, string> = {
-  "/": `# Blip — Mesh Chat for Festivals
+  "/": `# Blip — Offline Mesh Chat for Events
 
-Blip is a Bluetooth mesh chat app for festivals, concerts, ultra marathons, and any high-density event where mobile reception collapses. Messages hop phone-to-phone via Bluetooth Low Energy, so your text reaches your friend even when Wi-Fi and cellular data don't work.
+Blip is a Bluetooth mesh chat app for any event where mobile reception collapses — festivals, concerts, ultra marathons, conferences, and sporting events. Messages hop phone-to-phone via Bluetooth Low Energy, so your text reaches your friend even when Wi-Fi and cellular data don't work.
 
 **Platform:** iOS (iPhone 8 and newer, iOS 17+)
 **Price:** Free
@@ -17,7 +17,7 @@ Blip is a Bluetooth mesh chat app for festivals, concerts, ultra marathons, and 
 - **Chat, voice notes, photos.** Same features as any messenger.
 - **Emergency SOS.** Unthrottled broadcast that reaches every nearby phone.
 - **Private by default.** Messages are encrypted before they leave your phone. Relay phones cannot read them.
-- **Built for festivals.** Stage channels, crowd density info, meeting points.
+- **Built for any event.** Stage channels, crowd density info, meeting points. Designed for festivals — useful anywhere networks fail.
 
 ## How it works
 
@@ -192,7 +192,7 @@ Contact: privacy@heyblip.au
 
 Canonical page: https://heyblip.au/terms
 
-The terms governing your use of Blip, the Bluetooth mesh chat app for festivals and events.
+The terms governing your use of Blip, the Bluetooth mesh chat app for events and festivals.
 
 - You must be 13 or older to use Blip.
 - You are responsible for the accuracy of your account information.
