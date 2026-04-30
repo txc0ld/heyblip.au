@@ -9,20 +9,20 @@ const benefits = [
     description: "Visible on your profile and in every chat.",
   },
   {
-    title: "Priority in Nearby",
-    description: "Appear higher in peer discovery results.",
+    title: "Verified profile marker",
+    description: "A clearer identity signal when people add or message you.",
   },
   {
-    title: "Trust indicator",
-    description: "Friends see you're a verified community member.",
+    title: "Account continuity",
+    description: "Keep the same verification marker across events.",
   },
   {
-    title: "Early access to features",
-    description: "Try new drops before anyone else.",
+    title: "Support the network",
+    description: "Help fund the app, protocol work, and event readiness.",
   },
   {
-    title: "Support development",
-    description: "Help keep the mesh running and the roadmap moving.",
+    title: "No core feature lockout",
+    description: "Messaging, friend finding, and SOS stay available without paying.",
   },
 ];
 
@@ -40,10 +40,10 @@ export default function Pricing() {
           className="text-center mb-14 md:mb-20"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-6 md:mb-8">
-            Get Verified.
+            Optional verified profile.
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto leading-relaxed">
-            Stand out and build trust in the mesh. Messaging and SOS alerts are always free.
+            Messaging, friend finding, and SOS are free. Verification is a one-time add-on for people who want a visible trust marker.
           </p>
         </motion.div>
 
@@ -57,12 +57,12 @@ export default function Pricing() {
           <motion.div
             variants={childFadeUp}
             transition={{ duration: 0.6, ease }}
-            className="rounded-3xl p-8 sm:p-10 md:p-12 flex flex-col glass-strong border-[var(--accent)]/30 relative overflow-hidden transition-all duration-200 hover:scale-[1.015]"
+            className="rounded-2xl p-8 sm:p-10 md:p-12 flex flex-col event-surface relative overflow-hidden transition-all duration-200 hover:scale-[1.01]"
           >
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent" />
 
             <div className="mb-8 md:mb-10 text-center">
-              <p className="text-sm text-[var(--muted)] font-medium mb-3 md:mb-4 uppercase tracking-wide">
+              <p className="eyebrow mb-3 md:mb-4">
                 Verified Profile
               </p>
               <div className="flex items-baseline justify-center gap-2">
@@ -72,7 +72,7 @@ export default function Pricing() {
                 </span>
               </div>
               <p className="text-sm md:text-[15px] text-[var(--muted)] mt-3 md:mt-4">
-                Pay once. Verified forever.
+                One payment for a persistent profile marker.
               </p>
             </div>
 
@@ -110,10 +110,10 @@ export default function Pricing() {
             </ul>
 
             <a
-              href="https://apps.apple.com/app/blip"
+              href="/download"
               className="w-full px-8 py-3 md:px-10 md:py-3.5 rounded-full text-center text-sm md:text-base font-semibold transition-all duration-200 bg-[var(--accent)] text-white hover:bg-[var(--accent-light)] glow-accent-sm hover:glow-accent hover:scale-[1.02]"
             >
-              Get Verified
+              Check iOS access
             </a>
             <p className="text-center text-xs md:text-sm text-[var(--muted)] mt-5">
               Billing questions? <a href="mailto:billing@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">billing@heyblip.au</a>

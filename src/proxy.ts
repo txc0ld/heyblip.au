@@ -8,7 +8,7 @@ Blip is a Bluetooth mesh chat app for festivals, concerts, ultra marathons, and 
 **Platform:** iOS (iPhone 8 and newer, iOS 17+)
 **Price:** Free
 **Encryption:** End-to-end (Noise XX + Ed25519)
-**App Store:** https://apps.apple.com/app/blip
+**iOS access:** https://heyblip.au/download
 
 ## What Blip does
 
@@ -21,14 +21,14 @@ Blip is a Bluetooth mesh chat app for festivals, concerts, ultra marathons, and 
 
 ## How it works
 
-1. Download Blip from the App Store and create a quick profile.
+1. Check current iOS access and create a quick profile.
 2. People with Blip show up automatically nearby.
 3. Type and send like normal — your message hops phone-to-phone through the crowd.
 4. Share your location with friends, send voice notes, or hit SOS if you need help.
 
 ## Security
 
-Every direct message is end-to-end encrypted with Noise_XX_25519_ChaChaPoly_SHA256 and packet-signed with Ed25519. No accounts, no phone numbers, no ad tracking. Only your email, username, public keys, and push token are stored server-side.
+Every direct message is end-to-end encrypted with Noise_XX_25519_ChaChaPoly_SHA256 and packet-signed with Ed25519. Blip uses email-based account setup, no phone numbers, and no ad tracking. Only your email, username, public keys, and push token are stored server-side.
 
 ## Pricing
 
@@ -36,6 +36,7 @@ Free. No subscriptions gating core messaging.
 
 ## Links
 
+- Download / iOS access: https://heyblip.au/download
 - Technical specs: https://heyblip.au/tech
 - For event organisers: https://heyblip.au/organisers
 - Privacy policy: https://heyblip.au/privacy
@@ -60,17 +61,17 @@ Canonical page: https://heyblip.au/tech
 - Max connections: 6 per device (configurable for bridge nodes)
 - Service UUID: FC000001-0000-1000-8000-00805F9B34FB
 - MTU: 512 bytes (517 requested, 512 effective)
-- Hop limit (TTL): 0–7 hops per packet
+- Hop limit (TTL): 0-7 hops per packet
 - Range per hop: ~40m (BLE 5.0, line-of-sight up to 100m)
-- Effective range: ~200–300m through crowd (7 hops)
+- Effective range: ~200-300m through crowd-dependent routing
 
 ## Gossip Routing
 
 - Algorithm: Probabilistic gossip with adaptive relay
 - Deduplication: 3-tier Bloom filter (60s / 10min / 2hr windows)
-- Relay probability: 100% (<10 peers) → 20% (60+ peers)
+- Relay probability: 100% (<10 peers) to 20% (60+ peers)
 - SOS relay: Always 100%, TTL preserved for first 3 hops
-- Jitter: 8–25ms random per relay
+- Jitter: 8-25ms random per relay
 - Congestion backoff: Queue fill >80% reduces relay to 20%
 - DM routing at scale: DirectedRouter with 5-min route expiry
 - Store-and-forward: 10MB LRU cache, DMs cached 2hrs, SOS until resolved
@@ -97,7 +98,7 @@ Canonical page: https://heyblip.au/tech
 ## Scale Design
 
 - Target: 100,000+ concurrent users
-- Crowd modes: Gather (<500) / Festival (500–5K) / Mega (5K–25K) / Massive (25K+)
+- Crowd modes: Gather (<500) / Festival (500-5K) / Mega (5K-25K) / Massive (25K+)
 - RSSI polling: every 10 seconds for connected peers
 - Peer evaluation: 30-second cycle for connection quality scoring
 - Reconnect backoff: 30 seconds
@@ -133,6 +134,21 @@ Submit an application at https://heyblip.au/organisers. We reply within a few bu
 Fields required: event name, event type, date, venue, city, country, expected attendance, your name, email, phone (optional), website/socials (optional), description.
 
 Contact: hello@heyblip.au
+`,
+
+  "/download": `# Download Blip for iOS
+
+Canonical page: https://heyblip.au/download
+
+Blip is built for iPhone crews at crowded events. Current iOS access is handled directly while we prepare the public App Store listing.
+
+## Before the event
+
+- Use an iPhone with iOS 17 or newer.
+- Enable Bluetooth before you arrive.
+- Make sure your crew installs Blip before reception gets crowded.
+
+Request iOS access: hello@heyblip.au
 `,
 
   "/privacy": `# Privacy Policy — Blip
@@ -211,7 +227,7 @@ Block users directly in the app, or report to abuse@heyblip.au.
 `,
 };
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const accept = request.headers.get("accept") ?? "";
 
   if (!accept.includes("text/markdown")) {
@@ -236,5 +252,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/tech", "/organisers", "/privacy", "/terms", "/acceptable-use"],
+  matcher: ["/", "/download", "/tech", "/organisers", "/privacy", "/terms", "/acceptable-use"],
 };

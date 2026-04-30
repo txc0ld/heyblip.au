@@ -1,8 +1,6 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import AppScreens from "@/components/AppScreens";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
@@ -13,14 +11,10 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="mesh-gradient relative overflow-hidden"
-    >
+    <main className="mesh-gradient relative overflow-hidden">
       <Nav />
       <Hero />
+      <AppScreens />
       <Features />
       <HowItWorks />
       <Security />
@@ -28,6 +22,6 @@ export default function Home() {
       <FAQ />
       <CTA />
       <Footer />
-    </motion.main>
+    </main>
   );
 }

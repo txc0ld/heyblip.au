@@ -153,7 +153,7 @@ const jsonLdSoftwareApplication = {
     "End-to-end encrypted messages (Noise XX + Ed25519)",
     "Voice notes, photos, and text messages",
     "Emergency SOS broadcast",
-    "No accounts, phone numbers, or ad tracking",
+    "Email-based account setup, no phone numbers or ad tracking",
     "Automatic peer discovery",
     "Multi-hop mesh routing",
   ],
