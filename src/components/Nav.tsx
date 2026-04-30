@@ -60,14 +60,21 @@ export default function Nav() {
             </Link>
           </div>
 
-          {/* Mobile: just the hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <Link
+              href="/download"
+              className="inline-flex min-h-10 items-center justify-center rounded-full bg-[var(--accent)] px-4 text-sm font-bold text-white transition-all duration-200"
+            >
+              Download
+            </Link>
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="flex min-h-10 min-w-10 items-center justify-center text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}

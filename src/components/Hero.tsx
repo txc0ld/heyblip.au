@@ -43,6 +43,38 @@ function PhoneMockup() {
   );
 }
 
+function MobilePhoneStack() {
+  return (
+    <div className="mx-auto flex w-fit items-start justify-center">
+      <div className="device-shell mt-8 w-[140px] shrink-0 rotate-[-7deg] opacity-90">
+        <div className="pointer-events-none absolute left-1/2 top-1.5 z-10 h-3.5 w-16 -translate-x-1/2 rounded-b-xl bg-black/72" />
+        <div className="relative aspect-[736/1600] overflow-hidden rounded-[1.2rem] bg-black">
+          <Image
+            src="/app-screens/events.jpeg"
+            alt="Blip Events screen showing joinable events"
+            fill
+            sizes="140px"
+            className="object-cover"
+          />
+        </div>
+      </div>
+
+      <div className="device-shell -ml-6 w-[155px] shrink-0 rotate-[5deg]">
+        <div className="pointer-events-none absolute left-1/2 top-1.5 z-10 h-3.5 w-16 -translate-x-1/2 rounded-b-xl bg-black/72" />
+        <div className="relative aspect-[736/1600] overflow-hidden rounded-[1.25rem] bg-black">
+          <Image
+            src="/app-screens/intro-chat.jpeg"
+            alt="Blip onboarding screen explaining chat at events without signal"
+            fill
+            sizes="155px"
+            className="object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Hero() {
   return (
     <section className="relative overflow-hidden px-4 pb-20 pt-28 sm:px-6 md:pb-28 md:pt-32 lg:min-h-screen lg:pb-36">
@@ -97,7 +129,7 @@ export default function Hero() {
           <motion.div
             variants={childFadeUp}
             transition={{ duration: 0.7, ease }}
-            className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row"
+            className="mt-8 hidden w-full flex-col gap-3 sm:w-auto sm:flex-row md:flex"
           >
             <a
               href="/download"
@@ -118,20 +150,9 @@ export default function Hero() {
           <motion.div
             variants={childFadeUp}
             transition={{ duration: 0.7, ease }}
-            className="relative mt-10 flex justify-center lg:hidden"
+            className="relative mt-10 lg:hidden"
           >
-            <div className="device-shell w-[58vw] min-w-[190px] max-w-[238px]">
-              <div className="pointer-events-none absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-b-2xl bg-black/72" />
-              <div className="relative aspect-[736/1600] overflow-hidden rounded-[1.75rem] bg-black">
-                <Image
-                  src="/app-screens/intro-chat.jpeg"
-                  alt="Blip onboarding screen explaining chat at events without signal"
-                  fill
-                  sizes="238px"
-                  className="object-cover"
-                />
-              </div>
-            </div>
+            <MobilePhoneStack />
           </motion.div>
         </motion.div>
 
