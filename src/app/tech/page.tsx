@@ -4,7 +4,7 @@ import TechClient from "./TechClient";
 
 const TITLE = "Technical Specs — Blip Mesh Protocol";
 const DESCRIPTION =
-  "How Blip works under the hood: Bluetooth Low Energy 5.0 mesh, Noise XX + Ed25519 encryption, adaptive gossip routing, 3-tier Bloom dedup, and 7-hop TTL designed for 100,000+ concurrent festival users.";
+  "Inside Blip's mesh: Bluetooth LE 5.0, Noise XX handshake with Ed25519 packet signing, adaptive gossip routing, and 7-hop TTL — built for 100,000+ users at any event.";
 
 export const metadata: Metadata = {
   title: TITLE,
