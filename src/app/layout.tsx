@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     "festival chat app",
     "festival messenger",
     "event messaging app",
+    "outdoor mesh messenger",
     "chat without internet",
     "messaging no signal",
     "offline messaging",
@@ -147,7 +148,7 @@ const jsonLdSoftwareApplication = {
   operatingSystem: "iOS",
   applicationCategory: "CommunicationApplication",
   description:
-    "Bluetooth mesh chat app for any event where networks fail — festivals, concerts, conferences, ultra marathons, sporting events. Send messages, voice notes, photos, and SOS alerts without Wi-Fi or signal. End-to-end encrypted peer-to-peer messaging via BLE mesh.",
+    "Bluetooth mesh chat app for any event where networks fail — festivals, concerts, conferences, ultra marathons, sporting events. Send messages, voice notes, photos, and SOS alerts without Wi-Fi or signal. End-to-end encrypted peer-to-peer messaging via BLE mesh with Noise XX handshake and Ed25519 packet signing.",
   url: SITE_URL,
   offers: {
     "@type": "Offer",

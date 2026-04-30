@@ -24,7 +24,7 @@ export default function PrivacyClient() {
           <div className="space-y-10 text-[var(--muted-strong)] text-[15px] leading-[1.8]">
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">Overview</h2>
-              <p>Blip is a Bluetooth mesh chat app built for events — festivals, concerts, ultra marathons, and any high-density gathering where mobile reception is unreliable. Privacy is a core design principle. Your messages are end-to-end encrypted before they ever leave your device, and we collect only the minimum data needed to operate the service.</p>
+              <p>Blip is a Bluetooth mesh chat app built for events — festivals, conferences, concerts, ultra marathons, hikes, and any high-density gathering where mobile reception is unreliable. Privacy is a core design principle. Your messages are end-to-end encrypted before they ever leave your device, and we collect only the minimum data needed to operate the service.</p>
             </div>
 
             <div>

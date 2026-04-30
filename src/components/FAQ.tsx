@@ -19,7 +19,7 @@ const faqs: FAQItem[] = [
   {
     question: "What is the best way to communicate at a festival when there is no signal?",
     answer:
-      "Bluetooth mesh chat apps like Blip are the most reliable way to communicate at festivals without mobile signal. They relay messages phone-to-phone through the crowd, so your text reaches your friend even when Wi-Fi and 4G/5G are unavailable. You do not need any extra hardware — just the app installed on an iPhone.",
+      "Blip gives your crew a fallback channel when mobile reception is overloaded. Messages relay phone-to-phone over Bluetooth through nearby Blip users, so it works best when your group installs it before arrival and enough people nearby have Bluetooth enabled. The same approach works at any high-density event — conferences, marathons, hikes, sports — wherever towers struggle.",
   },
   {
     question: "How does a Bluetooth mesh chat app work?",
@@ -34,7 +34,7 @@ const faqs: FAQItem[] = [
   {
     question: "What app should I use to find my friends at a music festival?",
     answer:
-      "Blip is built specifically for finding friends at music festivals. It shows you which friends are nearby, lets you send messages without signal, and includes a Friend Finder feature that shares approximate location with your crew. Because it uses Bluetooth mesh, it keeps working even when 100,000 people are crushing the mobile network.",
+      "Blip is built for crews at festivals, conferences, concerts, sporting events, and long-course events where reception can fall apart. It helps you see nearby friends, message them through the local mesh, and share approximate location with people you choose.",
   },
   {
     question: "Is Blip free to use?",
@@ -104,7 +104,7 @@ export default function FAQ() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gradient mb-6 md:mb-8">
             Frequently asked questions
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-[var(--muted)] max-w-xl mx-auto leading-relaxed">
+          <p className="mx-auto max-w-xl text-base leading-relaxed text-[var(--muted)] sm:text-lg md:text-xl">
             Everything you need to know about chatting at events without signal.
           </p>
         </motion.div>

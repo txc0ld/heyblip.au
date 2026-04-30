@@ -4,7 +4,7 @@ import OrganisersClient from "./OrganisersClient";
 
 const TITLE = "For Organisers — Mesh Comms for Festivals & Events";
 const DESCRIPTION =
-  "Running a festival, concert, ultra marathon, or sporting event? Apply to partner with Blip and give your attendees reliable comms when mobile reception collapses. End-to-end encrypted Bluetooth mesh, built for crowds of 100,000+.";
+  "Running a festival, conference, marathon, or sporting event? Partner with Blip for end-to-end encrypted Bluetooth mesh comms when mobile reception fails.";
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -4,7 +4,7 @@ import DownloadClient from "./DownloadClient";
 
 const TITLE = "Download Blip for iOS";
 const DESCRIPTION =
-  "Check current iOS access for Blip, the Bluetooth mesh chat app for crowded events.";
+  "Get Blip on iPhone: the Bluetooth mesh chat app for festivals, conferences, hikes, and crowded events. Free core messaging, requires iOS 17 or newer.";
 
 export const metadata: Metadata = {
   title: TITLE,
