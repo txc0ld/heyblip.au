@@ -4,7 +4,7 @@ import AcceptableUseClient from "./AcceptableUseClient";
 
 const TITLE = "Acceptable Use Policy — Blip";
 const DESCRIPTION =
-  "What you can and can't do on Blip's mesh network. Zero tolerance for false SOS alerts, harassment, or illegal content. Clear rules designed to keep festival comms safe and trustworthy.";
+  "What you can and can't do on Blip's mesh network. Zero tolerance for false SOS alerts, harassment, or illegal content. Clear rules designed to keep event comms safe and trustworthy.";
 
 export const metadata: Metadata = {
   title: TITLE,

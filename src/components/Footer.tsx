@@ -56,6 +56,9 @@ export default function Footer() {
             </p>
             <ul className="space-y-3 md:space-y-3.5">
               <li>
+                <Link href="/support" className="text-sm md:text-[15px] font-semibold text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Help &amp; FAQ</Link>
+              </li>
+              <li>
                 <span className="block text-xs uppercase tracking-[0.12em] text-[var(--muted)]">General</span>
                 <a href="mailto:hello@heyblip.au" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">hello@heyblip.au</a>
               </li>
