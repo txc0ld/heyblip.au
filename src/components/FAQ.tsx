@@ -14,7 +14,7 @@ const faqs: FAQItem[] = [
   {
     question: "What is the best way to communicate at a festival when there is no signal?",
     answer:
-      "Blip gives your crew a fallback channel when mobile reception is overloaded. Messages relay phone-to-phone over Bluetooth through nearby Blip users, so it works best when your group installs it before arrival and enough people nearby have Bluetooth enabled.",
+      "Blip gives your crew a fallback channel when mobile reception is overloaded. Messages relay phone-to-phone over Bluetooth through nearby Blip users, so it works best when your group installs it before arrival and enough people nearby have Bluetooth enabled. The same approach works at any high-density event — conferences, marathons, hikes, sports — wherever towers struggle.",
   },
   {
     question: "How does a Bluetooth mesh chat app work?",
@@ -27,9 +27,14 @@ const faqs: FAQItem[] = [
       "Yes. Blip is an iOS messaging app designed to work nearby without Wi-Fi or mobile data by using Bluetooth mesh networking. Some account and notification features still use online services when available, but nearby mesh messaging does not depend on reception at the venue.",
   },
   {
+    question: "What events does Blip work for?",
+    answer:
+      "Blip is built for festivals first, but the same Bluetooth mesh works at any high-density event where reception fails: music festivals, conferences and trade shows, concerts, marathons and ultra-distance trail runs, sporting events, group hikes in remote areas, and large meet-ups. Wherever a few hundred phones are within Bluetooth range of each other, the mesh can carry messages without towers — it is built for festivals; useful at any event.",
+  },
+  {
     question: "What app should I use to find my friends at a music festival?",
     answer:
-      "Blip is built for crews at festivals, concerts, sports events, and long-course events where reception can fall apart. It helps you see nearby friends, message them through the local mesh, and share approximate location with people you choose.",
+      "Blip is built for crews at festivals, conferences, concerts, sporting events, and long-course events where reception can fall apart. It helps you see nearby friends, message them through the local mesh, and share approximate location with people you choose.",
   },
   {
     question: "Is Blip free to use?",
@@ -100,7 +105,7 @@ export default function FAQ() {
             Frequently asked questions
           </h2>
           <p className="mx-auto max-w-xl text-base leading-relaxed text-[var(--muted)] sm:text-lg md:text-xl">
-            Straight answers about using Blip at crowded events without relying on reception.
+            Straight answers about using Blip at festivals and crowded events without relying on reception.
           </p>
         </motion.div>
 

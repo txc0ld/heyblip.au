@@ -4,7 +4,7 @@ import PrivacyClient from "./PrivacyClient";
 
 const TITLE = "Privacy Policy — Blip";
 const DESCRIPTION =
-  "How Blip handles your data. End-to-end encrypted messages, no tracking, no ads, no data selling. We store only email, username, cryptographic public keys, and push tokens — nothing else.";
+  "How Blip handles your data: end-to-end encrypted messages, no tracking, no ads. We store only email, username, public keys, and push tokens — nothing else.";
 
 export const metadata: Metadata = {
   title: TITLE,

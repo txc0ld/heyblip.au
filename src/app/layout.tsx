@@ -12,9 +12,9 @@ const jakarta = Plus_Jakarta_Sans({
 
 const SITE_URL = "https://heyblip.au";
 const SITE_NAME = "Blip";
-const TITLE = "Blip — Mesh Chat for Festivals | Offline Messaging, No Signal Needed";
+const TITLE = "Blip — Mesh Chat for Festivals & Events | Offline Messaging, No Signal";
 const DESCRIPTION =
-  "Stay connected with your crew at festivals, concerts, and crowded events — no Wi-Fi or mobile signal required. Blip uses end-to-end encrypted Bluetooth mesh to relay messages, voice notes, photos, and SOS alerts through the crowd. iPhone only.";
+  "Stay reachable at festivals, conferences, hikes, and crowded events when reception fails. Encrypted Bluetooth mesh messaging for iPhone, no signal needed.";
 
 export const metadata: Metadata = {
   title: {
@@ -28,8 +28,11 @@ export const metadata: Metadata = {
     "mesh chat app",
     "bluetooth mesh messenger",
     "offline chat app",
+    "event chat app",
     "festival chat app",
     "festival messenger",
+    "conference messaging app",
+    "outdoor mesh messenger",
     "chat without internet",
     "messaging no signal",
     "offline messaging",
@@ -144,7 +147,7 @@ const jsonLdSoftwareApplication = {
   operatingSystem: "iOS",
   applicationCategory: "CommunicationApplication",
   description:
-    "Bluetooth mesh chat app for festivals and events. Send messages, voice notes, photos, and SOS alerts without Wi-Fi or mobile signal. End-to-end encrypted peer-to-peer messaging via BLE mesh.",
+    "Bluetooth mesh chat app for festivals, conferences, hikes, and crowded events. Send messages, voice notes, photos, and SOS alerts without Wi-Fi or mobile signal. End-to-end encrypted peer-to-peer messaging via BLE mesh with Noise XX handshake and Ed25519 packet signing.",
   url: SITE_URL,
   offers: {
     "@type": "Offer",

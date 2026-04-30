@@ -29,7 +29,7 @@ export default function TermsClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">2. Description of Service</h2>
-              <p>Blip is a Bluetooth mesh chat application for iOS that enables peer-to-peer communication at events — festivals, concerts, sporting events, ultra marathons, and other high-density gatherings — where traditional cellular and Wi-Fi connectivity may be unavailable. The Service includes text messaging, voice notes, friend discovery, group chats, and emergency SOS alerts transmitted via Bluetooth Low Energy mesh networking and a WebSocket relay for off-mesh delivery.</p>
+              <p>Blip is a Bluetooth mesh chat application for iOS that enables peer-to-peer communication at events — festivals, conferences, concerts, sporting events, ultra marathons, and other high-density gatherings — where traditional cellular and Wi-Fi connectivity may be unavailable. The Service includes text messaging, voice notes, friend discovery, group chats, and emergency SOS alerts transmitted via Bluetooth Low Energy mesh networking and a WebSocket relay for off-mesh delivery.</p>
             </div>
 
             <div>
