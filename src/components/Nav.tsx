@@ -3,10 +3,18 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ease } from "@/lib/animations";
 import { useTheme } from "./ThemeProvider";
+
+const featureLinks = [
+  { label: "Chat", href: "/features/chat" },
+  { label: "Safety & SOS", href: "/features/safety" },
+  { label: "Events", href: "/features/events" },
+  { label: "Nearby & friends", href: "/features/nearby" },
+  { label: "Profile", href: "/features/profile" },
+];
 
 const links = [
   { label: "Download", href: "/download" },
@@ -17,6 +25,7 @@ const links = [
 
 export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [featuresOpen, setFeaturesOpen] = useState(false);
   const { resolved } = useTheme();
 
   return (
@@ -40,6 +49,58 @@ export default function Nav() {
           </Link>
 
           <div className="hidden md:flex items-center gap-8 lg:gap-10">
+            <div
+              className="relative"
+              onMouseEnter={() => setFeaturesOpen(true)}
+              onMouseLeave={() => setFeaturesOpen(false)}
+            >
+              <button
+                onClick={() => setFeaturesOpen(!featuresOpen)}
+                aria-expanded={featuresOpen}
+                aria-haspopup="true"
+                className="flex items-center gap-1 text-sm text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200"
+              >
+                Features
+                <ChevronDown
+                  size={14}
+                  strokeWidth={1.5}
+                  className={`transition-transform duration-200 ${featuresOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              <AnimatePresence>
+                {featuresOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 6 }}
+                    transition={{ duration: 0.18, ease }}
+                    className="absolute left-1/2 top-full -translate-x-1/2 pt-3"
+                  >
+                    <div className="event-surface w-52 rounded-xl p-2">
+                      {featureLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setFeaturesOpen(false)}
+                          className="block rounded-lg px-3 py-2 text-sm text-[var(--muted-strong)] transition-colors duration-200 hover:bg-[var(--foreground)]/[0.06] hover:text-[var(--foreground)]"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                      <div className="section-divider my-1.5" />
+                      <Link
+                        href="/features"
+                        onClick={() => setFeaturesOpen(false)}
+                        className="block rounded-lg px-3 py-2 text-sm font-semibold text-[var(--foreground)] transition-colors duration-200 hover:bg-[var(--foreground)]/[0.06]"
+                      >
+                        All features
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -88,6 +149,22 @@ export default function Nav() {
               className="event-surface mt-2 overflow-hidden rounded-2xl md:hidden"
             >
               <div className="p-5 flex flex-col gap-4">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--muted)]">
+                  Features
+                </p>
+                {featureLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="pl-3 text-base text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+
+                <div className="section-divider my-1" />
+
                 {links.map((link) => (
                   <Link
                     key={link.href}

@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-[var(--border)] py-14 sm:py-16 md:py-20 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.25fr_0.85fr_0.85fr_1.05fr] gap-8 md:gap-12 lg:gap-14 mb-14 md:mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_1.05fr] gap-8 md:gap-10 lg:gap-12 mb-14 md:mb-20">
           <div>
             <Link href="/" aria-label="Blip home" className="inline-block mb-6">
               <Image
@@ -28,10 +28,23 @@ export default function Footer() {
 
           <div>
             <p className="text-xs uppercase tracking-[0.15em] text-[var(--muted)] font-semibold mb-4 md:mb-5">
+              Features
+            </p>
+            <ul className="space-y-2.5 md:space-y-3">
+              <li><Link href="/features/chat" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Chat</Link></li>
+              <li><Link href="/features/safety" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Safety &amp; SOS</Link></li>
+              <li><Link href="/features/events" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Events</Link></li>
+              <li><Link href="/features/nearby" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Nearby &amp; Friends</Link></li>
+              <li><Link href="/features/profile" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Profile</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-xs uppercase tracking-[0.15em] text-[var(--muted)] font-semibold mb-4 md:mb-5">
               Product
             </p>
             <ul className="space-y-2.5 md:space-y-3">
-              <li><Link href="/#features" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Features</Link></li>
+              <li><Link href="/features" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">All features</Link></li>
               <li><Link href="/download" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Download</Link></li>
               <li><Link href="/#how-it-works" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">How it works</Link></li>
               <li><Link href="/organisers" className="text-sm md:text-[15px] text-[var(--muted-strong)] hover:text-[var(--foreground)] transition-colors duration-200">Organisers</Link></li>

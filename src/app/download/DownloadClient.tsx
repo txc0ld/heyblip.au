@@ -69,12 +69,11 @@ export default function DownloadClient() {
             className="relative mx-auto w-full max-w-[360px]"
           >
             <div className="absolute -inset-10 rounded-full bg-[var(--accent)]/12 blur-3xl" />
-            <div className="device-shell relative mx-auto w-[82%] max-w-[300px]">
-              <div className="pointer-events-none absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-b-2xl bg-black/70" />
-              <div className="relative aspect-[736/1600] overflow-hidden rounded-[1.75rem] bg-black">
+            <div className="relative mx-auto w-[82%] max-w-[300px] overflow-hidden rounded-[1.9rem] border border-[var(--border-strong)] bg-black shadow-[0_24px_70px_rgba(102,0,255,0.2)]">
+              <div className="relative aspect-[853/1844]">
                 <Image
-                  src="/app-screens/intro-chat.jpeg"
-                  alt="Blip onboarding screen explaining chat at events without signal"
+                  src="/app-screens/01-events.png"
+                  alt="Blip Events screen listing upcoming events to join before arrival"
                   fill
                   priority
                   sizes="300px"

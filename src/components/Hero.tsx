@@ -15,10 +15,10 @@ const trustSignals = [
 function PhoneMockup() {
   return (
     <div className="relative mx-auto w-[250px] sm:w-[282px]">
-      <div className="absolute -left-16 top-16 hidden h-[420px] w-[194px] -rotate-[10deg] overflow-hidden rounded-[1.9rem] border border-[var(--border)] bg-[var(--background)]/80 p-2 opacity-80 shadow-[0_22px_70px_rgba(0,0,0,0.28)] xl:block">
-        <div className="relative h-full overflow-hidden rounded-[1.45rem]">
+      <div className="absolute -left-16 top-16 hidden w-[194px] -rotate-[10deg] overflow-hidden rounded-[1.9rem] border border-[var(--border)] bg-black opacity-80 shadow-[0_22px_70px_rgba(0,0,0,0.28)] xl:block">
+        <div className="relative aspect-[853/1844]">
           <Image
-            src="/app-screens/events.jpeg"
+            src="/app-screens/01-events.png"
             alt="Blip Events screen showing joinable festivals, sports, marathons, and concerts"
             fill
             sizes="194px"
@@ -26,12 +26,11 @@ function PhoneMockup() {
           />
         </div>
       </div>
-      <div className="relative overflow-hidden rounded-[2.35rem] border border-[var(--border-strong)] bg-[var(--background)] p-2.5 shadow-[0_32px_100px_rgba(102,0,255,0.24)]">
-        <div className="pointer-events-none absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-b-2xl bg-black/72" />
-        <div className="relative aspect-[736/1600] overflow-hidden rounded-[1.85rem] border border-white/8 bg-black">
+      <div className="relative overflow-hidden rounded-[2.35rem] border border-[var(--border-strong)] bg-black shadow-[0_32px_100px_rgba(102,0,255,0.24)]">
+        <div className="relative aspect-[853/1844]">
           <Image
-            src="/app-screens/intro-chat.jpeg"
-            alt="Blip onboarding screen explaining chat at events without signal"
+            src="/app-screens/08-encrypted-chat.png"
+            alt="Blip end-to-end encrypted group chat still sending messages with no signal"
             fill
             priority
             sizes="(min-width: 1024px) 282px, 250px"
@@ -46,11 +45,10 @@ function PhoneMockup() {
 function MobilePhoneStack() {
   return (
     <div className="mx-auto flex w-fit items-start justify-center">
-      <div className="device-shell mt-8 w-[140px] shrink-0 rotate-[-7deg] opacity-90">
-        <div className="pointer-events-none absolute left-1/2 top-1.5 z-10 h-3.5 w-16 -translate-x-1/2 rounded-b-xl bg-black/72" />
-        <div className="relative aspect-[736/1600] overflow-hidden rounded-[1.2rem] bg-black">
+      <div className="mt-8 w-[140px] shrink-0 -rotate-[7deg] overflow-hidden rounded-[1.3rem] border border-[var(--border)] bg-black opacity-90 shadow-[0_18px_50px_rgba(0,0,0,0.3)]">
+        <div className="relative aspect-[853/1844]">
           <Image
-            src="/app-screens/events.jpeg"
+            src="/app-screens/01-events.png"
             alt="Blip Events screen showing joinable events"
             fill
             sizes="140px"
@@ -59,12 +57,11 @@ function MobilePhoneStack() {
         </div>
       </div>
 
-      <div className="device-shell -ml-6 w-[155px] shrink-0 rotate-[5deg]">
-        <div className="pointer-events-none absolute left-1/2 top-1.5 z-10 h-3.5 w-16 -translate-x-1/2 rounded-b-xl bg-black/72" />
-        <div className="relative aspect-[736/1600] overflow-hidden rounded-[1.25rem] bg-black">
+      <div className="-ml-6 w-[155px] shrink-0 rotate-[5deg] overflow-hidden rounded-[1.4rem] border border-[var(--border-strong)] bg-black shadow-[0_18px_50px_rgba(102,0,255,0.2)]">
+        <div className="relative aspect-[853/1844]">
           <Image
-            src="/app-screens/intro-chat.jpeg"
-            alt="Blip onboarding screen explaining chat at events without signal"
+            src="/app-screens/08-encrypted-chat.png"
+            alt="Blip end-to-end encrypted group chat still sending messages with no signal"
             fill
             sizes="155px"
             className="object-cover"

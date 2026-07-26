@@ -7,28 +7,28 @@ import { childFadeUp, ease, stagger } from "@/lib/animations";
 
 const productShots = [
   {
-    src: "/app-screens/splash.jpeg",
-    alt: "Blip splash screen",
+    src: "/app-screens/05-nearby.png",
+    alt: "Blip Nearby screen showing four friends detected nearby with distances and an Add Friend option",
     label: "01",
-    title: "Launch",
+    title: "Nearby",
   },
   {
-    src: "/app-screens/profile.jpeg",
-    alt: "Blip profile creation screen",
+    src: "/app-screens/08-encrypted-chat.png",
+    alt: "Blip end-to-end encrypted group chat where messages keep sending with no signal",
     label: "02",
-    title: "Profile",
+    title: "Encrypted chat",
   },
   {
-    src: "/app-screens/intro-chat.jpeg",
-    alt: "Blip onboarding screen explaining event chat without signal",
+    src: "/app-screens/09-voice-ptt.png",
+    alt: "Blip push-to-talk screen recording a voice note sent over the mesh",
     label: "03",
-    title: "Offline chat",
+    title: "Voice PTT",
   },
   {
-    src: "/app-screens/permissions.jpeg",
-    alt: "Blip permissions screen for Bluetooth, notifications, and voice notes",
+    src: "/app-screens/13-profile.png",
+    alt: "Blip profile screen with location sharing, nearby visibility, safety and battery settings",
     label: "04",
-    title: "Permissions",
+    title: "Profile",
   },
 ];
 
@@ -41,16 +41,16 @@ const proof = [
   {
     icon: Bluetooth,
     label: "Built for dead zones",
-    text: "Bluetooth setup is explained before it is needed in the crowd.",
+    text: "Messages hop phone-to-phone over Bluetooth mesh when reception fails.",
   },
   {
     icon: ShieldCheck,
     label: "Trust by design",
-    text: "Permissions are explained before they are requested.",
+    text: "End-to-end encrypted chats, location sharing you control.",
   },
 ];
 
-function DeviceShot({
+function FramedShot({
   src,
   alt,
   className = "",
@@ -62,9 +62,10 @@ function DeviceShot({
   priority?: boolean;
 }) {
   return (
-    <div className={`device-shell ${className}`}>
-      <div className="pointer-events-none absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-b-2xl bg-black/70" />
-      <div className="relative aspect-[736/1600] overflow-hidden rounded-[1.75rem] bg-black">
+    <div
+      className={`relative overflow-hidden rounded-2xl border border-[var(--border)] bg-black ${className}`}
+    >
+      <div className="relative aspect-[853/1844]">
         <Image
           src={src}
           alt={alt}
@@ -112,9 +113,9 @@ export default function AppScreens() {
             className="relative mx-auto w-full max-w-[360px] lg:max-w-[390px]"
           >
             <div className="absolute -inset-8 rounded-full bg-[var(--accent)]/10 blur-3xl" />
-            <DeviceShot
-              src="/app-screens/events.jpeg"
-              alt="Blip Events screen with nearby joinable events"
+            <FramedShot
+              src="/app-screens/01-events.png"
+              alt="Blip Events screen listing upcoming WA events to browse and join"
               className="relative mx-auto w-[78%] max-w-[310px]"
             />
             <div className="absolute -right-2 bottom-16 hidden max-w-[190px] rounded-2xl border border-[var(--border)] bg-[var(--background)]/92 p-4 shadow-[0_18px_60px_rgba(0,0,0,0.22)] sm:block">
@@ -138,7 +139,7 @@ export default function AppScreens() {
                   transition={{ duration: 0.65, ease }}
                   className={index % 2 === 0 ? "pt-0 sm:pt-8" : "pt-8 sm:pt-0"}
                 >
-                  <DeviceShot src={shot.src} alt={shot.alt} className="w-full" />
+                  <FramedShot src={shot.src} alt={shot.alt} className="w-full" />
                   <div className="mt-3 flex items-center justify-between border-t border-[var(--border)] pt-3">
                     <span className="text-[11px] font-bold text-[var(--accent-light)]">{shot.label}</span>
                     <span className="text-xs font-semibold text-[var(--muted-strong)]">{shot.title}</span>

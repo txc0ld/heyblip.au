@@ -1,0 +1,33 @@
+# Blip (heyblip.au)
+
+> Blip is a free iOS app for chatting at festivals, sporting events, ultra marathons, concerts, and other crowded events where mobile reception fails. Messages hop phone-to-phone over encrypted Bluetooth Low Energy mesh, so no Wi-Fi, cellular data, or infrastructure is required. Built in Australia.
+
+Key facts:
+- Works with zero signal: messages relay phone-to-phone via BLE mesh
+- End-to-end encrypted (Noise XX + Ed25519); relay phones cannot read messages
+- Emergency SOS broadcast reaches every nearby Blip phone at priority (it does not call emergency services)
+- Group chats, encrypted DMs, voice notes, push-to-talk, photos
+- Find friends nearby, friend map, and crew meeting points without internet
+- No phone number required; location sharing is friends-only and user-controlled
+- iOS (iPhone) only; free download
+
+## Features
+
+- [Chat](https://heyblip.au/features/chat): Group chat, encrypted messaging, and voice push-to-talk with no internet or signal
+- [Safety & SOS](https://heyblip.au/features/safety): Emergency SOS broadcast and medical assistance over mesh when networks are down
+- [Events](https://heyblip.au/features/events): Event discovery, schedules, and live updates that work offline on site
+- [Nearby & Friends](https://heyblip.au/features/nearby): Find your friends at a festival with no reception — nearby list, friend map, meeting points
+- [Profile](https://heyblip.au/features/profile): Profiles without a phone number, friend adding, and privacy controls
+
+## Docs
+
+- [How Blip works — technical specs](https://heyblip.au/tech): BLE 5.0 mesh, Noise XX + Ed25519 encryption, adaptive gossip routing, 7-hop TTL
+- [Download](https://heyblip.au/download): Get Blip for iPhone
+- [For event organisers](https://heyblip.au/organisers): Mesh comms for event safety and operations teams
+- [Support](https://heyblip.au/support): Help and contact
+- [Privacy](https://heyblip.au/privacy)
+
+## Contact
+
+- General: hello@heyblip.au
+- Support: support@heyblip.au
