@@ -63,7 +63,7 @@ function FramedShot({
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border border-[var(--border)] bg-black ${className}`}
+      className={`relative ${className}`}
     >
       <div className="relative aspect-[853/1844]">
         <Image

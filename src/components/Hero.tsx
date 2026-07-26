@@ -15,7 +15,7 @@ const trustSignals = [
 function PhoneMockup() {
   return (
     <div className="relative mx-auto w-[250px] sm:w-[282px]">
-      <div className="absolute -left-16 top-16 hidden w-[194px] -rotate-[10deg] overflow-hidden rounded-[1.9rem] border border-[var(--border)] bg-black opacity-80 shadow-[0_22px_70px_rgba(0,0,0,0.28)] xl:block">
+      <div className="absolute -left-16 top-16 hidden w-[194px] -rotate-[10deg] opacity-80 xl:block">
         <div className="relative aspect-[853/1844]">
           <Image
             src="/app-screens/01-events.png"
@@ -26,7 +26,7 @@ function PhoneMockup() {
           />
         </div>
       </div>
-      <div className="relative overflow-hidden rounded-[2.35rem] border border-[var(--border-strong)] bg-black shadow-[0_32px_100px_rgba(102,0,255,0.24)]">
+      <div className="relative">
         <div className="relative aspect-[853/1844]">
           <Image
             src="/app-screens/08-encrypted-chat.png"
@@ -45,7 +45,7 @@ function PhoneMockup() {
 function MobilePhoneStack() {
   return (
     <div className="mx-auto flex w-fit items-start justify-center">
-      <div className="mt-8 w-[140px] shrink-0 -rotate-[7deg] overflow-hidden rounded-[1.3rem] border border-[var(--border)] bg-black opacity-90 shadow-[0_18px_50px_rgba(0,0,0,0.3)]">
+      <div className="mt-8 w-[140px] shrink-0 -rotate-[7deg] opacity-90">
         <div className="relative aspect-[853/1844]">
           <Image
             src="/app-screens/01-events.png"
@@ -57,7 +57,7 @@ function MobilePhoneStack() {
         </div>
       </div>
 
-      <div className="-ml-6 w-[155px] shrink-0 rotate-[5deg] overflow-hidden rounded-[1.4rem] border border-[var(--border-strong)] bg-black shadow-[0_18px_50px_rgba(102,0,255,0.2)]">
+      <div className="-ml-6 w-[155px] shrink-0 rotate-[5deg]">
         <div className="relative aspect-[853/1844]">
           <Image
             src="/app-screens/08-encrypted-chat.png"

@@ -29,7 +29,7 @@ function AppShot({
   priority?: boolean;
 }) {
   return (
-    <div className="mx-auto w-full max-w-[320px] overflow-hidden rounded-2xl border border-[var(--border)] bg-black">
+    <div className="mx-auto w-full max-w-[320px]">
       <Image
         src={src}
         alt={alt}

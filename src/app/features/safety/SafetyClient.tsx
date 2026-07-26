@@ -57,7 +57,7 @@ function ScreenCard({
     <figure className="mx-auto w-full max-w-[320px]">
       <div className="relative">
         <div className="pointer-events-none absolute -inset-8 rounded-full bg-[var(--accent)]/10 blur-3xl" />
-        <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-black">
+        <div className="relative">
           <Image
             src={src}
             alt={alt}

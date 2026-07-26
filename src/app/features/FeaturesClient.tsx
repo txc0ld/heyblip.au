@@ -94,7 +94,7 @@ export default function FeaturesClient({ features }: { features: Feature[] }) {
                     className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--border)] transition-colors duration-200 hover:border-[var(--accent)]/50"
                   >
                     {screen && (
-                      <div className="relative aspect-[4/3] overflow-hidden bg-black">
+                      <div className="relative aspect-[4/3] overflow-hidden">
                         <Image
                           src={screen.src}
                           alt={screen.alt}

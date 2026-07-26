@@ -80,7 +80,7 @@ function ScreenShot({
   priority?: boolean;
 }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-black">
+    <div>
       <Image
         src={src}
         alt={alt}

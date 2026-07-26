@@ -69,7 +69,7 @@ export default function DownloadClient() {
             className="relative mx-auto w-full max-w-[360px]"
           >
             <div className="absolute -inset-10 rounded-full bg-[var(--accent)]/12 blur-3xl" />
-            <div className="relative mx-auto w-[82%] max-w-[300px] overflow-hidden rounded-[1.9rem] border border-[var(--border-strong)] bg-black shadow-[0_24px_70px_rgba(102,0,255,0.2)]">
+            <div className="relative mx-auto w-[82%] max-w-[300px]">
               <div className="relative aspect-[853/1844]">
                 <Image
                   src="/app-screens/01-events.png"
