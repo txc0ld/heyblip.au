@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "Do I need a phone number to use Blip?",
     answer:
-      "No. Blip never asks for your mobile number. Your iPhone generates an Ed25519 key pair when you install the app, and that key is your identity on the mesh. On top of it you choose a display name, a handle and a short bio. The Add Friend screen says it in plain words: no phone number needed.",
+      "No. Blip never asks for your mobile number. Your iPhone generates a Curve25519 key pair for encryption and an Ed25519 key pair for signing when you install the app, and a hash of the Curve25519 public key is your identity on the mesh. On top of it you choose a display name, a handle and a short bio. The Add Friend screen says it in plain words: no phone number needed.",
   },
   {
     question: "How do I add friends on Blip?",
@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "Does Blip sell my data?",
     answer:
-      "No. There is no ad-tech in Blip, no advertising identifiers and no social graph mining. Message content is end-to-end encrypted, and at an event it travels phone-to-phone rather than through a Blip server. We would rather you check than take our word for it, so what is and is not stored is written out on our privacy page.",
+      "No. There is no ad-tech in Blip, no advertising identifiers and no social graph mining. Direct messages are end-to-end encrypted; at an event they travel phone-to-phone, and when a phone has internet they can also pass through our relay as ciphertext. We would rather you check than take our word for it, so what is and is not stored is written out on our privacy page.",
   },
   {
     question: "What does battery mode do?",

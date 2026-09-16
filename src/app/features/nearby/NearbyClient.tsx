@@ -74,8 +74,8 @@ const sections = [
     heading: "Find my friends without internet — on a live event map",
     body: [
       "Find Friends puts your crew on a map of the venue you are at. Each pin carries a name and how far away they are, or how long it takes to walk there. The event and date sit in the header, so there is no guessing which map you are looking at.",
-      "One tap on I'm here pushes your position to the people you have chosen to share with. The control at the bottom of the screen says exactly who that is — Friends only — and it stays where you can see it rather than buried in settings.",
-      "Nothing here routes through a Blip server. Positions travel the same encrypted path your messages take: phone to phone, hop by hop, through the crowd.",
+      "One tap on I'm here shares your position. The app shows it only to friends, and the control at the bottom of the screen says so — Friends only — where you can see it rather than buried in settings. On the wire, the packet is a mesh broadcast that nearby Blip phones relay.",
+      "Positions do not need a Blip server. They travel over the mesh phone to phone, hop by hop, through the crowd, as signed location packets. Unlike direct messages they are not encrypted, and when a phone has internet they also pass through our relay.",
     ],
     shot: {
       src: "/app-screens/06-friend-map.png",
@@ -257,9 +257,10 @@ export default function NearbyClient({ faqs }: Props) {
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--muted-strong)] md:text-[17px] md:leading-[1.75]">
               A friend finder app with no signal only earns its place if the
-              sharing is honest. Blip has no server collecting your position, so
-              there is nothing central to track. What is shared travels
-              peer-to-peer over the mesh, to the people you chose.
+              sharing is honest. Blip has no server storing your position, so
+              there is nothing central to track. What is shared travels over
+              the mesh as a broadcast that nearby phones relay, and the app
+              shows it only to the friends you chose.
             </p>
 
             <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--border)] md:grid-cols-3">

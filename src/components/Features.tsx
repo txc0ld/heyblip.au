@@ -24,7 +24,7 @@ const eventUseCases = [
 
 const trustPoints = [
   { icon: Radio, label: "Bluetooth relay", detail: "No Wi-Fi or mobile data required nearby." },
-  { icon: Lock, label: "Encrypted content", detail: "Relay devices cannot read messages." },
+  { icon: Lock, label: "Encrypted content", detail: "Relay devices cannot read direct or private group messages." },
   { icon: Route, label: "Event-scale routing", detail: "Adaptive gossip and hop limits reduce congestion." },
 ];
 

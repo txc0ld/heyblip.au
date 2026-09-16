@@ -70,17 +70,17 @@ const sections = [
   {
     id: "encrypted-messaging",
     eyebrow: "Encryption",
-    heading: "Encrypted chat with no signal — and no relay can read it",
+    heading: "Encrypted direct messages with no signal — and no relay can read them",
     body: [
-      "Every thread runs end-to-end encrypted. Keys are agreed with a Noise XX handshake, and packets are signed with Ed25519, so a phone that relays your message is carrying ciphertext it cannot open.",
-      "That matters more on a mesh than on a normal messenger. Your words physically travel through other people's phones. They arrive sealed, they leave sealed, and the relay only ever sees enough to forward the packet.",
+      "Every direct message and private group runs end-to-end encrypted. Keys are agreed with a Noise XX handshake, and packets are signed with Ed25519, so a phone that relays your message is carrying ciphertext it cannot open. Public event channels are signed but not encrypted, because anyone at the event can join them.",
+      "That matters more on a mesh than on a normal messenger. Your words physically travel through other people's phones. They arrive sealed, they leave sealed, and the relay only ever sees the packet header: who sent it, who it is for, and how many hops it has left.",
       "It is strong, standard cryptography — not a proprietary scheme, and not military-grade marketing.",
     ],
     shot: {
       src: "/app-screens/07-chat-list.png",
       alt: "Blip Chats screen listing Festival Crew, Maya, Trackside Chat and Priya, with padlock badges on direct message avatars",
       caption:
-        "Padlock badges mark encrypted direct messages. The header of every thread says end-to-end encrypted, in plain words.",
+        "Padlock badges mark encrypted direct messages, and the header of a direct message thread says end-to-end encrypted, in plain words.",
     },
     priority: false,
   },
@@ -142,8 +142,8 @@ export default function ChatClient({ faqs }: Props) {
               You group chat with no signal by letting phones talk to each other
               directly. Blip uses Bluetooth Low Energy mesh: your message
               broadcasts to nearby iPhones running Blip, and each one relays it
-              onward, up to seven hops. No towers, no Wi-Fi, no server. Everything
-              stays end-to-end encrypted along the way.
+              onward, up to seven hops. No towers, no Wi-Fi, no server. Direct
+              messages stay end-to-end encrypted along the way.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">

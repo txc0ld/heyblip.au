@@ -24,29 +24,29 @@ export default function PrivacyClient() {
           <div className="space-y-10 text-[var(--muted-strong)] text-[15px] leading-[1.8]">
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">Overview</h2>
-              <p>Blip is a Bluetooth mesh chat app built for events — festivals, conferences, concerts, ultra marathons, hikes, and any high-density gathering where mobile reception is unreliable. Privacy is a core design principle. Your messages are end-to-end encrypted before they ever leave your device, and we collect only the minimum data needed to operate the service.</p>
+              <p>Blip is a Bluetooth mesh chat app built for events — festivals, conferences, concerts, ultra marathons, hikes, and any high-density gathering where mobile reception is unreliable. Privacy is a core design principle. Direct messages and private group chats are end-to-end encrypted before they ever leave your device, and we collect only the minimum data needed to operate the service.</p>
             </div>
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">What We Collect</h2>
               <ul className="list-disc pl-5 space-y-2">
-                <li><strong>Email address</strong> — stored in plaintext. Used for account verification (via email code) and account recovery.</li>
-                <li><strong>Username and display name</strong> — chosen by you during setup. Used to identify you to other users.</li>
+                <li><strong>Email address</strong> — stored only as a SHA-256 hash, which is what we use to recognise your account and for recovery. The address itself is held for up to 10 minutes while your verification code is live, passed to our email provider to deliver the code, then discarded.</li>
+                <li><strong>Username</strong> — chosen by you during setup and stored on our server. Your display name is not stored in our database; it travels in the presence announcement your phone broadcasts to nearby phones and to the relay.</li>
                 <li><strong>Avatar image</strong> — if you upload a profile photo, it is stored on our servers.</li>
                 <li><strong>Cryptographic public keys</strong> — your Ed25519 signing key and Noise XX public key are uploaded to our server so other users can establish encrypted conversations with you.</li>
-                <li><strong>APNs device token</strong> — provided by Apple when you enable push notifications. Stored server-side to deliver push notifications to your device.</li>
-                <li><strong>JWT session tokens</strong> — issued by our authentication server to maintain your logged-in session. These are short-lived and refreshed automatically.</li>
-                <li><strong>Approximate location</strong> — only when you actively opt in to Friend Finder. Location data is session-only and is not stored persistently on our servers.</li>
+                <li><strong>APNs device token</strong> — provided by Apple when you enable push notifications. Stored server-side, along with your device locale and app version, to deliver push notifications to your device. Push notifications carry the sender&apos;s username or display name and a thread identifier, never message content.</li>
+                <li><strong>JWT session tokens</strong> — issued by our authentication server after an Ed25519 challenge-response to maintain your logged-in session. They expire after one hour and are refreshed automatically.</li>
+                <li><strong>Approximate location</strong> — when you grant location permission, your phone&apos;s presence announcement includes a 5-character geohash (a cell roughly 5 km across). Our relay keeps it in memory while you are connected, uses it to scope who receives your announcement, and drops it when you disconnect. It is never written to a database. Friend Finder positions are shared over the mesh, not through our servers.</li>
               </ul>
             </div>
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">What We Don&apos;t Collect</h2>
               <ul className="list-disc pl-5 space-y-2">
-                <li><strong>Message content</strong> — all direct messages are end-to-end encrypted using the Noise protocol (Noise_XX_25519_ChaChaPoly_SHA256). Group messages use AES-256-GCM sender key encryption. Our servers relay encrypted packets and cannot decrypt or read your messages.</li>
+                <li><strong>Message content</strong> — all direct messages are end-to-end encrypted using the Noise protocol (Noise_XX_25519_ChaChaPoly_SHA256). Private group messages use AES-256-GCM sender key encryption. Our servers relay these packets and cannot decrypt or read them. Messages in public event channels are Ed25519-signed but not encrypted: anyone at the event can read them, and so can our relay when it forwards them.</li>
                 <li><strong>Contacts or address book</strong> — we do not collect or access your contacts.</li>
-                <li><strong>Precise location</strong> — we do not collect precise GPS data except during an active SOS alert, which is an emergency-only feature you must explicitly trigger.</li>
-                <li><strong>Browsing history or usage analytics</strong> — we do not collect any browsing data and do not use any third-party analytics services, ad networks, or tracking pixels.</li>
+                <li><strong>Precise location</strong> — our servers never store GPS coordinates. Precise coordinates leave your phone only when you share your position in Friend Finder, drop an I&apos;m Here beacon, or trigger an SOS alert. They travel as mesh broadcasts to nearby phones (and through our relay when a phone has internet), and are not encrypted.</li>
+                <li><strong>Browsing history or usage analytics</strong> — we do not collect any browsing data and do not use any third-party analytics services, ad networks, or tracking pixels. The Microsoft Clarity SDK is linked into the app for our internal debug builds only and is never initialised in App Store builds.</li>
                 <li><strong>Device identifiers or advertising IDs</strong> — we do not collect IDFA, IDFV, or any device fingerprinting data.</li>
               </ul>
             </div>
@@ -63,12 +63,12 @@ export default function PrivacyClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">Bluetooth Mesh Relay</h2>
-              <p>When your device relays messages for other users through the Bluetooth mesh network, those messages are encrypted before transmission. Your device cannot decrypt or read relayed messages. Relay participation is automatic and is a core part of how the mesh network functions — it does not expose any personal data.</p>
+              <p>When your device relays direct or group messages for other users through the Bluetooth mesh network, those messages are encrypted before transmission and your device cannot decrypt or read them. Relay participation is automatic and is a core part of how the mesh network functions. A relaying device does see each packet&apos;s header (sender and recipient IDs, which are hashes of public keys, plus packet type and hop count), and it can read public event channel messages and presence announcements, which are not encrypted.</p>
             </div>
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">Data Storage &amp; Security</h2>
-              <p>Your messages and conversation history are stored locally on your device. Our backend infrastructure stores your account information (email, username, public keys, APNs token) in a Neon Postgres database. Backend services run on Cloudflare Workers at edge locations. All communication between your device and our servers is encrypted via TLS with certificate pinning. The WebSocket relay uses store-and-forward delivery for encrypted packets only — stored packets have a 1-hour TTL and are automatically cleaned up.</p>
+              <p>Your messages and conversation history are stored locally on your device. Our backend infrastructure stores your account information (email hash, username, public keys, APNs token, notification preferences) in a Neon Postgres database, and your avatar in Cloudflare storage. Backend services run on Cloudflare Workers at edge locations. All communication between your device and our servers is encrypted via TLS with certificate pinning. The WebSocket relay queues addressed packets, whose payloads are Noise-encrypted, for offline recipients — queued packets have a 1-hour TTL and are automatically cleaned up. The relay sees packet headers (sender and recipient IDs, type, timestamps) but not message content.</p>
             </div>
 
             <div>
@@ -79,7 +79,7 @@ export default function PrivacyClient() {
                 <li><strong>Neon</strong> — managed Postgres database that stores user account records and public keys.</li>
                 <li><strong>Resend</strong> — sends transactional emails (verification codes). Receives your email address for delivery only.</li>
                 <li><strong>Apple Push Notification service (APNs)</strong> — delivers push notifications to your device.</li>
-                <li><strong>Sentry</strong> — crash reporting and performance monitoring. Collects anonymised diagnostic data only — no message content or personal identifiers.</li>
+                <li><strong>Sentry</strong> — crash reporting and performance monitoring. We disable Sentry&apos;s default personal-data collection and never send message content or your email. A crash report may include a screenshot of whatever was on screen at the moment of the crash.</li>
               </ul>
             </div>
 

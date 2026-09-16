@@ -41,12 +41,15 @@ const specs = [
   {
     category: "Encryption",
     items: [
-      { label: "Key agreement", value: "Noise XX handshake (Curve25519 + ChaChaPoly + SHA256)" },
+      { label: "Key agreement", value: "Noise_XX_25519_ChaChaPoly_SHA256 (Curve25519 DH, ChaCha20-Poly1305 AEAD, HKDF-SHA-256)" },
       { label: "Packet signing", value: "Ed25519 via libsodium (64-byte detached signatures)" },
       { label: "Signable data", value: "Full packet excluding TTL byte and signature" },
       { label: "Relay compatibility", value: "TTL excluded from signed data so relay nodes can decrement without breaking signatures" },
-      { label: "Key distribution", value: "Noise + signing public keys exchanged in announce payload" },
-      { label: "Session management", value: "Noise session per peer pair, rekeying on reconnect" },
+      { label: "Key distribution", value: "Noise + signing public keys sent in the announce payload, alongside username, display name, and a 5-character geohash (all plaintext)" },
+      { label: "Session management", value: "Noise session per peer pair; fresh ephemeral keys per handshake; send-direction rekey every 1,000 messages or 1 hour; sessions expire after 4 hours" },
+      { label: "Group messages", value: "AES-256-GCM per-sender keys, distributed over pairwise Noise sessions, rotated on membership change or every 100 messages" },
+      { label: "Public event channels", value: "Ed25519-signed, not encrypted (open to everyone at the event)" },
+      { label: "Recovery kit", value: "AES-256-GCM; key derived with HKDF-SHA-256 from your password and a random 32-byte salt" },
     ],
   },
   {
@@ -104,9 +107,9 @@ export default function TechClient() {
             </h1>
             <p className="text-lg text-[var(--muted)] max-w-2xl">
               The engineering behind Blip&apos;s BLE mesh network. Built for
-              festival-scale and event-scale crowds with end-to-end encryption
-              (Noise XX handshake on Curve25519 + ChaChaPoly + SHA256), adaptive
-              gossip routing, and Ed25519 packet signing.
+              festival-scale and event-scale crowds with end-to-end encrypted direct
+              messages (Noise XX handshake on Curve25519 + ChaChaPoly + SHA256),
+              adaptive gossip routing, and Ed25519 packet signing.
             </p>
           </motion.div>
 

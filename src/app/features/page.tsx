@@ -56,7 +56,7 @@ const features = [
     name: "Profile",
     href: "/features/profile",
     description:
-      "A profile without a phone number, cryptographic identity, friends-only location sharing, and battery controls built for long event days.",
+      "A profile without a phone number, cryptographic identity, location sharing you switch on and off, and battery controls built for long event days.",
   },
 ];
 

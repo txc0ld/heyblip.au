@@ -44,7 +44,7 @@ const faqs: FAQItem[] = [
   {
     question: "Is Blip end-to-end encrypted?",
     answer:
-      "Yes. Every direct message on Blip is end-to-end encrypted using the Noise protocol framework (Noise_XX_25519_ChaChaPoly_SHA256) with Ed25519 packet signing. The phones that relay your messages through the mesh cannot read them — only the intended recipient's device can decrypt the content.",
+      "Direct messages, yes. Every direct message on Blip is end-to-end encrypted using the Noise protocol framework (Noise_XX_25519_ChaChaPoly_SHA256) with Ed25519 packet signing, so the phones that relay it through the mesh cannot read it. Private group chats are encrypted with AES-256-GCM sender keys exchanged over those Noise sessions. Public event channels are Ed25519-signed but not encrypted, because anyone at the event can join them.",
   },
   {
     question: "What phones does Blip work on?",
@@ -59,7 +59,7 @@ const faqs: FAQItem[] = [
   {
     question: "Does Blip collect my location or personal data?",
     answer:
-      "No. Blip does not collect precise GPS location, contacts, browsing history, or advertising identifiers. The only data stored server-side is your email, username, cryptographic public keys, and push notification token — the minimum required to deliver messages. Location is only shared with your friends during an active Friend Finder session and is not persisted on the server.",
+      "Blip does not collect contacts, browsing history, or advertising identifiers, and our servers never store GPS coordinates. Server-side we store a SHA-256 hash of your email (not the address itself), your username, your cryptographic public keys, your push notification token, your avatar if you upload one, and your notification preferences. While the app is connected to our relay it also holds, in memory only, a 5-character geohash (a cell roughly 5 km across) from your presence announcements. Friend Finder positions are broadcast to nearby phones over the mesh and are not stored on the server.",
   },
   {
     question: "Can Blip send an emergency SOS without signal?",

@@ -14,7 +14,7 @@ const SITE_URL = "https://heyblip.au";
 const SITE_NAME = "Blip";
 const TITLE = "Blip — Offline Mesh Chat for Events | No Signal Needed";
 const DESCRIPTION =
-  "Stay connected when networks fail — at festivals, concerts, conferences, sporting events, or anywhere crowds crush the signal. Blip uses end-to-end encrypted Bluetooth mesh to relay messages, voice notes, photos, and SOS alerts phone-to-phone. iPhone only.";
+  "Stay connected when networks fail — at festivals, concerts, conferences, sporting events, or anywhere crowds crush the signal. Blip relays messages, voice notes, photos, and SOS alerts phone-to-phone over Bluetooth mesh, with end-to-end encrypted direct messages. iPhone only.";
 
 export const metadata: Metadata = {
   title: {
@@ -148,7 +148,7 @@ const jsonLdSoftwareApplication = {
   operatingSystem: "iOS",
   applicationCategory: "CommunicationApplication",
   description:
-    "Bluetooth mesh chat app for any event where networks fail — festivals, concerts, conferences, ultra marathons, sporting events. Send messages, voice notes, photos, and SOS alerts without Wi-Fi or signal. End-to-end encrypted peer-to-peer messaging via BLE mesh with Noise XX handshake and Ed25519 packet signing.",
+    "Bluetooth mesh chat app for any event where networks fail — festivals, concerts, conferences, ultra marathons, sporting events. Send messages, voice notes, photos, and SOS alerts without Wi-Fi or signal. End-to-end encrypted direct messaging via BLE mesh with Noise XX handshake and Ed25519 packet signing.",
   url: SITE_URL,
   offers: {
     "@type": "Offer",
@@ -157,7 +157,7 @@ const jsonLdSoftwareApplication = {
   },
   featureList: [
     "Works without Wi-Fi or mobile signal",
-    "End-to-end encrypted messages (Noise XX + Ed25519)",
+    "End-to-end encrypted direct messages (Noise XX + Ed25519)",
     "Voice notes, photos, and text messages",
     "Emergency SOS broadcast",
     "Email-based account setup, no phone numbers or ad tracking",

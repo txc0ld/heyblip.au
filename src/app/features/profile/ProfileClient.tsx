@@ -45,7 +45,7 @@ function AppShot({
 
 const facts = [
   { label: "Phone number", value: "Not required" },
-  { label: "Identity", value: "Ed25519 key pair" },
+  { label: "Identity", value: "Curve25519 + Ed25519 key pairs" },
   { label: "Add friends", value: "QR code or username" },
   { label: "Friend requests", value: "You approve each one" },
 ];
@@ -56,9 +56,9 @@ const sections = [
     eyebrow: "Identity",
     heading: "Your profile, with no phone number required",
     body: [
-      "Blip does not ask for your mobile number. When you install the app your iPhone generates an Ed25519 key pair, and that key is your identity on the mesh. On top of it you pick a display name, a handle and a short bio — the profile in this screenshot is Maya Wilson, @maya.wa.",
+      "Blip does not ask for your mobile number. When you install the app your iPhone generates a Curve25519 key pair for encryption and an Ed25519 key pair for signing, and a hash of the Curve25519 public key is your identity on the mesh. On top of it you pick a display name, a handle and a short bio — the profile in this screenshot is Maya Wilson, @maya.wa.",
       "That is the whole setup. No SIM check, no contact list upload, no advertising identifier, no social graph mining. Your profile then carries the counts that matter at an event — friends and events — with your privacy and power settings stacked underneath.",
-      "We would rather be precise than absolute here. Message content is end-to-end encrypted, and at an event it never passes through a Blip server. For exactly what is stored and what is not, read the privacy page.",
+      "We would rather be precise than absolute here. Direct messages are end-to-end encrypted; at an event they travel phone-to-phone, and when a phone has internet they can also pass through our relay as ciphertext. For exactly what is stored and what is not, read the privacy page.",
     ],
     shot: {
       src: "/app-screens/13-profile.png",
@@ -126,7 +126,7 @@ export default function ProfileClient({ faqs }: Props) {
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--muted-strong)] md:text-xl md:leading-[1.7]">
               No, you do not need a phone number to use Blip. Your identity is a
-              cryptographic key pair generated on your iPhone — Ed25519 — plus a
+              pair of cryptographic keys generated on your iPhone — Curve25519 and Ed25519 — plus a
               display name and handle you choose. Friends are added by QR code or
               username, never by uploading your contacts. No ad-tech, no social
               graph mining.

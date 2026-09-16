@@ -38,7 +38,7 @@ const relayFacts = [
   },
   {
     label: "Encryption",
-    value: "Noise XX key agreement with Ed25519 packet signing",
+    value: "SOS alerts are Ed25519-signed broadcasts, left unencrypted so every nearby phone can read them",
   },
 ];
 

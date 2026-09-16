@@ -116,7 +116,7 @@ export default function SupportClient() {
                     I lost my phone — how do I get my account back?
                   </h3>
                   <p>
-                    Blip identities are tied to a cryptographic key stored in your phone&apos;s secure enclave. If you&apos;ve set up a recovery kit (<strong>Profile → Settings → Backup</strong>), you can restore on a new device using the recovery file and the password you set. If you don&apos;t have a recovery kit, you can register a fresh account with the same email — friends will need to re-add you. For account-recovery edge cases, email{" "}
+                    Blip identities are tied to cryptographic keys stored in your phone&apos;s iOS Keychain, marked device-only so they never sync to another device. If you&apos;ve set up a recovery kit (<strong>Profile → Settings → Backup</strong>), you can restore on a new device using the recovery file and the password you set. If you don&apos;t have a recovery kit, you can register a fresh account with the same email — friends will need to re-add you. For account-recovery edge cases, email{" "}
                     <a
                       href="mailto:support@heyblip.au"
                       className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors"
@@ -132,7 +132,7 @@ export default function SupportClient() {
                     What data does Blip collect about me?
                   </h3>
                   <p>
-                    The minimum needed to operate the service: your chosen username and display name, a one-way hash of your email address (we never store your email in plain text), your Noise and Ed25519 public keys, and Apple In-App Purchase transaction IDs if you&apos;ve bought message packs. We do <strong>not</strong> collect message content, location data (unless you opt in to location-sharing per friend), contact lists, advertising IDs, or browsing analytics. Full detail in our{" "}
+                    The minimum needed to operate the service: your chosen username, a one-way SHA-256 hash of your email address (the address itself is held only for the few minutes your verification code is live and is never stored in our database), your Noise and Ed25519 public keys, your push token, and your avatar if you upload one. We do <strong>not</strong> collect message content, location data (unless you opt in to location-sharing per friend), contact lists, advertising IDs, or browsing analytics. Full detail in our{" "}
                     <Link
                       href="/privacy"
                       className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors"

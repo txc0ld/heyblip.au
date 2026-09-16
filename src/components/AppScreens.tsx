@@ -46,7 +46,7 @@ const proof = [
   {
     icon: ShieldCheck,
     label: "Trust by design",
-    text: "End-to-end encrypted chats, location sharing you control.",
+    text: "End-to-end encrypted direct messages, location sharing you switch on and off.",
   },
 ];
 

@@ -4,7 +4,7 @@ import ChatClient from "./ChatClient";
 
 const TITLE = "Group Chat Without Internet or Phone Signal";
 const DESCRIPTION =
-  "Blip is an iOS group chat that works with no internet or signal. Messages hop phone-to-phone over encrypted Bluetooth mesh. Text, voice notes, push-to-talk.";
+  "Blip is an iOS group chat that works with no internet or signal. Messages hop phone-to-phone over Bluetooth mesh, with end-to-end encrypted direct messages. Text, voice notes, push-to-talk.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "Are Blip messages encrypted?",
     answer:
-      "Yes. Blip agrees keys with a Noise XX handshake (Curve25519, ChaChaPoly, SHA256) and signs packets with Ed25519. The phones that relay your message through the crowd carry ciphertext they cannot open. It is strong, standard cryptography — not a proprietary scheme, and not military-grade marketing.",
+      "Direct messages and private groups, yes. Blip agrees keys with a Noise XX handshake (Curve25519, ChaChaPoly, SHA256) and signs packets with Ed25519. The phones that relay your direct message through the crowd carry ciphertext they cannot open. Public event channels are signed but not encrypted, because anyone at the event can join them. It is strong, standard cryptography — not a proprietary scheme, and not military-grade marketing.",
   },
   {
     question: "How far does Bluetooth mesh reach?",
@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "Do I need a phone number to use Blip group chats?",
     answer:
-      "No. Blip identifies you by cryptographic keys generated on your iPhone plus a username, not by a mobile number. There are no ads and no advertising identifiers. At an event your message content never passes through a Blip server, so the group chat behaves the same whether the towers are up or completely dead.",
+      "No. Blip identifies you by cryptographic keys generated on your iPhone plus a username, not by a mobile number. There are no ads and no advertising identifiers. At an event your group chat travels phone-to-phone, so it behaves the same whether the towers are up or completely dead. When a phone does have internet, messages can also pass through our relay, direct and private group messages as ciphertext.",
   },
   {
     question: "What happens if a mate is out of mesh range?",

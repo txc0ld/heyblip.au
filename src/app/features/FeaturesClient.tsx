@@ -71,7 +71,7 @@ export default function FeaturesClient({ features }: { features: Feature[] }) {
               transition={{ duration: 0.7, ease }}
               className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--muted-strong)] sm:text-lg"
             >
-              Blip relays messages phone-to-phone over encrypted Bluetooth mesh, so
+              Blip relays messages phone-to-phone over Bluetooth mesh, so
               chat, SOS, schedules, and friend-finding keep working at events where
               Wi-Fi and mobile data collapse. No internet, no accounts tied to a
               phone number — just your crew, reachable.

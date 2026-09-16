@@ -59,7 +59,7 @@ export default function TermsClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">6. Mesh Relay Participation</h2>
-              <p>By using Blip, your device may automatically relay encrypted messages for other users through the Bluetooth mesh network. This is a core feature of the Service and is essential for mesh connectivity. Relayed messages are end-to-end encrypted — your device cannot decrypt or read them. Relay participation uses minimal battery and bandwidth.</p>
+              <p>By using Blip, your device may automatically relay encrypted messages for other users through the Bluetooth mesh network. This is a core feature of the Service and is essential for mesh connectivity. Relayed direct and group messages are end-to-end encrypted — your device cannot decrypt or read them. Public event channel messages are signed but not encrypted. Relay participation uses minimal battery and bandwidth.</p>
             </div>
 
             <div>

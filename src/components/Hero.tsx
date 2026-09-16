@@ -8,7 +8,7 @@ import { ease, stagger, childFadeUp } from "@/lib/animations";
 
 const trustSignals = [
   { label: "Transport", value: "Bluetooth mesh" },
-  { label: "Privacy", value: "E2E encrypted" },
+  { label: "Privacy", value: "E2E encrypted DMs" },
   { label: "Priority", value: "SOS relay" },
 ];
 
@@ -119,7 +119,7 @@ export default function Hero() {
               ))}
             </div>
             <p className="border-l border-[var(--accent)]/50 pl-4 text-sm font-semibold text-[var(--muted-strong)] md:hidden">
-              Bluetooth mesh. Encrypted relay. SOS priority.
+              Bluetooth mesh. Encrypted direct messages. SOS priority.
             </p>
           </motion.div>
 
@@ -177,7 +177,7 @@ export default function Hero() {
               </div>
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--accent-light)]">Private</p>
-                <p className="text-sm text-[var(--muted-strong)]">Encrypted relay</p>
+                <p className="text-sm text-[var(--muted-strong)]">Encrypted direct messages</p>
               </div>
             </div>
           </div>
