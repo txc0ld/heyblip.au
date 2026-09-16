@@ -90,7 +90,7 @@ const sections = [
 const privacyControls = [
   {
     title: "Location sharing",
-    text: "Set to Friends only in the screenshot. Open the row to change who can see where you are, or to switch it off.",
+    text: "Off until you switch it on from the Nearby map. While it is on, your position is a signed mesh broadcast that any nearby Blip phone can receive.",
   },
   {
     title: "Nearby visibility",

@@ -91,9 +91,9 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 51 | "Your iPhone generates an Ed25519 key pair ... that key is your identity on the mesh." (`app/features/profile/page.tsx:32`, `ProfileClient.tsx:48,59,128-129`) | overstated | PeerID is a hash of the Curve25519 Noise key; Ed25519 is the signing key (`KeyManager.swift:9-21`). | "a Curve25519 key pair for encryption and an Ed25519 key pair for signing ... a hash of the Curve25519 public key is your identity on the mesh". |
 | 52 | "Blip never asks for your mobile number" / "No phone number goes anywhere." (`profile/page.tsx:32`, `ProfileClient.tsx:57-59,411`) | accurate | No phone number code paths in `Sources/`. | Unchanged. |
 | 53 | "at an event it never passes through a Blip server" / "travels phone-to-phone rather than through a Blip server" (`ProfileClient.tsx:61`, `profile/page.tsx:52`) | overstated | When a phone has internet, packets also go to the WebSocket relay (`TransportCoordinator.swift:306-315`; DM routing via relay in `relay-room.ts`). | "at an event they travel phone-to-phone, and when a phone has internet they can also pass through our relay as ciphertext." |
-| 54 | "pushes your position to the people you have chosen to share with ... Friends only" (`app/features/nearby/NearbyClient.tsx:77`) | overstated | Broadcast on the wire; app-side filter. | Keeps the UI description, adds "On the wire, the packet is a mesh broadcast that nearby Blip phones relay." |
+| 54 | "pushes your position to the people you have chosen to share with ... Friends only" (`app/features/nearby/NearbyClient.tsx:77`) | overstated | Broadcast on the wire, and no friend filter on receive: `FriendFinderViewModel.swift:158-199` plots every received position; no "Friends only" string exists in the app and the only shipped control is the Share location button (`FriendFinderMapView.swift:16-17,270`; `V1LaunchFlags.swift:51`). | Round 1 kept the UI description and added the broadcast sentence; round 2 (row 79) removed the friends-only claim. |
 | 55 | "Nothing here routes through a Blip server. Positions travel the same encrypted path your messages take" (`NearbyClient.tsx:78`) | false | `.locationShare` plaintext; broadcasts reach the relay when connected. | "Positions do not need a Blip server ... as signed location packets. Unlike direct messages they are not encrypted, and when a phone has internet they also pass through our relay." |
-| 56 | "Blip has no server collecting your position ... travels peer-to-peer over the mesh, to the people you chose." (`NearbyClient.tsx:260-262`) | overstated | Relay holds a geohash in memory; location packets are broadcasts. | "no server storing your position ... travels over the mesh as a broadcast that nearby phones relay, and the app shows it only to the friends you chose." |
+| 56 | "Blip has no server collecting your position ... travels peer-to-peer over the mesh, to the people you chose." (`NearbyClient.tsx:260-262`) | overstated | Relay holds a geohash in memory; location packets are broadcasts; no friend filter on receive: `FriendFinderViewModel.swift:158-199` plots every received position; no "Friends only" string exists in the app and the only shipped control is the Share location button (`FriendFinderMapView.swift:16-17,270`; `V1LaunchFlags.swift:51`). | Round 1: "no server storing your position ... the app shows it only to the friends you chose." Round 2 (row 80) removed the friends-only claim. |
 | 57 | SOS "Encryption: Noise XX key agreement with Ed25519 packet signing" (`app/features/safety/SafetyClient.tsx:41`) | false | SOS is a plaintext signed broadcast so everyone can read it (`SOSViewModel.swift:584`). | "SOS alerts are Ed25519-signed broadcasts, left unencrypted so every nearby phone can read them" |
 | 58 | "Your account is secured via Ed25519 challenge-response authentication and JWT session tokens." (`app/terms/TermsClient.tsx:42`) | accurate | `session.ts:154`; `jwt.ts`. | Unchanged. |
 | 59 | "Relayed messages are end-to-end encrypted" (`TermsClient.tsx:62`) | overstated | Same as 6. | "Relayed direct and group messages are end-to-end encrypted ... Public event channel messages are signed but not encrypted." |
@@ -105,7 +105,24 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 65 | "we cannot read the content of direct messages or group messages" (`SupportClient.tsx:178`) | accurate | Groups use sender keys. | Unchanged. |
 | 66 | "TLS with certificate pinning" (`PrivacyClient.tsx:71`) | accurate | `ServerConfig.swift:38-42`. | Unchanged. |
 | 67 | "Dependencies: CryptoKit (Apple), swift-sodium, swift-opus" (`TechClient.tsx:81`) | accurate | `SECURITY.md` dependency table; `project.yml`. | Unchanged. |
-| 68 | "If you've set up a recovery kit (Profile → Settings → Backup), you can restore on a new device using the recovery file and the password you set." (`SupportClient.tsx:119`) | false | No view calls `exportRecoveryKit` / `importRecoveryKit` (`ProfileViewModel.swift:623-631`); the only UI is a disabled export row (`SecuritySettings.swift:5-6,26-27`); there is no import UI. | "The current app has no working backup or recovery kit (the Recovery Kit Export row in Settings is disabled), so if the phone is gone the keys are gone with it." |
+| 68 | "If you've set up a recovery kit (Profile → Settings → Backup), you can restore on a new device using the recovery file and the password you set." (`SupportClient.tsx:119`) | false | No view calls `exportRecoveryKit` / `importRecoveryKit` (`ProfileViewModel.swift:623-631`); the only UI is a disabled export row (`SecuritySettings.swift:5-6,26-27`); there is no import UI. | "The current app has no working backup or recovery kit (the Recovery Kit Export row in Settings is disabled), so if the phone is gone the keys are gone with it." || 69 | "Messages hop phone-to-phone over encrypted Bluetooth Low Energy mesh" (`public/llms.txt:3`) | overstated | Same as 1. | "over Bluetooth Low Energy mesh" |
+| 70 | "End-to-end encrypted (Noise XX + Ed25519); relay phones cannot read messages" (`llms.txt:7`) | overstated | Same as 1. | "Direct messages are end-to-end encrypted (Noise XX + Ed25519) and private groups use AES-256-GCM sender keys; relay phones cannot read them. Public event channels are signed, not encrypted" |
+| 71 | "location sharing is friends-only and user-controlled" (`llms.txt:11`) | false | No friends-only control ships (`V1LaunchFlags.swift:51`, `LocationSettings.swift:31-34`); no friend filter on receive: `FriendFinderViewModel.swift:158-199` plots every received position; no "Friends only" string exists in the app and the only shipped control is the Share location button (`FriendFinderMapView.swift:16-17,270`; `V1LaunchFlags.swift:51`). | "location sharing is off until you switch it on, and shared positions are signed mesh broadcasts that nearby Blip phones can read" |
+| 72 | "SOS never touches a mobile tower, Wi-Fi, or a server" (`app/features/safety/page.tsx:42`) | false | `.sosAlert` is a broadcast (`SOSViewModel.swift:583-590`) and `TransportCoordinator.broadcast` also sends to the WebSocket relay when it is running (`TransportCoordinator.swift:306-315`). | "SOS needs no mobile tower, Wi-Fi, or server ... when a phone in the chain has internet it also passes through our relay." |
+| 73 | "Outside an SOS or an active Friend Finder session, your location is not shared with anyone or stored on a server" (`safety/page.tsx:57`) | overstated | A 5-character geohash goes out in every announce while Nearby visibility is on and location is granted (`MessageService.swift:926-954`), held in relay memory (`presence.ts:44-45,344`); I'm Here beacons are also location broadcasts (`FriendFinderViewModel.swift:253-266`). | "the only location that leaves your phone is a 5-character geohash ... in your presence announcement while Nearby visibility is on, which our relay holds in memory only." |
+| 74 | SOS transport "no tower, no Wi-Fi, no server" (`safety/SafetyClient.tsx:37`) | overstated | Same as 72. | "no tower or Wi-Fi needed, and the alert also passes through our relay when a phone has internet" |
+| 75 | "There is no Blip server watching where you are. Location sharing runs peer-to-peer over the mesh ... scoped to friends only ... Meeting point pins go only to the people you choose" (`app/features/nearby/page.tsx:42`) | false | Location packets traverse the relay when online (`TransportCoordinator.swift:306-315`); no friend filter on receive: `FriendFinderViewModel.swift:158-199` plots every received position; no "Friends only" string exists in the app and the only shipped control is the Share location button (`FriendFinderMapView.swift:16-17,270`; `V1LaunchFlags.swift:51`); meeting points are hidden and never broadcast (`V1LaunchFlags.swift:29-33`). | Rewritten: no database of position; signed unencrypted packet any nearby phone can receive; relay forwards, does not keep; Share location button and Nearby visibility toggle. Meeting-point clause dropped. |
+| 76 | "Messages are end-to-end encrypted before they leave your device" (`proxy.ts:163`) | overstated | Same as 1. | "Direct messages and private group messages are end-to-end encrypted before they leave your device; public event channels are signed but not encrypted." |
+| 77 | Privacy meta description "end-to-end encrypted messages" (`app/privacy/page.tsx:7`) | overstated | Same as 1. | "end-to-end encrypted direct messages" |
+| 78 | "No tower, no Wi-Fi, no check-in to a server." (`nearby/NearbyClient.tsx:61`) | overstated | Announces go to the relay when a phone has internet (`MessageService.swift:926-954`; `TransportCoordinator.swift:306-315`). | "with no tower or Wi-Fi needed. When a phone has internet, its presence announcement also goes to our relay." |
+| 79 | "The app shows it only to friends, and the control ... says so — Friends only" (`NearbyClient.tsx:77`, round-1 wording) | false | no friend filter on receive: `FriendFinderViewModel.swift:158-199` plots every received position; no "Friends only" string exists in the app and the only shipped control is the Share location button (`FriendFinderMapView.swift:16-17,270`; `V1LaunchFlags.swift:51`). | "a signed, unencrypted mesh broadcast that nearby Blip phones relay, and any phone running Blip that receives it can plot it. Sharing is off until you switch it on" |
+| 80 | "the app shows it only to the friends you chose" (`NearbyClient.tsx:262`, round-1 wording) | false | Same as 79. | "a signed broadcast that nearby phones relay and can read, and it is off until you switch it on" |
+| 81 | "set to Friends only, so nobody outside that person's approved friends can see where they are" (`app/features/profile/page.tsx:42`) | false | Same as 79. The Friends-only row in the screenshot is hidden UI (`V1LaunchFlags.swift:51`). | "Location sharing is off until you switch it on from the Nearby map, and while it is on your position goes out as a signed, unencrypted mesh broadcast that any nearby Blip phone can receive." |
+| 82 | "Set to Friends only in the screenshot. Open the row to change who can see where you are" (`profile/ProfileClient.tsx:93`) | false | Same as 81. | "Off until you switch it on from the Nearby map. While it is on, your position is a signed mesh broadcast that any nearby Blip phone can receive." |
+| 83 | "location data (unless you opt in to location-sharing per friend)" (`SupportClient.tsx:135`) | overstated | Per-friend sharing controls are hidden (`V1LaunchFlags.swift:51`); geohash in announces reaches the relay (`presence.ts:44-45`). | "we keep no database of your location (our relay holds a 5-character geohash in memory while you are connected; see the privacy policy for the SOS exception)" |
+| 84 | "Location sharing: Friends only, you control it" (`NearbyClient.tsx:50`) | false | Same as 79. | "Off until you switch it on" |
+| 85 | "sharing scoped to Friends only" (`NearbyClient.tsx:84`, screenshot caption) | false | Same as 79. | "and the sharing control" |
+| 86 | "The Profile screen carries a location sharing setting. Set to friends only, it means friends only." (`NearbyClient.tsx:126`) | false | Same as 79; the Profile row is hidden (`V1LaunchFlags.swift:51`). | "Location sharing is off until you switch it on from the Nearby map. While it is on, any nearby Blip phone can receive your position." |
 
 Totals: 67 claims. 24 accurate (6 of them made more specific), 33 overstated, 10 false, 0 unverifiable. One sub-item (avatar deletion on account delete) could not be verified and is noted in row 42 without changing the copy.
 
@@ -115,7 +132,7 @@ The ticket asks for the primitive list to be specific. Two rows were added to th
 
 ## Pricing: needs John's decision
 
-No "starting at" or "from" teasers exist on the site (grep of `src/` for `starting at`, `from $`, `from just`, `as low as`). Every price-model assertion below is left as written because the launch model is John's call. What the code shows: the app ships a Message Packs store (`au.heyblip.Blip.starter10` through `unlimited`) backed by `users.message_balance`; the server receipt endpoint is unimplemented (501); there is no verified-profile product.
+No "starting at" or "from" teasers exist on the site (grep of `src/` for `starting at`, `from $`, `from just`, `as low as`). Every price-model assertion below is left as written because the launch model is John's call. What the code shows: the app ships a Message Packs store (`au.heyblip.Blip.starter10` through `unlimited`) backed by `users.message_balance`; the server receipt endpoint is unimplemented (501); there is no verified-profile product. In v1 the store, paywall, verified-profile sheet and StoreKit start-up are hidden behind `V1LaunchFlags.showMessagePackStore = false`, whose comment reads "v1 ships free" (`Sources/Utilities/V1LaunchFlags.swift:69-79`).
 
 | Where | Sentence as written | Proposed neutral wording (true under any model) |
 |---|---|---|
@@ -129,6 +146,19 @@ No "starting at" or "from" teasers exist on the site (grep of `src/` for `starti
 | `app/layout.tsx:154-156` | JSON-LD `Offer { price: "0", priceCurrency: "AUD" }` | Keep only if the listing is free; otherwise remove the Offer. |
 | `proxy.ts:9,35` | "**Price:** Free" / "Free. No subscriptions gating core messaging." | "**Price:** see the App Store listing" / remove the Pricing section. |
 | `.agents/product-marketing-context.md` | "Free download; premium tier planned" / "Currently free while in early alpha / testflight; paid tier TBD" | Update once decided; the marketing skills read this file. |
+| `public/llms.txt:3` | "Blip is a free iOS app for chatting at festivals" | "Blip is an iOS app for chatting at festivals" |
+| `public/llms.txt:12` | "iOS (iPhone) only; free download" | "iOS (iPhone) only" |
+
+## Unshipped features the site markets (out of scope for BDEV-251, needs John's decision)
+
+Found during the round-2 sweep. Each is hidden in the shipped app by `Sources/Utilities/V1LaunchFlags.swift` and left as written because removing a feature section is a product call, not a claims fix.
+
+| Where | What the site says | What ships |
+|---|---|---|
+| `app/features/nearby/page.tsx:7,50-52`, `nearby/NearbyClient.tsx:84-98,134,162`, `app/features/page.tsx:53`, `proxy.ts:20,130`, `public/llms.txt:10,19`, `organisers/OrganisersClient.tsx:25`, `chat/ChatClient.tsx:113` | Meeting points you can drop, label, share with chosen people, and expire on a timer | `showMeetingPoints = false` (`V1LaunchFlags.swift:29-33`): points live only in view state, are never persisted or broadcast, and the share target does nothing. `NearbyClient.tsx:134` ("goes to the people you pick") is therefore also a false audience claim. |
+| `app/features/safety/page.tsx:37` | "If your event runs a Blip-equipped medical team, they see it too." | `showMedicalResponder = false` (`V1LaunchFlags.swift:53-67`): responder registration and dashboard are hidden; received SOS alerts are not persisted. |
+| `app/features/profile/ProfileClient.tsx:65,308`, `nearby/NearbyClient.tsx:82` (alt texts describing the screenshots) | Profile screen with a "Location sharing: Friends only" row; Find Friends map with a "Friends only" sharing control | `showLocationPrecisionControls = false` (`V1LaunchFlags.swift:45-51`): the precision picker and per-friend controls are hidden; the only live control is the Share location button on the Nearby map. The screenshot shows hidden UI. |
+| `app/layout.tsx:39` | SEO keyword "end-to-end encrypted messenger" | Only direct messages and private groups are end-to-end encrypted. Left as a keyword; change if John wants keywords held to the same standard as copy. |
 
 ## Before and after, every changed sentence
 
@@ -338,3 +368,60 @@ Sixty-seven exact string replacements against `fc883c0`. Each `before` string oc
 - `src/app/support/SupportClient.tsx`
   - before: 'If you&apos;ve set up a recovery kit (<strong>Profile → Settings → Backup</strong>), you can restore on a new device using the recovery file and the password you set. If you don&apos;t have a recovery kit, you can register a fresh account with the same email — friends will need to re-add you.'
   - after: 'The current app has no working backup or recovery kit (the Recovery Kit Export row in Settings is disabled), so if the phone is gone the keys are gone with it. Register a fresh account with the same email; friends will need to re-add you.'
+- `public/llms.txt`
+  - before: 'over encrypted Bluetooth Low Energy mesh'
+  - after: 'over Bluetooth Low Energy mesh'
+- `public/llms.txt`
+  - before: '- End-to-end encrypted (Noise XX + Ed25519); relay phones cannot read messages'
+  - after: '- Direct messages are end-to-end encrypted (Noise XX + Ed25519) and private groups use AES-256-GCM sender keys; relay phones cannot read them. Public event channels are signed, not encrypted'
+- `public/llms.txt`
+  - before: '- No phone number required; location sharing is friends-only and user-controlled'
+  - after: '- No phone number required; location sharing is off until you switch it on, and shared positions are signed mesh broadcasts that nearby Blip phones can read'
+- `src/app/features/safety/page.tsx`
+  - before: '"Yes. SOS never touches a mobile tower, Wi-Fi, or a server. It travels over Bluetooth Low Energy between phones, up to seven hops. Range'
+  - after: '"Yes. SOS needs no mobile tower, Wi-Fi, or server. It travels over Bluetooth Low Energy between phones, up to seven hops, and when a phone in the chain has internet it also passes through our relay. Range'
+- `src/app/features/safety/page.tsx`
+  - before: 'Outside an SOS or an active Friend Finder session, your location is not shared with anyone or stored on a server."'
+  - after: "Outside an SOS, an I'm Here beacon, or Friend Finder sharing, the only location that leaves your phone is a 5-character geohash (a cell roughly 5 km across) in your presence announcement while Nearby visibility is on, which our relay holds in memory only.""
+- `src/app/features/safety/SafetyClient.tsx`
+  - before: 'value: "Bluetooth Low Energy 5.0+ — no tower, no Wi-Fi, no server",'
+  - after: 'value: "Bluetooth Low Energy 5.0+; no tower or Wi-Fi needed, and the alert also passes through our relay when a phone has internet",'
+- `src/app/features/nearby/page.tsx`
+  - before: '"No. There is no Blip server watching where you are. Location sharing runs peer-to-peer over the mesh and you control it: the Profile screen has a location sharing setting scoped to friends only, plus a separate Nearby visibility toggle. Meeting point pins go only to the people you choose, and they expire on a timer you set."'
+  - after: '"Blip keeps no database of where you are. When you switch on sharing, your position travels over the mesh as a signed, unencrypted packet that any nearby Blip phone can receive, and through our relay when a phone has internet; the relay forwards it and does not keep it. You control it from the Share location button on the Nearby map, and a separate Nearby visibility toggle controls whether your presence announcement, which carries a 5-character geohash, goes out at all."'
+- `src/proxy.ts`
+  - before: 'Messages are end-to-end encrypted before they leave your device; only the minimum required data is collected server-side.'
+  - after: 'Direct messages and private group messages are end-to-end encrypted before they leave your device; public event channels are signed but not encrypted. Only the minimum required data is collected server-side.'
+- `src/app/privacy/page.tsx`
+  - before: 'How Blip handles your data: end-to-end encrypted messages, no tracking'
+  - after: 'How Blip handles your data: end-to-end encrypted direct messages, no tracking'
+- `src/app/features/nearby/NearbyClient.tsx`
+  - before: '"All of it comes over Bluetooth mesh. No tower, no Wi-Fi, no check-in to a server.",'
+  - after: '"All of it comes over Bluetooth mesh, with no tower or Wi-Fi needed. When a phone has internet, its presence announcement also goes to our relay.",'
+- `src/app/features/nearby/NearbyClient.tsx`
+  - before: ""One tap on I'm here shares your position. The app shows it only to friends, and the control at the bottom of the screen says so — Friends only — where you can see it rather than buried in settings. On the wire, the packet is a mesh broadcast that nearby Blip phones relay.","
+  - after: ""One tap on I'm here shares your position as a signed, unencrypted mesh broadcast that nearby Blip phones relay, and any phone running Blip that receives it can plot it. Sharing is off until you switch it on, and the control sits on the map where you can see it rather than buried in settings.","
+- `src/app/features/nearby/NearbyClient.tsx`
+  - before: 'sharing is honest. Blip has no server storing your position, so\n              there is nothing central to track. What is shared travels over\n              the mesh as a broadcast that nearby phones relay, and the app\n              shows it only to the friends you chose.'
+  - after: 'sharing is honest. Blip keeps no database of your position, so\n              there is nothing central to track. What is shared travels over\n              the mesh as a signed broadcast that nearby phones relay and can\n              read, and it is off until you switch it on.'
+- `src/app/features/profile/page.tsx`
+  - before: ""You decide, from the Location sharing row on your profile. The screen in our screenshot is set to Friends only, so nobody outside that person's approved friends can see where they are. Open the row to change it. Location sharing and Nearby visibility are separate controls, so you can adjust one without touching the other.""
+  - after: '"You decide. Location sharing is off until you switch it on from the Nearby map, and while it is on your position goes out as a signed, unencrypted mesh broadcast that any nearby Blip phone can receive. Nearby visibility is a separate toggle that controls your presence announcement, so you can adjust one without touching the other."'
+- `src/app/features/profile/ProfileClient.tsx`
+  - before: 'text: "Set to Friends only in the screenshot. Open the row to change who can see where you are, or to switch it off.",'
+  - after: 'text: "Off until you switch it on from the Nearby map. While it is on, your position is a signed mesh broadcast that any nearby Blip phone can receive.",'
+- `src/app/support/SupportClient.tsx`
+  - before: 'We do <strong>not</strong> collect message content, location data (unless you opt in to location-sharing per friend), contact lists, advertising IDs, or browsing analytics.'
+  - after: 'We do <strong>not</strong> collect message content, contact lists, advertising IDs, or browsing analytics, and we keep no database of your location (our relay holds a 5-character geohash in memory while you are connected; see the privacy policy for the SOS exception).'
+- `src/app/features/nearby/NearbyClient.tsx`
+  - before: '{ label: "Location sharing", value: "Friends only, you control it" },'
+  - after: '{ label: "Location sharing", value: "Off until you switch it on" },'
+- `src/app/features/nearby/NearbyClient.tsx`
+  - before: "an I'm here button, and sharing scoped to Friends only.","
+  - after: "an I'm here button, and the sharing control.","
+- `src/app/features/nearby/NearbyClient.tsx`
+  - before: 'text: "The Profile screen carries a location sharing setting. Set to friends only, it means friends only.",'
+  - after: 'text: "Location sharing is off until you switch it on from the Nearby map. While it is on, any nearby Blip phone can receive your position.",'
+- `src/app/features/nearby/NearbyClient.tsx`
+  - before: 'title: "Location sharing, scoped",'
+  - after: 'title: "Location sharing, off by default",'

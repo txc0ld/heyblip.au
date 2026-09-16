@@ -39,7 +39,7 @@ const faqs: FaqItem[] = [
   {
     question: "Does SOS work with no reception at all?",
     answer:
-      "Yes. SOS never touches a mobile tower, Wi-Fi, or a server. It travels over Bluetooth Low Energy between phones, up to seven hops. Range depends on how many people nearby have Blip open with Bluetooth on — roughly 200 to 300 metres through a dense crowd.",
+      "Yes. SOS needs no mobile tower, Wi-Fi, or server. It travels over Bluetooth Low Energy between phones, up to seven hops, and when a phone in the chain has internet it also passes through our relay. Range depends on how many people nearby have Blip open with Bluetooth on — roughly 200 to 300 metres through a dense crowd.",
   },
   {
     question: "Why does an SOS get through when a normal message might not?",
@@ -54,7 +54,7 @@ const faqs: FaqItem[] = [
   {
     question: "Is my location shared when I send an SOS?",
     answer:
-      "Yes, approximately. The SOS screen shows the zone that will travel with your alert, plus an accuracy readout, so responders know roughly where to look. Outside an SOS or an active Friend Finder session, your location is not shared with anyone or stored on a server.",
+      "Yes, approximately. The SOS screen shows the zone that will travel with your alert, plus an accuracy readout, so responders know roughly where to look. Outside an SOS, an I'm Here beacon, or Friend Finder sharing, the only location that leaves your phone is a 5-character geohash (a cell roughly 5 km across) in your presence announcement while Nearby visibility is on, which our relay holds in memory only.",
   },
 ];
 

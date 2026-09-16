@@ -1,14 +1,14 @@
 # Blip (heyblip.au)
 
-> Blip is a free iOS app for chatting at festivals, sporting events, ultra marathons, concerts, and other crowded events where mobile reception fails. Messages hop phone-to-phone over encrypted Bluetooth Low Energy mesh, so no Wi-Fi, cellular data, or infrastructure is required. Built in Australia.
+> Blip is a free iOS app for chatting at festivals, sporting events, ultra marathons, concerts, and other crowded events where mobile reception fails. Messages hop phone-to-phone over Bluetooth Low Energy mesh, so no Wi-Fi, cellular data, or infrastructure is required. Built in Australia.
 
 Key facts:
 - Works with zero signal: messages relay phone-to-phone via BLE mesh
-- End-to-end encrypted (Noise XX + Ed25519); relay phones cannot read messages
+- Direct messages are end-to-end encrypted (Noise XX + Ed25519) and private groups use AES-256-GCM sender keys; relay phones cannot read them. Public event channels are signed, not encrypted
 - Emergency SOS broadcast reaches every nearby Blip phone at priority (it does not call emergency services)
 - Group chats, encrypted DMs, voice notes, push-to-talk, photos
 - Find friends nearby, friend map, and crew meeting points without internet
-- No phone number required; location sharing is friends-only and user-controlled
+- No phone number required; location sharing is off until you switch it on, and shared positions are signed mesh broadcasts that nearby Blip phones can read
 - iOS (iPhone) only; free download
 
 ## Features

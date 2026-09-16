@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "Who can see my location on Blip?",
     answer:
-      "You decide, from the Location sharing row on your profile. The screen in our screenshot is set to Friends only, so nobody outside that person's approved friends can see where they are. Open the row to change it. Location sharing and Nearby visibility are separate controls, so you can adjust one without touching the other.",
+      "You decide. Location sharing is off until you switch it on from the Nearby map, and while it is on your position goes out as a signed, unencrypted mesh broadcast that any nearby Blip phone can receive. Nearby visibility is a separate toggle that controls your presence announcement, so you can adjust one without touching the other.",
   },
   {
     question: "Can I stop people nearby from seeing me?",

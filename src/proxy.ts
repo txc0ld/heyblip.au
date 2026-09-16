@@ -159,7 +159,7 @@ Canonical page: https://heyblip.au/privacy
 
 ## Summary
 
-Blip is a Bluetooth mesh chat app. Privacy is a core design principle. Messages are end-to-end encrypted before they leave your device; only the minimum required data is collected server-side.
+Blip is a Bluetooth mesh chat app. Privacy is a core design principle. Direct messages and private group messages are end-to-end encrypted before they leave your device; public event channels are signed but not encrypted. Only the minimum required data is collected server-side.
 
 ## What we collect
 

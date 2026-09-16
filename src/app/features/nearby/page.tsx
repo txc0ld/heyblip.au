@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "Does Blip track my location?",
     answer:
-      "No. There is no Blip server watching where you are. Location sharing runs peer-to-peer over the mesh and you control it: the Profile screen has a location sharing setting scoped to friends only, plus a separate Nearby visibility toggle. Meeting point pins go only to the people you choose, and they expire on a timer you set.",
+      "Blip keeps no database of where you are. When you switch on sharing, your position travels over the mesh as a signed, unencrypted packet that any nearby Blip phone can receive, and through our relay when a phone has internet; the relay forwards it and does not keep it. You control it from the Share location button on the Nearby map, and a separate Nearby visibility toggle controls whether your presence announcement, which carries a 5-character geohash, goes out at all.",
   },
   {
     question: "How accurate is the distance to a friend?",

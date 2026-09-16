@@ -34,7 +34,7 @@ const relayFacts = [
   },
   {
     label: "Transport",
-    value: "Bluetooth Low Energy 5.0+ — no tower, no Wi-Fi, no server",
+    value: "Bluetooth Low Energy 5.0+; no tower or Wi-Fi needed, and the alert also passes through our relay when a phone has internet",
   },
   {
     label: "Encryption",

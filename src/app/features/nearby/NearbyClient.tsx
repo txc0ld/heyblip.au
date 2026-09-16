@@ -47,7 +47,7 @@ const facts = [
   { label: "Discovery", value: "Bluetooth Low Energy 5.0+" },
   { label: "Range per hop", value: "~40m, up to 100m line-of-sight" },
   { label: "Relay depth", value: "Up to 7 hops" },
-  { label: "Location sharing", value: "Friends only, you control it" },
+  { label: "Location sharing", value: "Off until you switch it on" },
 ];
 
 const sections = [
@@ -58,7 +58,7 @@ const sections = [
     body: [
       "The Nearby tab is the first place you look when the bars die. It counts the people around you running Blip, then lists your friends with a rough distance beside each name — nearby, 12 m, 28 m — so you know who is within reach before you start walking.",
       "People you have not added show up too, with an Add Friend button next to them. That is how a crew grows mid-event without swapping numbers. Underneath, a venue card shows where you are and how many people are on the mesh there.",
-      "All of it comes over Bluetooth mesh. No tower, no Wi-Fi, no check-in to a server.",
+      "All of it comes over Bluetooth mesh, with no tower or Wi-Fi needed. When a phone has internet, its presence announcement also goes to our relay.",
     ],
     shot: {
       src: "/app-screens/05-nearby.png",
@@ -74,14 +74,14 @@ const sections = [
     heading: "Find my friends without internet — on a live event map",
     body: [
       "Find Friends puts your crew on a map of the venue you are at. Each pin carries a name and how far away they are, or how long it takes to walk there. The event and date sit in the header, so there is no guessing which map you are looking at.",
-      "One tap on I'm here shares your position. The app shows it only to friends, and the control at the bottom of the screen says so — Friends only — where you can see it rather than buried in settings. On the wire, the packet is a mesh broadcast that nearby Blip phones relay.",
+      "One tap on I'm here shares your position as a signed, unencrypted mesh broadcast that nearby Blip phones relay, and any phone running Blip that receives it can plot it. Sharing is off until you switch it on, and the control sits on the map where you can see it rather than buried in settings.",
       "Positions do not need a Blip server. They travel over the mesh phone to phone, hop by hop, through the crowd, as signed location packets. Unlike direct messages they are not encrypted, and when a phone has internet they also pass through our relay.",
     ],
     shot: {
       src: "/app-screens/06-friend-map.png",
       alt: "Blip Find Friends map for AC Milan v Inter at Optus Stadium with pins for Maya at 35 m, Jake nearby and Priya 2 min away, a Gate D meeting point with 45 min left, an I'm here button and a Friends only sharing control",
       caption:
-        "Friend pins with distance or walking time, the crew's Gate D meeting point on the map, an I'm here button, and sharing scoped to Friends only.",
+        "Friend pins with distance or walking time, the crew's Gate D meeting point on the map, an I'm here button, and the sharing control.",
     },
     priority: false,
   },
@@ -122,8 +122,8 @@ const sections = [
 
 const controlPoints = [
   {
-    title: "Location sharing, scoped",
-    text: "The Profile screen carries a location sharing setting. Set to friends only, it means friends only.",
+    title: "Location sharing, off by default",
+    text: "Location sharing is off until you switch it on from the Nearby map. While it is on, any nearby Blip phone can receive your position.",
   },
   {
     title: "Nearby visibility toggle",
@@ -257,10 +257,10 @@ export default function NearbyClient({ faqs }: Props) {
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--muted-strong)] md:text-[17px] md:leading-[1.75]">
               A friend finder app with no signal only earns its place if the
-              sharing is honest. Blip has no server storing your position, so
+              sharing is honest. Blip keeps no database of your position, so
               there is nothing central to track. What is shared travels over
-              the mesh as a broadcast that nearby phones relay, and the app
-              shows it only to the friends you chose.
+              the mesh as a signed broadcast that nearby phones relay and can
+              read, and it is off until you switch it on.
             </p>
 
             <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--border)] md:grid-cols-3">
