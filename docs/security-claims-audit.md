@@ -22,7 +22,7 @@ Ground truth is the iOS app and server source at `iamjohnnymac/heyblip-live` com
 | Avatars | Uploaded images are stored in a Cloudflare bucket. | `server/cdn/src/avatars/avatars.ts:56` |
 | Auth mechanism | Ed25519 challenge-response, then an HMAC JWT with a default lifetime of 3,600 s. | `server/auth/src/challenge-session/session.ts:33,154`; `server/shared/src/jwt.ts:61` |
 | Key storage on device | iOS Keychain, `kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly`. Not the Secure Enclave. | `Packages/BlipCrypto/Sources/KeyManager.swift:72-84` |
-| Recovery kit (account export) | AES-256-GCM; key derived with HKDF-SHA-256 from the password and a random 32-byte salt. Note: HKDF is not a password-hardening KDF. | `KeyManager.swift:39-42,170-172` |
+| Recovery kit (account export) | Implemented in `KeyManager` (AES-256-GCM; key derived with HKDF-SHA-256 from the password and a random 32-byte salt; HKDF is not a password-hardening KDF) and wrapped by `ProfileViewModel.exportRecoveryKit` / `importRecoveryKit`, but no view calls either. The only UI is a disabled "Recovery Kit Export" row subtitled "Unavailable in this build until file export is wired". Unshipped, so not published. | `KeyManager.swift:39-42,170-172`; `Sources/ViewModels/ProfileViewModel.swift:623-631`; `Sources/Views/Tabs/ProfileTab/Settings/SecuritySettings.swift:5-6,20,26-27` |
 | TLS | Certificate pinning on the auth, relay and CDN worker hostnames. | `Sources/Services/ServerConfig.swift:38-42`; `CertificatePinningDelegate.swift` |
 | Sentry | `sendDefaultPii = false`, but `attachScreenshot = true`, so a crash report can include a screenshot of the screen at crash time. Server side `sendDefaultPii: false`. | `Sources/Services/CrashReportingService.swift:62-65`; `server/shared/src/sentry-config.ts:118` |
 | Analytics | Microsoft Clarity SDK is linked but `configureClarity()` is inside `#if DEBUG`; App Store builds never initialise it. | `App/AppDelegate.swift:4,35-37,45-60` |
@@ -60,7 +60,7 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 20 | "Sender ID: 8 bytes (SHA256 of noise public key, truncated)" (`TechClient.tsx:56`) | accurate | `KeyManager.swift:21`. | Unchanged. |
 | 21 | "Signature: 64 bytes (optional, Ed25519)" (`TechClient.tsx:58`) | accurate | `PacketValidator.swift:85-93`. | Unchanged. |
 | 22 | "Built for ... crowds with end-to-end encryption (Noise XX ...)" (`TechClient.tsx:107-109`) | overstated | Same as 1. | "with end-to-end encrypted direct messages (...)" |
-| 23 | Same as 15, 18, 19 in the agent markdown (`proxy.ts:81-85`) | overstated (row 19 mirror) | Mirror of `/tech`. | Mirrored. Rows added for group messages (rotation every 100 messages only: `SenderKeyManager.swift:241-242`; `rotateKey(forChannel:reason:)` has no callers in `Sources/`), public channels, recovery kit (ticket asks for the primitive list). |
+| 23 | Same as 15, 18, 19 in the agent markdown (`proxy.ts:81-85`) | overstated (row 19 mirror) | Mirror of `/tech`. | Mirrored. Rows added for group messages (rotation every 100 messages only: `SenderKeyManager.swift:241-242`; `rotateKey(forChannel:reason:)` has no callers in `Sources/`) and public channels (ticket asks for the primitive list). The recovery kit row added in round 1 was dropped in round 2 as unshipped (`ProfileViewModel.swift:623-631` has no view callers). |
 | 24 | "**Encryption:** End-to-end (Noise XX + Ed25519)" (`proxy.ts:10`) | overstated | Same as 1. | Qualified to DMs; groups and public channels named. |
 | 25 | "Private by default. Messages are encrypted before they leave your phone. Relay phones cannot read them." (`proxy.ts:19`) | overstated | Same as 6. | Qualified. |
 | 26 | "Only your email, username, public keys, and push token are stored server-side." (`proxy.ts:31`) | false | Same as 10. | Hash and full set listed. |
@@ -105,12 +105,13 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 65 | "we cannot read the content of direct messages or group messages" (`SupportClient.tsx:178`) | accurate | Groups use sender keys. | Unchanged. |
 | 66 | "TLS with certificate pinning" (`PrivacyClient.tsx:71`) | accurate | `ServerConfig.swift:38-42`. | Unchanged. |
 | 67 | "Dependencies: CryptoKit (Apple), swift-sodium, swift-opus" (`TechClient.tsx:81`) | accurate | `SECURITY.md` dependency table; `project.yml`. | Unchanged. |
+| 68 | "If you've set up a recovery kit (Profile → Settings → Backup), you can restore on a new device using the recovery file and the password you set." (`SupportClient.tsx:119`) | false | No view calls `exportRecoveryKit` / `importRecoveryKit` (`ProfileViewModel.swift:623-631`); the only UI is a disabled export row (`SecuritySettings.swift:5-6,26-27`); there is no import UI. | "The current app has no working backup or recovery kit (the Recovery Kit Export row in Settings is disabled), so if the phone is gone the keys are gone with it." |
 
 Totals: 67 claims. 24 accurate (6 of them made more specific), 33 overstated, 10 false, 0 unverifiable. One sub-item (avatar deletion on account delete) could not be verified and is noted in row 42 without changing the copy.
 
 ## Additions requested by the ticket
 
-The ticket asks for the primitive list to be specific. Three rows were added to the `/tech` Encryption table and its `proxy.ts` mirror, each backed by code: group messages (AES-256-GCM sender keys), public event channels (signed, not encrypted), recovery kit (AES-256-GCM with HKDF-SHA-256). If any of these should not be published, drop the row; the audit stands without it.
+The ticket asks for the primitive list to be specific. Two rows were added to the `/tech` Encryption table and its `proxy.ts` mirror, each backed by code: group messages (AES-256-GCM sender keys) and public event channels (signed, not encrypted). A recovery kit row was added in round 1 and removed in round 2: `exportRecoveryKit` and `importRecoveryKit` exist only in `ProfileViewModel.swift:623-631`, no view calls them, and the Settings row for export is disabled (`SecuritySettings.swift:5-6,26-27`). If either remaining row should not be published, drop it; the audit stands without it.
 
 ## Pricing: needs John's decision
 
@@ -183,7 +184,7 @@ Sixty-seven exact string replacements against `fc883c0`. Each `before` string oc
   - after: '{ label: "Key distribution", value: "Noise + signing public keys sent in the announce payload, alongside username, display name, and a 5-character geohash (all plaintext)" }'
 - `src/app/tech/TechClient.tsx`
   - before: '{ label: "Session management", value: "Noise session per peer pair, rekeying on reconnect" },'
-  - after: '{ label: "Session management", value: "Noise session per peer pair; fresh ephemeral keys per handshake; send-direction rekey every 1,000 messages or 1 hour; sessions expire after 4 hours" },\n      { label: "Group messages", value: "AES-256-GCM per-sender keys, distributed over pairwise Noise sessions, rotated every 100 messages; a member who leaves can still decrypt until the next rotation" },\n      { label: "Public event channels", value: "Ed25519-signed, not encrypted (open to everyone at the event)" },\n      { label: "Recovery kit", value: "AES-256-GCM; key derived with HKDF-SHA-256 from your password and a random 32-byte salt" },'
+  - after: '{ label: "Session management", value: "Noise session per peer pair; fresh ephemeral keys per handshake; send-direction rekey every 1,000 messages or 1 hour; sessions expire after 4 hours" },\n      { label: "Group messages", value: "AES-256-GCM per-sender keys, distributed over pairwise Noise sessions, rotated every 100 messages; a member who leaves can still decrypt until the next rotation" },\n      { label: "Public event channels", value: "Ed25519-signed, not encrypted (open to everyone at the event)" },'
 - `src/app/tech/TechClient.tsx`
   - before: 'festival-scale and event-scale crowds with end-to-end encryption\n              (Noise XX handshake on Curve25519 + ChaChaPoly + SHA256), adaptive\n              gossip routing, and Ed25519 packet signing.'
   - after: 'festival-scale and event-scale crowds with end-to-end encrypted direct\n              messages (Noise XX handshake on Curve25519 + ChaChaPoly + SHA256),\n              adaptive gossip routing, and Ed25519 packet signing.'
@@ -204,7 +205,7 @@ Sixty-seven exact string replacements against `fc883c0`. Each `before` string oc
   - after: '- Key distribution: Noise + signing public keys sent in the announce payload, alongside username, display name, and a 5-character geohash (all plaintext)'
 - `src/proxy.ts`
   - before: '- Session management: Noise session per peer pair, rekeying on reconnect'
-  - after: '- Session management: Noise session per peer pair; fresh ephemeral keys per handshake; send-direction rekey every 1,000 messages or 1 hour; sessions expire after 4 hours\n- Group messages: AES-256-GCM per-sender keys, distributed over pairwise Noise sessions, rotated every 100 messages; a member who leaves can still decrypt until the next rotation\n- Public event channels: Ed25519-signed, not encrypted (open to everyone at the event)\n- Recovery kit: AES-256-GCM; key derived with HKDF-SHA-256 from your password and a random 32-byte salt'
+  - after: '- Session management: Noise session per peer pair; fresh ephemeral keys per handshake; send-direction rekey every 1,000 messages or 1 hour; sessions expire after 4 hours\n- Group messages: AES-256-GCM per-sender keys, distributed over pairwise Noise sessions, rotated every 100 messages; a member who leaves can still decrypt until the next rotation\n- Public event channels: Ed25519-signed, not encrypted (open to everyone at the event)'
 - `src/proxy.ts`
   - before: 'End-to-end encrypted Bluetooth mesh, built for crowds of 100,000+.'
   - after: 'Bluetooth mesh with end-to-end encrypted direct messages, built for crowds of 100,000+.'
@@ -334,3 +335,6 @@ Sixty-seven exact string replacements against `fc883c0`. Each `before` string oc
 - `src/app/support/SupportClient.tsx`
   - before: 'your chosen username and display name, a one-way hash of your email address (we never store your email in plain text), your Noise and Ed25519 public keys, and Apple In-App Purchase transaction IDs if you&apos;ve bought message packs.'
   - after: 'your chosen username, a one-way SHA-256 hash of your email address (the address itself is held for up to an hour for your verification code and rate limiting, then discarded; only the hash is stored in our database), your Noise and Ed25519 public keys, your push token, and your avatar if you upload one.'
+- `src/app/support/SupportClient.tsx`
+  - before: 'If you&apos;ve set up a recovery kit (<strong>Profile → Settings → Backup</strong>), you can restore on a new device using the recovery file and the password you set. If you don&apos;t have a recovery kit, you can register a fresh account with the same email — friends will need to re-add you.'
+  - after: 'The current app has no working backup or recovery kit (the Recovery Kit Export row in Settings is disabled), so if the phone is gone the keys are gone with it. Register a fresh account with the same email; friends will need to re-add you.'

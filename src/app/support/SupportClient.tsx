@@ -116,7 +116,7 @@ export default function SupportClient() {
                     I lost my phone — how do I get my account back?
                   </h3>
                   <p>
-                    Blip identities are tied to cryptographic keys stored in your phone&apos;s iOS Keychain, marked device-only so they never sync to another device. If you&apos;ve set up a recovery kit (<strong>Profile → Settings → Backup</strong>), you can restore on a new device using the recovery file and the password you set. If you don&apos;t have a recovery kit, you can register a fresh account with the same email — friends will need to re-add you. For account-recovery edge cases, email{" "}
+                    Blip identities are tied to cryptographic keys stored in your phone&apos;s iOS Keychain, marked device-only so they never sync to another device. The current app has no working backup or recovery kit (the Recovery Kit Export row in Settings is disabled), so if the phone is gone the keys are gone with it. Register a fresh account with the same email; friends will need to re-add you. For account-recovery edge cases, email{" "}
                     <a
                       href="mailto:support@heyblip.au"
                       className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors"
