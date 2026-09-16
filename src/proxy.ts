@@ -83,7 +83,7 @@ Canonical page: https://heyblip.au/tech
 - Signable data: Full packet excluding TTL byte and signature
 - Key distribution: Noise + signing public keys sent in the announce payload, alongside username, display name, and a 5-character geohash (all plaintext)
 - Session management: Noise session per peer pair; fresh ephemeral keys per handshake; send-direction rekey every 1,000 messages or 1 hour; sessions expire after 4 hours
-- Group messages: AES-256-GCM per-sender keys, distributed over pairwise Noise sessions, rotated on membership change or every 100 messages
+- Group messages: AES-256-GCM per-sender keys, distributed over pairwise Noise sessions, rotated every 100 messages; a member who leaves can still decrypt until the next rotation
 - Public event channels: Ed25519-signed, not encrypted (open to everyone at the event)
 - Recovery kit: AES-256-GCM; key derived with HKDF-SHA-256 from your password and a random 32-byte salt
 

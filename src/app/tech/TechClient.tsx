@@ -47,7 +47,7 @@ const specs = [
       { label: "Relay compatibility", value: "TTL excluded from signed data so relay nodes can decrement without breaking signatures" },
       { label: "Key distribution", value: "Noise + signing public keys sent in the announce payload, alongside username, display name, and a 5-character geohash (all plaintext)" },
       { label: "Session management", value: "Noise session per peer pair; fresh ephemeral keys per handshake; send-direction rekey every 1,000 messages or 1 hour; sessions expire after 4 hours" },
-      { label: "Group messages", value: "AES-256-GCM per-sender keys, distributed over pairwise Noise sessions, rotated on membership change or every 100 messages" },
+      { label: "Group messages", value: "AES-256-GCM per-sender keys, distributed over pairwise Noise sessions, rotated every 100 messages; a member who leaves can still decrypt until the next rotation" },
       { label: "Public event channels", value: "Ed25519-signed, not encrypted (open to everyone at the event)" },
       { label: "Recovery kit", value: "AES-256-GCM; key derived with HKDF-SHA-256 from your password and a random 32-byte salt" },
     ],
