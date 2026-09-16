@@ -34,9 +34,9 @@ export default function PrivacyClient() {
                 <li><strong>Username</strong> — chosen by you during setup and stored on our server. Your display name is not stored in our database; it travels in the presence announcement your phone broadcasts to nearby phones and to the relay.</li>
                 <li><strong>Avatar image</strong> — if you upload a profile photo, it is stored on our servers.</li>
                 <li><strong>Cryptographic public keys</strong> — your Ed25519 signing key and Noise XX public key are uploaded to our server so other users can establish encrypted conversations with you.</li>
-                <li><strong>APNs device token</strong> — provided by Apple when you enable push notifications. Stored server-side, along with your device locale and app version, to deliver push notifications to your device. Push notifications carry the sender&apos;s username or display name and a thread identifier, never message content.</li>
+                <li><strong>APNs device token</strong> — provided by Apple when you enable push notifications. Stored server-side, along with your device locale and app version, to deliver push notifications to your device. Push notifications carry the sender&apos;s username and a thread identifier (for direct messages, a UUID derived from the sender&apos;s peer ID), never message content.</li>
                 <li><strong>JWT session tokens</strong> — issued by our authentication server after an Ed25519 challenge-response to maintain your logged-in session. They expire after one hour and are refreshed automatically.</li>
-                <li><strong>Approximate location</strong> — when you grant location permission, your phone&apos;s presence announcement includes a 5-character geohash (a cell roughly 5 km across). Our relay keeps it in memory while you are connected, uses it to scope who receives your announcement, and drops it when you disconnect. It is never written to a database. Friend Finder positions are shared over the mesh, not through our servers.</li>
+                <li><strong>Approximate location</strong> — when you grant location permission and Nearby visibility is on, your phone&apos;s presence announcement includes a 5-character geohash (a cell roughly 5 km across). Our relay keeps it in memory while you are connected, uses it to scope who receives your announcement, and drops it when you disconnect. It is never written to a database. Friend Finder positions are shared over the mesh, not through our servers.</li>
               </ul>
             </div>
 
@@ -79,7 +79,7 @@ export default function PrivacyClient() {
                 <li><strong>Neon</strong> — managed Postgres database that stores user account records and public keys.</li>
                 <li><strong>Resend</strong> — sends transactional emails (verification codes). Receives your email address for delivery only.</li>
                 <li><strong>Apple Push Notification service (APNs)</strong> — delivers push notifications to your device.</li>
-                <li><strong>Sentry</strong> — crash reporting and performance monitoring. We disable Sentry&apos;s default personal-data collection and never send message content or your email. A crash report may include a screenshot of whatever was on screen at the moment of the crash.</li>
+                <li><strong>Sentry</strong> — crash reporting and performance monitoring. We disable Sentry&apos;s default personal-data collection and never send message content or your email. A crash report may include a screenshot of whatever was on screen at the moment of the crash, and is tagged with your username and an app-generated account identifier so we can group reports per account.</li>
               </ul>
             </div>
 

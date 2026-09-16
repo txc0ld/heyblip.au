@@ -169,7 +169,7 @@ Blip is a Bluetooth mesh chat app. Privacy is a core design principle. Direct me
 - Cryptographic public keys (Ed25519 + Noise XX) for encrypted conversations
 - APNs device token for push notifications
 - JWT session tokens (short-lived)
-- Approximate location: a 5-character geohash (a cell roughly 5 km across) sent in presence announcements while connected to the relay, held in memory only and dropped on disconnect
+- Approximate location: a 5-character geohash (a cell roughly 5 km across) sent in presence announcements while Nearby visibility is on and location permission is granted, held in relay memory only and dropped on disconnect
 
 ## What we don't collect
 
@@ -181,7 +181,7 @@ Blip is a Bluetooth mesh chat app. Privacy is a core design principle. Direct me
 
 ## Third parties
 
-Cloudflare (hosting), Neon (Postgres), Resend (email), Apple APNs (push), Sentry (crash reports; a crash report may include a screenshot of the screen at the moment of the crash). We do not sell or share data for advertising.
+Cloudflare (hosting), Neon (Postgres), Resend (email), Apple APNs (push), Sentry (crash reports; may include a screenshot of the screen at the moment of the crash, tagged with your username and an app-generated account identifier). We do not sell or share data for advertising.
 
 ## Your rights
 
