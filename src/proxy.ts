@@ -176,7 +176,7 @@ Blip is a Bluetooth mesh chat app. Privacy is a core design principle. Messages 
 
 - Message content of direct and group messages (E2E encrypted; we cannot decrypt). Public event channel messages are not encrypted
 - Contacts / address book
-- Precise GPS on our servers. Coordinates leave your phone only for Friend Finder, I'm Here beacons, and SOS, as mesh broadcasts that are relayed, not stored
+- A database of precise GPS. Coordinates leave your phone for Friend Finder, I'm Here beacons, and SOS responders, as signed, unencrypted mesh packets that are relayed, not stored. One exception: when someone accepts your SOS alert while offline, the relay queues the packet carrying your precise position for up to 1 hour
 - Browsing history or analytics
 - Advertising identifiers (no IDFA, IDFV, fingerprinting)
 
