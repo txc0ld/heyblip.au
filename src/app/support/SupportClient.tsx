@@ -132,7 +132,7 @@ export default function SupportClient() {
                     What data does Blip collect about me?
                   </h3>
                   <p>
-                    The minimum needed to operate the service: your chosen username, a one-way SHA-256 hash of your email address (the address itself is held only for the few minutes your verification code is live and is never stored in our database), your Noise and Ed25519 public keys, your push token, and your avatar if you upload one. We do <strong>not</strong> collect message content, location data (unless you opt in to location-sharing per friend), contact lists, advertising IDs, or browsing analytics. Full detail in our{" "}
+                    The minimum needed to operate the service: your chosen username, a one-way SHA-256 hash of your email address (the address itself is held for up to an hour for your verification code and rate limiting, then discarded; only the hash is stored in our database), your Noise and Ed25519 public keys, your push token, and your avatar if you upload one. We do <strong>not</strong> collect message content, location data (unless you opt in to location-sharing per friend), contact lists, advertising IDs, or browsing analytics. Full detail in our{" "}
                     <Link
                       href="/privacy"
                       className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors"

@@ -164,7 +164,7 @@ Blip is a Bluetooth mesh chat app. Privacy is a core design principle. Messages 
 
 ## What we collect
 
-- Email address: stored only as a SHA-256 hash. The address itself is held for up to 10 minutes while your verification code is live, then discarded
+- Email address: stored only as a SHA-256 hash. The address itself is held for up to an hour (verification code and rate limiting), then discarded; only the hash remains
 - Username (your display name travels in your presence announcement and is not stored in our database)
 - Avatar image (if uploaded)
 - Cryptographic public keys (Ed25519 + Noise XX) for encrypted conversations

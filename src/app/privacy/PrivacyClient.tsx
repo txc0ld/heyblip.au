@@ -30,7 +30,7 @@ export default function PrivacyClient() {
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">What We Collect</h2>
               <ul className="list-disc pl-5 space-y-2">
-                <li><strong>Email address</strong> — stored only as a SHA-256 hash, which is what we use to recognise your account and for recovery. The address itself is held for up to 10 minutes while your verification code is live, passed to our email provider to deliver the code, then discarded.</li>
+                <li><strong>Email address</strong> — stored only as a SHA-256 hash, which is what we use to recognise your account and for recovery. The address itself is held for up to an hour, while your verification code is live and for rate limiting on code requests, and is passed to our email provider to deliver the code. Then it is discarded; only the hash remains.</li>
                 <li><strong>Username</strong> — chosen by you during setup and stored on our server. Your display name is not stored in our database; it travels in the presence announcement your phone broadcasts to nearby phones and to the relay.</li>
                 <li><strong>Avatar image</strong> — if you upload a profile photo, it is stored on our servers.</li>
                 <li><strong>Cryptographic public keys</strong> — your Ed25519 signing key and Noise XX public key are uploaded to our server so other users can establish encrypted conversations with you.</li>
