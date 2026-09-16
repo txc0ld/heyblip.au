@@ -74,7 +74,7 @@ export default function TermsClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">9. Account Termination</h2>
-              <p>We may suspend or terminate your access to the Service at any time if you violate these Terms or engage in conduct that we reasonably believe is harmful to other users or the integrity of the mesh network. You may delete your account at any time through the app settings, which will remove your server-side data. Upon termination, your right to use the Service ceases immediately.</p>
+              <p>We may suspend or terminate your access to the Service at any time if you violate these Terms or engage in conduct that we reasonably believe is harmful to other users or the integrity of the mesh network. You may delete your account at any time through the app settings, which removes your account data as described in the Privacy Policy; abuse reports are retained. Upon termination, your right to use the Service ceases immediately.</p>
             </div>
 
             <div>

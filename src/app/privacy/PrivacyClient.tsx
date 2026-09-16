@@ -85,7 +85,7 @@ export default function PrivacyClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">Your Rights</h2>
-              <p>You can delete your account and all associated server-side data at any time from the app settings. You may request a copy of the data we hold about you. Under Australian privacy law and, where applicable, the GDPR, you have the right to access, correct, or delete your personal data. For any privacy-related enquiries, contact us at <a href="mailto:privacy@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">privacy@heyblip.au</a>.</p>
+              <p>You can delete your account at any time from the app settings. Deletion removes your account row (email hash, username, public keys, message balance) and, with it, your device tokens and notification preferences. Two things are not removed. Abuse reports you filed, or that were filed about you, reference your peer ID (a hash of your public key) plus the reporter&apos;s category and free-text reason, and we keep them so moderation history survives account deletion. Your avatar has no automatic deletion path yet; email privacy@heyblip.au to have it removed. You may request a copy of the data we hold about you. Under Australian privacy law and, where applicable, the GDPR, you have the right to access, correct, or delete your personal data. For any privacy-related enquiries, contact us at <a href="mailto:privacy@heyblip.au" className="text-[var(--accent-light)] hover:text-[var(--foreground)] transition-colors">privacy@heyblip.au</a>.</p>
             </div>
 
             <div>

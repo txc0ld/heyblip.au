@@ -27,7 +27,7 @@ Ground truth is the iOS app and server source at `iamjohnnymac/heyblip-live` com
 | Sentry | `sendDefaultPii = false`, but `attachScreenshot = true`, so a crash report can include a screenshot of the screen at crash time. Server side `sendDefaultPii: false`. | `Sources/Services/CrashReportingService.swift:62-65`; `server/shared/src/sentry-config.ts:118` |
 | Analytics | Microsoft Clarity SDK is linked but `configureClarity()` is inside `#if DEBUG`; App Store builds never initialise it. | `App/AppDelegate.swift:4,35-37,45-60` |
 | Phone numbers | No UI or service code references a phone number. `PhoneHasher` exists in BlipCrypto but has no callers in `Sources/`. | grep of `Sources/` for `phoneNumber|phoneHash|PhoneHasher` returns nothing |
-| Account deletion | `DELETE FROM users WHERE noise_public_key = ...`; `device_tokens` and `notification_prefs` cascade. Avatar deletion was not verified. | `server/auth/src/registration/account.ts:20-23`; `schema.sql:53,89` |
+| Account deletion | `DELETE FROM users WHERE noise_public_key = ...`; `device_tokens` and `notification_prefs` cascade. `abuse_reports` has no FK to `users` by design ("reports must survive account deletion") and stores reporter and target PeerID hex, category and a free-text reason. No avatar deletion path was found: `account.ts` does not mention avatars, `avatars.ts` has no delete handler, and `Sources/` has no avatar delete call. | `server/auth/src/registration/account.ts:20-23`; `schema.sql:53,89`; `server/auth/migrations/005_abuse_reports.sql`; `server/cdn/src/avatars/avatars.ts` |
 | In-app purchases | The app lists StoreKit products `au.heyblip.Blip.starter10 / social25 / event50 / squad100 / season1000 / unlimited` ("Message Packs"). The server receipt endpoint returns 501 "not configured" and stores nothing. No "verified profile" product exists in source. | `Sources/ViewModels/StoreViewModel.swift:91-98`; `Sources/Views/Tabs/ProfileTab/MessagePackStore.swift`; `server/auth/src/receipts/verify.ts` |
 
 Forward secrecy is not claimed anywhere on the site. If it is added later, the accurate wording is "fresh ephemeral keys per handshake, send-direction rekey every 1,000 messages or 1 hour, sessions expire after 4 hours".
@@ -79,7 +79,7 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 39 | Mesh relay "does not expose any personal data" (`PrivacyClient.tsx:66`) | overstated | Header PeerIDs, plaintext announces (username, display name, geohash) and public channel text are visible to relaying phones. | Rewritten to name what a relaying device sees. |
 | 40 | "stores your account information (email, username, public keys, APNs token) in Neon Postgres ... store-and-forward delivery for encrypted packets only ... 1-hour TTL" (`PrivacyClient.tsx:71`) | overstated (email; "encrypted packets only") | Email hash; avatar in Cloudflare storage; the queue holds every addressed packet regardless of type (`packet-router.ts:235-260`), including plaintext `.sosPreciseLocation` (`SOSViewModel.swift:623-646`); TTL 1 hour is accurate (`store-forward.ts:33-34`). TLS pinning accurate (`ServerConfig.swift:38-42`). | "queues every addressed packet for an offline recipient, whatever its type, for up to 1 hour ... One addressed packet is not encrypted: when someone accepts your SOS alert, your phone sends them your precise GPS coordinates ..." |
 | 41 | "Sentry: Collects anonymised diagnostic data only, no message content or personal identifiers." (`PrivacyClient.tsx:82`, `proxy.ts:182`) | overstated | `attachScreenshot = true` (`CrashReportingService.swift:62`). | "We disable Sentry's default personal-data collection and never send message content or your email. A crash report may include a screenshot of whatever was on screen at the moment of the crash." |
-| 42 | "You can delete your account and all associated server-side data" (`PrivacyClient.tsx:88`) | accurate (avatar path unverified) | `account.ts:20-23` with cascades. | Unchanged. |
+| 42 | "You can delete your account and all associated server-side data" (`PrivacyClient.tsx:88`) | false | `account.ts:20-23` deletes the user row with cascades, but `abuse_reports` survives by design (`005_abuse_reports.sql`) and no avatar deletion path exists. | "Deletion removes your account row ... Two things are not removed. Abuse reports ... Your avatar has no automatic deletion path yet; email privacy@heyblip.au to have it removed." |
 | 43 | Privacy meta description "We store only email, username, public keys, and push tokens, nothing else." (`app/privacy/page.tsx:7`) | false | Same as 10. | "We store a hash of your email, your username, public keys, push token, avatar and notification preferences, and never your messages." |
 | 44 | "friends-only location sharing" (`app/features/page.tsx:59`) | overstated | Broadcast on the wire; the app filters display. | "location sharing you switch on and off" |
 | 45 | "relays messages phone-to-phone over encrypted Bluetooth mesh" (`app/features/FeaturesClient.tsx:74`) | overstated | Same as 1. | "over Bluetooth mesh" |
@@ -98,7 +98,7 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 58 | "Your account is secured via Ed25519 challenge-response authentication and JWT session tokens." (`app/terms/TermsClient.tsx:42`) | accurate | `session.ts:154`; `jwt.ts`. | Unchanged. |
 | 59 | "Relayed messages are end-to-end encrypted" (`TermsClient.tsx:62`) | overstated | Same as 6. | "Relayed direct and group messages are end-to-end encrypted ... Public event channel messages are signed but not encrypted." |
 | 60 | "you cannot read relayed messages (they are encrypted)" / "Because messages are end-to-end encrypted, we cannot monitor or moderate message content." (`app/acceptable-use/AcceptableUseClient.tsx:47,52`) | overstated | Same as 6; the support page already says public surfaces are moderated server-side. | Qualified to direct and group messages. |
-| 61 | "Your account, registered email hash, and public keys are permanently removed from our servers." (`app/support/SupportClient.tsx:87`) | accurate | `account.ts:20-23`. | Unchanged. |
+| 61 | "Your account, registered email hash, and public keys are permanently removed from our servers." (`app/support/SupportClient.tsx:87`) | accurate but incomplete | `account.ts:20-23`; abuse reports and avatar survive (row 42). | Adds device tokens and notification preferences to the removed list, and says abuse reports are kept and the avatar is removed on request. |
 | 62 | "a cryptographic key stored in your phone's secure enclave" (`SupportClient.tsx:119`) | false | iOS Keychain generic password items, `ThisDeviceOnly` (`KeyManager.swift:72-84`). | "cryptographic keys stored in your phone's iOS Keychain, marked device-only so they never sync to another device." |
 | 63 | "a one-way hash of your email address (we never store your email in plain text)" (`SupportClient.tsx:135`) | accurate for the database | Plaintext sits in KV for up to 3,600 s (`rate:<email>`, `otp.ts:300-309`). | Adds "held for up to an hour for your verification code and rate limiting, then discarded; only the hash is stored in our database". |
 | 64 | "Apple In-App Purchase transaction IDs if you've bought message packs" [stored] (`SupportClient.tsx:135`) | false | Receipt endpoint returns 501 and stores nothing (`receipts/verify.ts`). | Removed. Push token and avatar added to the stored list. |
@@ -123,6 +123,8 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 84 | "Location sharing: Friends only, you control it" (`NearbyClient.tsx:50`) | false | Same as 79. | "Off until you switch it on" |
 | 85 | "sharing scoped to Friends only" (`NearbyClient.tsx:84`, screenshot caption) | false | Same as 79. | "and the sharing control" |
 | 86 | "The Profile screen carries a location sharing setting. Set to friends only, it means friends only." (`NearbyClient.tsx:126`) | false | Same as 79; the Profile row is hidden (`V1LaunchFlags.swift:51`). | "Location sharing is off until you switch it on from the Nearby map. While it is on, any nearby Blip phone can receive your position." |
+| 87 | "which will remove your server-side data" (`app/terms/TermsClient.tsx:77`) | overstated | Same as 42. | "which removes your account data as described in the Privacy Policy; abuse reports are retained." |
+| 88 | "Delete account + server data from app settings." (`proxy.ts:189`) | overstated | Same as 42. | "removes the account row, device tokens and notification prefs; abuse reports keyed by peer ID are retained; avatar removed on request" |
 
 Totals: 67 claims. 24 accurate (6 of them made more specific), 33 overstated, 10 false, 0 unverifiable. One sub-item (avatar deletion on account delete) could not be verified and is noted in row 42 without changing the copy.
 
@@ -148,6 +150,23 @@ No "starting at" or "from" teasers exist on the site (grep of `src/` for `starti
 | `.agents/product-marketing-context.md` | "Free download; premium tier planned" / "Currently free while in early alpha / testflight; paid tier TBD" | Update once decided; the marketing skills read this file. |
 | `public/llms.txt:3` | "Blip is a free iOS app for chatting at festivals" | "Blip is an iOS app for chatting at festivals" |
 | `public/llms.txt:12` | "iOS (iPhone) only; free download" | "iOS (iPhone) only" |
+
+## Needs John's sign-off before publish
+
+Each sentence below is accurate against `e9a38e8` and already in the branch, but discloses something a reader could find unwelcome. Publish, soften with a matching code change, or hold.
+
+| Disclosure | Where | Code |
+|---|---|---|
+| Account deletion keeps abuse reports keyed by the reporter's and subject's peer ID with free-text reasons, and the avatar has no automatic deletion path | `PrivacyClient.tsx:88`, `TermsClient.tsx:77`, `SupportClient.tsx:87`, `proxy.ts:189` | `server/auth/migrations/005_abuse_reports.sql` ("No FK to users, reports must survive account deletion"); `account.ts:20-23`; no avatar delete in `server/cdn/src/avatars/avatars.ts` or `Sources/` |
+| Public event channel messages are readable by the relay | `PrivacyClient.tsx:46` | `SendPipeline.swift:471-491` |
+| Announce packets reach the relay in plaintext with username, display name and geohash | `TechClient.tsx:48` | `MessageService.swift:945-954` |
+| Microsoft Clarity SDK is linked into the binary (debug-only init) | `PrivacyClient.tsx:49` | `App/AppDelegate.swift:4,35-37` |
+| Sentry crash reports may include a screenshot and carry username plus an account identifier | `PrivacyClient.tsx:82`, `proxy.ts` third parties | `CrashReportingService.swift:62,198-204` |
+| Location packets pass through the relay when a phone has internet | `NearbyClient.tsx:78`, `nearby/page.tsx:42` | `TransportCoordinator.swift:306-315` |
+| The relay queues the SOS owner's precise GPS in plaintext for up to 1 hour when the accepter is offline | `PrivacyClient.tsx:48,71`, `FAQ.tsx:62`, `proxy.ts:179` | `packet-router.ts:235-260`; `SOSViewModel.swift:772-795` |
+| Any nearby Blip phone can plot a shared position; there is no friends-only audience | `NearbyClient.tsx:50,77,126,262`, `profile/page.tsx:42`, `ProfileClient.tsx:93`, `llms.txt:11` | `FriendFinderViewModel.swift:158-199`; `V1LaunchFlags.swift:51` |
+| A removed group member can decrypt until the next 100-message rotation | `TechClient.tsx:50`, `proxy.ts:87` | `SenderKeyManager.swift:241-242`; `rotateKey(forChannel:reason:)` has no callers |
+| No working backup or recovery kit | `SupportClient.tsx:119` | `SecuritySettings.swift:5-6,26-27` |
 
 ## Unshipped features the site markets (out of scope for BDEV-251, needs John's decision)
 
@@ -425,3 +444,15 @@ Sixty-seven exact string replacements against `fc883c0`. Each `before` string oc
 - `src/app/features/nearby/NearbyClient.tsx`
   - before: 'title: "Location sharing, scoped",'
   - after: 'title: "Location sharing, off by default",'
+- `src/app/privacy/PrivacyClient.tsx`
+  - before: '<p>You can delete your account and all associated server-side data at any time from the app settings. You may request'
+  - after: '<p>You can delete your account at any time from the app settings. Deletion removes your account row (email hash, username, public keys, message balance) and, with it, your device tokens and notification preferences. Two things are not removed. Abuse reports you filed, or that were filed about you, reference your peer ID (a hash of your public key) plus the reporter&apos;s category and free-text reason, and we keep them so moderation history survives account deletion. Your avatar has no automatic deletion path yet; email privacy@heyblip.au to have it removed. You may request'
+- `src/app/terms/TermsClient.tsx`
+  - before: 'You may delete your account at any time through the app settings, which will remove your server-side data.'
+  - after: 'You may delete your account at any time through the app settings, which removes your account data as described in the Privacy Policy; abuse reports are retained.'
+- `src/proxy.ts`
+  - before: 'Delete account + server data from app settings.'
+  - after: 'Delete account from app settings (removes the account row, device tokens and notification prefs; abuse reports keyed by peer ID are retained; avatar removed on request).'
+- `src/app/support/SupportClient.tsx`
+  - before: 'Your account, registered email hash, and public keys are permanently removed from our servers.'
+  - after: 'Your account, registered email hash, public keys, device tokens and notification preferences are permanently removed from our servers. Abuse reports that reference your peer ID are kept for moderation history, and your avatar is removed on request to privacy@heyblip.au.'

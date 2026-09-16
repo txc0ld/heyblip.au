@@ -185,7 +185,7 @@ Cloudflare (hosting), Neon (Postgres), Resend (email), Apple APNs (push), Sentry
 
 ## Your rights
 
-Delete account + server data from app settings. Request a data copy via privacy@heyblip.au. Australian + GDPR access/correct/delete rights.
+Delete account from app settings (removes the account row, device tokens and notification prefs; abuse reports keyed by peer ID are retained; avatar removed on request). Request a data copy via privacy@heyblip.au. Australian + GDPR access/correct/delete rights.
 
 Contact: privacy@heyblip.au
 `,

@@ -84,7 +84,7 @@ export default function SupportClient() {
                     How do I delete my Blip account?
                   </h3>
                   <p>
-                    Open the app, go to <strong>Profile → Settings → Account → Delete Account</strong>. Confirm the prompt. Your account, registered email hash, and public keys are permanently removed from our servers. Messages on other users&apos; devices remain (we cannot remotely delete encrypted content held by recipients), but your account can no longer authenticate or be discovered.
+                    Open the app, go to <strong>Profile → Settings → Account → Delete Account</strong>. Confirm the prompt. Your account, registered email hash, public keys, device tokens and notification preferences are permanently removed from our servers. Abuse reports that reference your peer ID are kept for moderation history, and your avatar is removed on request to privacy@heyblip.au. Messages on other users&apos; devices remain (we cannot remotely delete encrypted content held by recipients), but your account can no longer authenticate or be discovered.
                   </p>
                 </div>
 
