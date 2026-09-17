@@ -90,8 +90,8 @@ const sections = [
     eyebrow: "Meeting points",
     heading: "Set a meeting point your crew can actually find",
     body: [
-      "Splitting up is fine as long as everyone knows where to come back to. Drop a pin on a gate, a stage or a food van, give it a label, and set how long it lasts — 45 minutes, or whatever fits the set times.",
-      "In this build the pin is a marker on your own map, shown with the time remaining on it; sending it to your crew over the mesh is not in the shipped app. The sheet tells you the venue and the location accuracy your phone reported.",
+      "Splitting up is fine as long as everyone knows where to come back to. Meeting points are not in the shipped app yet. When they arrive you will drop a pin on a gate, a stage or a food van, give it a label and set how long it lasts — 45 minutes, or whatever fits the set times.",
+      "The pin will show the time remaining on it, and the sheet will tell you the venue and the location accuracy your phone reported.",
     ],
     shot: {
       src: "/app-screens/14-meeting-point.png",
@@ -155,8 +155,8 @@ export default function NearbyClient({ faqs }: Props) {
               You find your friends at a festival with no signal by using an app
               that skips the network entirely. Blip&apos;s Nearby tab shows which
               friends are within Bluetooth range and roughly how far away they
-              are, plots them on a friend map, and lets you mark a meeting point
-              on the map.
+              are, and plots them on a friend map. Meeting points are coded but not
+              in the shipped app yet.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
