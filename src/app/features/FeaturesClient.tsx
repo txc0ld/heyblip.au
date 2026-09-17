@@ -18,7 +18,7 @@ type Feature = {
 const screens: Record<string, { src: string; alt: string }> = {
   "/features/chat": {
     src: "/app-screens/08-encrypted-chat.png",
-    alt: "Blip end-to-end encrypted group chat still sending messages with no signal",
+    alt: "Blip end-to-end encrypted private group chat still sending messages with no signal",
   },
   "/features/safety": {
     src: "/app-screens/11-medical-sos.png",
@@ -71,7 +71,7 @@ export default function FeaturesClient({ features }: { features: Feature[] }) {
               transition={{ duration: 0.7, ease }}
               className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--muted-strong)] sm:text-lg"
             >
-              Blip relays messages phone-to-phone over encrypted Bluetooth mesh, so
+              Blip relays messages phone-to-phone over Bluetooth mesh, so
               chat, SOS, schedules, and friend-finding keep working at events where
               Wi-Fi and mobile data collapse. No internet, no accounts tied to a
               phone number — just your crew, reachable.
@@ -136,8 +136,8 @@ export default function FeaturesClient({ features }: { features: Feature[] }) {
                     How it all works
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-                    BLE 5.0 mesh, Noise XX + Ed25519 encryption, adaptive gossip
-                    routing, and a 7-hop TTL. The full protocol is documented on
+                    BLE 5.0 mesh, Noise XX encrypted direct messages with Ed25519
+                    packet signing, adaptive gossip routing, and a 7-hop TTL. The full protocol is documented on
                     the tech page.
                   </p>
                 </div>

@@ -29,17 +29,17 @@ const faqs: FaqItem[] = [
   {
     question: "Does Blip's SOS call Triple Zero (000)?",
     answer:
-      "No. Blip has no connection to emergency services. An SOS broadcasts over Bluetooth mesh to nearby phones running Blip, so people around you know you need help and where you are. Always call 000 if you can. Use Blip when the network is down, or as well as calling.",
+      "No. Blip has no connection to emergency services. An SOS broadcasts over Bluetooth mesh to nearby phones running Blip, and when a phone has internet our relay forwards it to every Blip phone connected to it, so people around you know you need help and where you are. Always call 000 if you can. Use Blip when the network is down, or as well as calling.",
   },
   {
     question: "Who sees my SOS?",
     answer:
-      "Every Blip user within mesh range at your event. The alert hops phone to phone, so it reaches people you have never met, not just your crew. It carries the severity you picked and your approximate zone. If your event runs a Blip-equipped medical team, they see it too.",
+      "Every Blip user within mesh range at your event, and when a phone has internet, every Blip phone connected to our relay. The alert hops phone to phone, so it reaches people you have never met, not just your crew. It carries the severity you picked and your approximate zone.",
   },
   {
     question: "Does SOS work with no reception at all?",
     answer:
-      "Yes. SOS never touches a mobile tower, Wi-Fi, or a server. It travels over Bluetooth Low Energy between phones, up to seven hops. Range depends on how many people nearby have Blip open with Bluetooth on — roughly 200 to 300 metres through a dense crowd.",
+      "Yes. SOS needs no mobile tower, Wi-Fi, or server. It travels over Bluetooth Low Energy between phones, up to seven hops, and when a phone in the chain has internet it also passes through our relay. Range depends on how many people nearby have Blip open with Bluetooth on — roughly 200 to 300 metres through a dense crowd.",
   },
   {
     question: "Why does an SOS get through when a normal message might not?",
@@ -54,7 +54,7 @@ const faqs: FaqItem[] = [
   {
     question: "Is my location shared when I send an SOS?",
     answer:
-      "Yes, approximately. The SOS screen shows the zone that will travel with your alert, plus an accuracy readout, so responders know roughly where to look. Outside an SOS or an active Friend Finder session, your location is not shared with anyone or stored on a server.",
+      "Yes, approximately. The SOS screen shows the zone that will travel with your alert, plus an accuracy readout, so responders know roughly where to look. Outside an SOS, an I'm Here beacon, or Friend Finder sharing, the only location that leaves your phone is a 5-character geohash (a cell roughly 5 km across) in your presence announcement while Nearby visibility is on, which our relay holds in memory only.",
   },
 ];
 

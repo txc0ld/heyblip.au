@@ -35,18 +35,20 @@ const specs = [
       { label: "Jitter", value: "8-25ms random per relay (prevents synchronized flooding)" },
       { label: "Congestion backoff", value: "Queue fill >80% reduces relay to 20%" },
       { label: "DM routing (at scale)", value: "DirectedRouter with 5-min route expiry" },
-      { label: "Store-and-forward", value: "10MB LRU cache, DMs cached 2hrs, SOS until resolved" },
+      { label: "Store-and-forward", value: "10MB LRU cache on relay phones: private group messages 30 min, public channel and location packets 5 min, SOS until resolved; direct messages are not cached by relay phones (our internet relay holds them up to 1 hour)" },
     ],
   },
   {
     category: "Encryption",
     items: [
-      { label: "Key agreement", value: "Noise XX handshake (Curve25519 + ChaChaPoly + SHA256)" },
+      { label: "Key agreement", value: "Noise_XX_25519_ChaChaPoly_SHA256 (Curve25519 DH, ChaCha20-Poly1305 AEAD, HKDF-SHA-256)" },
       { label: "Packet signing", value: "Ed25519 via libsodium (64-byte detached signatures)" },
       { label: "Signable data", value: "Full packet excluding TTL byte and signature" },
       { label: "Relay compatibility", value: "TTL excluded from signed data so relay nodes can decrement without breaking signatures" },
-      { label: "Key distribution", value: "Noise + signing public keys exchanged in announce payload" },
-      { label: "Session management", value: "Noise session per peer pair, rekeying on reconnect" },
+      { label: "Key distribution", value: "Noise + signing public keys sent in the announce payload, alongside username, display name, and a 5-character geohash (all plaintext)" },
+      { label: "Session management", value: "Noise session per peer pair; fresh ephemeral keys per handshake; send-direction rekey every 1,000 messages or 1 hour; sessions expire after 4 hours" },
+      { label: "Group messages", value: "AES-256-GCM per-sender keys, distributed over pairwise Noise sessions, rotated every 100 messages; a member who leaves can still decrypt until the next rotation" },
+      { label: "Public event channels", value: "Ed25519-signed, not encrypted (open to everyone at the event)" },
     ],
   },
   {
@@ -104,9 +106,9 @@ export default function TechClient() {
             </h1>
             <p className="text-lg text-[var(--muted)] max-w-2xl">
               The engineering behind Blip&apos;s BLE mesh network. Built for
-              festival-scale and event-scale crowds with end-to-end encryption
-              (Noise XX handshake on Curve25519 + ChaChaPoly + SHA256), adaptive
-              gossip routing, and Ed25519 packet signing.
+              festival-scale and event-scale crowds with end-to-end encrypted direct
+              messages (Noise XX handshake on Curve25519 + ChaChaPoly + SHA256),
+              adaptive gossip routing, and Ed25519 packet signing.
             </p>
           </motion.div>
 

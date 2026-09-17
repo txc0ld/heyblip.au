@@ -14,7 +14,7 @@ const productShots = [
   },
   {
     src: "/app-screens/08-encrypted-chat.png",
-    alt: "Blip end-to-end encrypted group chat where messages keep sending with no signal",
+    alt: "Blip end-to-end encrypted private group chat where messages keep sending with no signal",
     label: "02",
     title: "Encrypted chat",
   },
@@ -46,7 +46,7 @@ const proof = [
   {
     icon: ShieldCheck,
     label: "Trust by design",
-    text: "End-to-end encrypted chats, location sharing you control.",
+    text: "End-to-end encrypted direct messages, location sharing you switch on and off.",
   },
 ];
 

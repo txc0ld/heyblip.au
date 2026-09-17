@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import { ease } from "@/lib/animations";
 
 const details = [
-  { icon: ShieldCheck, label: "End-to-end encrypted", copy: "Messages are encrypted before they leave your device." },
-  { icon: Smartphone, label: "Encrypted relay", copy: "Phones that pass a message along cannot read its contents." },
-  { icon: KeyRound, label: "Cryptographic identity", copy: "Noise XX and Ed25519 protect sessions and packet authenticity." },
+  { icon: ShieldCheck, label: "End-to-end encrypted", copy: "Direct messages and private group chats are encrypted on your device before they leave it. Public event channels are signed but not encrypted." },
+  { icon: Smartphone, label: "Relays carry ciphertext", copy: "Phones that relay a direct or group message carry ciphertext they cannot open. They do see the packet header: sender and recipient IDs, packet type, and hop count." },
+  { icon: KeyRound, label: "Cryptographic identity", copy: "Noise XX (Curve25519, ChaCha20-Poly1305, HKDF-SHA-256) protects sessions. Ed25519 signatures protect packet authenticity." },
 ];
 
 export default function Security() {
@@ -29,7 +29,9 @@ export default function Security() {
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-[var(--muted-strong)] leading-relaxed md:leading-[1.7] mb-8 md:mb-10">
               Blip uses the phones around you as transport, not as trusted servers.
-              They can help a packet move without seeing what is inside it.
+              For direct messages and private groups, they can help a packet move
+              without seeing what is inside it. Public event channels are open to
+              everyone at the event by design.
             </p>
             <a
               href="/tech"

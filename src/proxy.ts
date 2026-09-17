@@ -7,7 +7,7 @@ Blip is a Bluetooth mesh chat app for festivals, concerts, conferences, ultra ma
 
 **Platform:** iOS (iPhone 8 and newer, iOS 17+)
 **Price:** Free
-**Encryption:** End-to-end (Noise XX + Ed25519)
+**Encryption:** End-to-end for direct messages (Noise XX + Ed25519); private groups use AES-256-GCM sender keys; public event channels are signed, not encrypted
 **iOS access:** https://heyblip.au/download
 
 ## What Blip does
@@ -15,8 +15,8 @@ Blip is a Bluetooth mesh chat app for festivals, concerts, conferences, ultra ma
 - **Works without signal.** No Wi-Fi, no mobile data, no problem. Relays messages through other phones via Bluetooth.
 - **Find your crew.** See who's nearby, add friends with a tap.
 - **Chat, voice notes, photos.** Same features as any messenger.
-- **Emergency SOS.** Unthrottled broadcast that reaches every nearby phone.
-- **Private by default.** Messages are encrypted before they leave your phone. Relay phones cannot read them.
+- **Emergency SOS.** Unthrottled broadcast that reaches every nearby Blip phone, and every phone connected to our relay when a phone has internet.
+- **Private by default.** Direct and group messages are encrypted before they leave your phone. Relay phones cannot read them. Public event channels are open to everyone at the event.
 - **Built for festivals; useful at any event.** Stage / track / set-time channels, crowd density info, meeting points — generic enough for conferences, marathons, and hikes.
 
 ## How it works
@@ -28,7 +28,7 @@ Blip is a Bluetooth mesh chat app for festivals, concerts, conferences, ultra ma
 
 ## Security
 
-Every direct message is end-to-end encrypted with Noise_XX_25519_ChaChaPoly_SHA256 and packet-signed with Ed25519. Blip uses email-based account setup, no phone numbers, and no ad tracking. Only your email, username, public keys, and push token are stored server-side.
+Every direct message is end-to-end encrypted with Noise_XX_25519_ChaChaPoly_SHA256 and packet-signed with Ed25519. Private group chats use AES-256-GCM sender keys. Public event channels are signed but not encrypted. Blip uses email-based account setup, no phone numbers, and no ad tracking. Server-side we store a SHA-256 hash of your email (not the address), your username, public keys, push token, avatar if uploaded, and notification preferences.
 
 ## Pricing
 
@@ -74,15 +74,17 @@ Canonical page: https://heyblip.au/tech
 - Jitter: 8-25ms random per relay
 - Congestion backoff: Queue fill >80% reduces relay to 20%
 - DM routing at scale: DirectedRouter with 5-min route expiry
-- Store-and-forward: 10MB LRU cache, DMs cached 2hrs, SOS until resolved
+- Store-and-forward: 10MB LRU cache on relay phones: private group messages 30 min, public channel and location packets 5 min, SOS until resolved; direct messages are not cached by relay phones (our internet relay holds them up to 1 hour)
 
 ## Encryption
 
-- Key agreement: Noise XX handshake (Curve25519 + ChaChaPoly + SHA256)
+- Key agreement: Noise_XX_25519_ChaChaPoly_SHA256 (Curve25519 DH, ChaCha20-Poly1305 AEAD, HKDF-SHA-256)
 - Packet signing: Ed25519 via libsodium (64-byte detached signatures)
 - Signable data: Full packet excluding TTL byte and signature
-- Key distribution: Noise + signing public keys exchanged in announce payload
-- Session management: Noise session per peer pair, rekeying on reconnect
+- Key distribution: Noise + signing public keys sent in the announce payload, alongside username, display name, and a 5-character geohash (all plaintext)
+- Session management: Noise session per peer pair; fresh ephemeral keys per handshake; send-direction rekey every 1,000 messages or 1 hour; sessions expire after 4 hours
+- Group messages: AES-256-GCM per-sender keys, distributed over pairwise Noise sessions, rotated every 100 messages; a member who leaves can still decrypt until the next rotation
+- Public event channels: Ed25519-signed, not encrypted (open to everyone at the event)
 
 ## Packet Format
 
@@ -117,7 +119,7 @@ Canonical page: https://heyblip.au/tech
 
 Canonical page: https://heyblip.au/organisers
 
-Running a festival, concert, ultra marathon, or sporting event? Apply to partner with Blip and give your attendees reliable comms when mobile reception collapses. End-to-end encrypted Bluetooth mesh, built for crowds of 100,000+.
+Running a festival, concert, ultra marathon, or sporting event? Apply to partner with Blip and give your attendees reliable comms when mobile reception collapses. Bluetooth mesh with end-to-end encrypted direct messages, built for crowds of 100,000+.
 
 ## What we provide
 
@@ -157,33 +159,33 @@ Canonical page: https://heyblip.au/privacy
 
 ## Summary
 
-Blip is a Bluetooth mesh chat app. Privacy is a core design principle. Messages are end-to-end encrypted before they leave your device; only the minimum required data is collected server-side.
+Blip is a Bluetooth mesh chat app. Privacy is a core design principle. Direct messages and private group messages are end-to-end encrypted before they leave your device; public event channels are signed but not encrypted. Only the minimum required data is collected server-side.
 
 ## What we collect
 
-- Email address (plaintext, for verification and recovery)
-- Username and display name
+- Email address: stored only as a SHA-256 hash. The address itself is held for up to an hour (verification code and rate limiting), then discarded; only the hash remains
+- Username (your display name travels in your presence announcement and is not stored in our database)
 - Avatar image (if uploaded)
 - Cryptographic public keys (Ed25519 + Noise XX) for encrypted conversations
 - APNs device token for push notifications
 - JWT session tokens (short-lived)
-- Approximate location — session-only, only when Friend Finder is opted in
+- Approximate location: a 5-character geohash (a cell roughly 5 km across) sent in presence announcements while Nearby visibility is on and location permission is granted, held in relay memory only and dropped on disconnect
 
 ## What we don't collect
 
-- Message content (E2E encrypted; we cannot decrypt)
+- Message content of direct and group messages (E2E encrypted; we cannot decrypt). Public event channel messages are not encrypted
 - Contacts / address book
-- Precise GPS (except during an active SOS you explicitly trigger)
+- A database of precise GPS. Coordinates leave your phone for Friend Finder, I'm Here beacons, and SOS responders, as signed, unencrypted mesh packets that are relayed, not stored. One exception: when someone accepts your SOS alert, the packet carrying your precise position is addressed to them, and the relay stores every addressed packet it routes until it is acknowledged or 1 hour passes
 - Browsing history or analytics
 - Advertising identifiers (no IDFA, IDFV, fingerprinting)
 
 ## Third parties
 
-Cloudflare (hosting), Neon (Postgres), Resend (email), Apple APNs (push), Sentry (crash reports, anonymised). We do not sell or share data for advertising.
+Cloudflare (hosting), Neon (Postgres), Resend (email), Apple APNs (push), Sentry (crash reports; may include a screenshot of the screen at the moment of the crash, tagged with your username and an app-generated account identifier). We do not sell or share data for advertising.
 
 ## Your rights
 
-Delete account + server data from app settings. Request a data copy via privacy@heyblip.au. Australian + GDPR access/correct/delete rights.
+Delete account from app settings (removes the account row, device tokens and notification prefs; abuse reports keyed by peer ID are retained; avatar removed on request). Request a data copy via privacy@heyblip.au. Australian + GDPR access/correct/delete rights.
 
 Contact: privacy@heyblip.au
 `,

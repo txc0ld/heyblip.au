@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "Do I need a phone number to use Blip?",
     answer:
-      "No. Blip never asks for your mobile number. Your iPhone generates an Ed25519 key pair when you install the app, and that key is your identity on the mesh. On top of it you choose a display name, a handle and a short bio. The Add Friend screen says it in plain words: no phone number needed.",
+      "No. Blip never asks for your mobile number. Your iPhone generates a Curve25519 key pair for encryption and an Ed25519 key pair for signing when you install the app, and a hash of the Curve25519 public key is your identity on the mesh. On top of it you choose a display name, a handle and a short bio. The Add Friend screen says it in plain words: no phone number needed.",
   },
   {
     question: "How do I add friends on Blip?",
@@ -39,17 +39,17 @@ const faqs = [
   {
     question: "Who can see my location on Blip?",
     answer:
-      "You decide, from the Location sharing row on your profile. The screen in our screenshot is set to Friends only, so nobody outside that person's approved friends can see where they are. Open the row to change it. Location sharing and Nearby visibility are separate controls, so you can adjust one without touching the other.",
+      "You decide. Location sharing is off until you switch it on from the Nearby map, and while it is on your position goes out as a signed, unencrypted broadcast that any nearby Blip phone can receive, and that our relay forwards to every Blip phone connected to it when a phone has internet. Nearby visibility is a separate toggle that controls your presence announcement, so you can adjust one without touching the other.",
   },
   {
     question: "Can I stop people nearby from seeing me?",
     answer:
-      "Yes. Nearby visibility is its own toggle on your profile, shown as On in the screenshot, and you can turn it off. With it off you stop appearing to other people running Blip around you. Your friends, your chats and the SOS features are managed separately under Safety & SOS.",
+      "Yes. Nearby visibility is its own toggle on your profile, shown as On in the screenshot, and you can turn it off. With it off your phone stops announcing your name to people running Blip around you. Your friends, your chats and the SOS features are managed separately under Safety & SOS.",
   },
   {
     question: "Does Blip sell my data?",
     answer:
-      "No. There is no ad-tech in Blip, no advertising identifiers and no social graph mining. Message content is end-to-end encrypted, and at an event it travels phone-to-phone rather than through a Blip server. We would rather you check than take our word for it, so what is and is not stored is written out on our privacy page.",
+      "No. There is no ad-tech in Blip, no advertising identifiers and no social graph mining. Direct messages are end-to-end encrypted; at an event they travel phone-to-phone, and when a phone has internet they can also pass through our relay as ciphertext. We would rather you check than take our word for it, so what is and is not stored is written out on our privacy page.",
   },
   {
     question: "What does battery mode do?",

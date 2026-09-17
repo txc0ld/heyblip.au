@@ -39,7 +39,7 @@ export default function TermsClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">4. Your Account</h2>
-              <p>To use Blip, you register with an email address and create a username. Your account is secured via Ed25519 challenge-response authentication and JWT session tokens. You are responsible for maintaining the security of your device and your account credentials. Your cryptographic keys are generated and stored locally on your device. If you lose access to your device without having backed up your keys, your encrypted message history may be unrecoverable.</p>
+              <p>To use Blip, you register with an email address and create a username. Your account is secured via Ed25519 challenge-response authentication and JWT session tokens. You are responsible for maintaining the security of your device and your account credentials. Your cryptographic keys are generated and stored locally on your device. If you lose access to your device, your keys and your message history are lost with it; the current app has no backup or key export.</p>
             </div>
 
             <div>
@@ -59,7 +59,7 @@ export default function TermsClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">6. Mesh Relay Participation</h2>
-              <p>By using Blip, your device may automatically relay encrypted messages for other users through the Bluetooth mesh network. This is a core feature of the Service and is essential for mesh connectivity. Relayed messages are end-to-end encrypted — your device cannot decrypt or read them. Relay participation uses minimal battery and bandwidth.</p>
+              <p>By using Blip, your device may automatically relay encrypted messages for other users through the Bluetooth mesh network. This is a core feature of the Service and is essential for mesh connectivity. Relayed direct and group messages are end-to-end encrypted — your device cannot decrypt or read them. Public event channel messages are signed but not encrypted. Relay participation uses minimal battery and bandwidth.</p>
             </div>
 
             <div>
@@ -74,7 +74,7 @@ export default function TermsClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">9. Account Termination</h2>
-              <p>We may suspend or terminate your access to the Service at any time if you violate these Terms or engage in conduct that we reasonably believe is harmful to other users or the integrity of the mesh network. You may delete your account at any time through the app settings, which will remove your server-side data. Upon termination, your right to use the Service ceases immediately.</p>
+              <p>We may suspend or terminate your access to the Service at any time if you violate these Terms or engage in conduct that we reasonably believe is harmful to other users or the integrity of the mesh network. You may delete your account at any time through the app settings, which removes your account data as described in the Privacy Policy; abuse reports are retained. Upon termination, your right to use the Service ceases immediately.</p>
             </div>
 
             <div>

@@ -4,7 +4,7 @@ import FeaturesClient from "./FeaturesClient";
 
 const TITLE = "Blip Features — Chat, SOS & Events With No Signal";
 const DESCRIPTION =
-  "Everything Blip does without internet: encrypted group chat, voice push-to-talk, emergency SOS, event schedules, and finding friends — all over Bluetooth mesh.";
+  "Everything Blip does without internet: group chat, end-to-end encrypted direct messages, voice push-to-talk, emergency SOS, event schedules, and finding friends — all over Bluetooth mesh.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -32,13 +32,13 @@ const features = [
     name: "Chat",
     href: "/features/chat",
     description:
-      "Group chats, end-to-end encrypted messaging, voice notes, and push-to-talk that relay phone-to-phone over Bluetooth mesh — no internet or signal required.",
+      "Group chats, end-to-end encrypted direct messages, voice notes, and push-to-talk that relay phone-to-phone over Bluetooth mesh — no internet or signal required.",
   },
   {
     name: "Safety & SOS",
     href: "/features/safety",
     description:
-      "An emergency SOS broadcast that reaches every nearby Blip phone at priority when networks are down, plus a medical assistance flow for events.",
+      "An emergency SOS broadcast that reaches every nearby Blip phone at priority when networks are down, and every phone connected to our relay when a phone has internet, plus a medical assistance flow for events.",
   },
   {
     name: "Events",
@@ -50,13 +50,13 @@ const features = [
     name: "Nearby & Friends",
     href: "/features/nearby",
     description:
-      "See which friends are nearby and how far away they are, follow the friend map, and set crew meeting points — all without reception.",
+      "See which friends are nearby and how far away they are, and follow the friend map — all without reception.",
   },
   {
     name: "Profile",
     href: "/features/profile",
     description:
-      "A profile without a phone number, cryptographic identity, friends-only location sharing, and battery controls built for long event days.",
+      "A profile without a phone number, cryptographic identity, location sharing you switch on and off, and battery controls built for long event days.",
   },
 ];
 

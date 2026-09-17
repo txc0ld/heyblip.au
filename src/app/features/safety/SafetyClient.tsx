@@ -34,11 +34,11 @@ const relayFacts = [
   },
   {
     label: "Transport",
-    value: "Bluetooth Low Energy 5.0+ — no tower, no Wi-Fi, no server",
+    value: "Bluetooth Low Energy 5.0+; no tower or Wi-Fi needed, and the alert also passes through our relay when a phone has internet",
   },
   {
     label: "Encryption",
-    value: "Noise XX key agreement with Ed25519 packet signing",
+    value: "SOS alerts are Ed25519-signed broadcasts, left unencrypted so every nearby phone can read them; when a phone has internet our relay forwards them to every Blip phone connected to it",
   },
 ];
 
@@ -305,7 +305,8 @@ export default function SafetyClient({ faqs }: Props) {
               </h2>
               <p className="text-sm leading-relaxed text-[var(--muted-strong)] md:text-base">
                 Blip does not contact emergency services, event control, or any dispatch system. An
-                SOS reaches nearby phones running Blip and nothing else. If you have any reception at
+                SOS reaches phones running Blip and nothing else: nearby ones over the mesh and,
+                when a phone has internet, every Blip phone connected to our relay. If you have any reception at
                 all, call 000 first — or send someone to the nearest medical tent or staff member.
                 Blip is there for the moments when the network has collapsed, and alongside official
                 channels the rest of the time. It also depends on other people nearby having Blip

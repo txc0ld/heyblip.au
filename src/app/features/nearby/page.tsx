@@ -4,7 +4,7 @@ import NearbyClient from "./NearbyClient";
 
 const TITLE = "Find Your Friends at a Festival With No Signal";
 const DESCRIPTION =
-  "Find your friends at a festival with no signal. Blip shows who's nearby over Bluetooth mesh, maps your crew and shares meeting points. iPhone, no internet.";
+  "Find your friends at a festival with no signal. Blip shows who's nearby over Bluetooth mesh and maps your crew. iPhone, no internet.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -34,22 +34,22 @@ const faqs = [
   {
     question: "What app should I use to find my friends at a music festival?",
     answer:
-      "Blip. It is an iPhone app built for exactly that: crowded events where reception dies. Friends show up in the Nearby tab over Bluetooth mesh, you can see them on a map, and you can drop a shared meeting point. Regular apps like Find My or WhatsApp need a working network. Blip does not.",
+      "Blip. It is an iPhone app built for exactly that: crowded events where reception dies. Friends show up in the Nearby tab over Bluetooth mesh and you can see them on a map; meeting points are not in the shipped app yet. Regular apps like Find My or WhatsApp need a working network. Blip does not.",
   },
   {
     question: "Does Blip track my location?",
     answer:
-      "No. There is no Blip server watching where you are. Location sharing runs peer-to-peer over the mesh and you control it: the Profile screen has a location sharing setting scoped to friends only, plus a separate Nearby visibility toggle. Meeting point pins go only to the people you choose, and they expire on a timer you set.",
+      "Blip keeps no database of where you are. When you switch on sharing, your position travels over the mesh as a signed, unencrypted packet that any nearby Blip phone can receive, and through our relay when a phone has internet; the relay forwards it and does not keep it. You control it from the Share location button on the Nearby map, and a separate Nearby visibility toggle controls whether your presence announcement, which carries a 5-character geohash, goes out at all.",
   },
   {
     question: "How accurate is the distance to a friend?",
     answer:
-      "The metres next to a friend's name are an estimate, not a GPS fix. Bluetooth range shifts constantly at a packed event, because bodies, tents and structures all absorb signal. Read it as a guide: whether someone is beside you, across the field, or a few hops away. Use the friend map and a meeting point for the rest.",
+      "The metres next to a friend's name are an estimate, not a GPS fix. Bluetooth range shifts constantly at a packed event, because bodies, tents and structures all absorb signal. Read it as a guide: whether someone is beside you, across the field, or a few hops away. Use the friend map for the rest.",
   },
   {
     question: "Can I set a meeting point without signal?",
     answer:
-      "Yes. Pick a spot — a gate, a stage, a food van — give it a label, choose who it goes to, and set how long it lasts. The pin travels to your crew over the mesh, the same way a message does. On the map it shows as a flagged pin with the time remaining, so nobody has to ask where again.",
+      "Not in the current build. Meeting points are coded but held back; when they ship, a pin will carry a label and an expiry timer.",
   },
   {
     question: "How far away can Blip find a friend?",

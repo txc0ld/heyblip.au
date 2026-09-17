@@ -47,7 +47,7 @@ const facts = [
   { label: "Discovery", value: "Bluetooth Low Energy 5.0+" },
   { label: "Range per hop", value: "~40m, up to 100m line-of-sight" },
   { label: "Relay depth", value: "Up to 7 hops" },
-  { label: "Location sharing", value: "Friends only, you control it" },
+  { label: "Location sharing", value: "Off until you switch it on" },
 ];
 
 const sections = [
@@ -58,7 +58,7 @@ const sections = [
     body: [
       "The Nearby tab is the first place you look when the bars die. It counts the people around you running Blip, then lists your friends with a rough distance beside each name — nearby, 12 m, 28 m — so you know who is within reach before you start walking.",
       "People you have not added show up too, with an Add Friend button next to them. That is how a crew grows mid-event without swapping numbers. Underneath, a venue card shows where you are and how many people are on the mesh there.",
-      "All of it comes over Bluetooth mesh. No tower, no Wi-Fi, no check-in to a server.",
+      "All of it comes over Bluetooth mesh, with no tower or Wi-Fi needed. When a phone has internet, its presence announcement also goes to our relay.",
     ],
     shot: {
       src: "/app-screens/05-nearby.png",
@@ -74,14 +74,14 @@ const sections = [
     heading: "Find my friends without internet — on a live event map",
     body: [
       "Find Friends puts your crew on a map of the venue you are at. Each pin carries a name and how far away they are, or how long it takes to walk there. The event and date sit in the header, so there is no guessing which map you are looking at.",
-      "One tap on I'm here pushes your position to the people you have chosen to share with. The control at the bottom of the screen says exactly who that is — Friends only — and it stays where you can see it rather than buried in settings.",
-      "Nothing here routes through a Blip server. Positions travel the same encrypted path your messages take: phone to phone, hop by hop, through the crowd.",
+      "One tap on I'm here shares your position as a signed, unencrypted broadcast. Nearby Blip phones relay it, and when a phone has internet our relay forwards it to every Blip phone connected to the relay, not only nearby ones. Any phone running Blip that receives it can plot it. Sharing is off until you switch it on, and the control sits on the map where you can see it rather than buried in settings.",
+      "Positions do not need a Blip server. They travel over the mesh phone to phone, hop by hop, through the crowd, as signed location packets. Unlike direct messages they are not encrypted, and when a phone has internet they also pass through our relay.",
     ],
     shot: {
       src: "/app-screens/06-friend-map.png",
-      alt: "Blip Find Friends map for AC Milan v Inter at Optus Stadium with pins for Maya at 35 m, Jake nearby and Priya 2 min away, a Gate D meeting point with 45 min left, an I'm here button and a Friends only sharing control",
+      alt: "Blip Find Friends map for AC Milan v Inter at Optus Stadium with pins for Maya at 35 m, Jake nearby and Priya 2 min away, and an I'm here button",
       caption:
-        "Friend pins with distance or walking time, the crew's Gate D meeting point on the map, an I'm here button, and sharing scoped to Friends only.",
+        "Friend pins with distance or walking time, a Gate D meeting point on the map, an I'm here button, and the sharing control.",
     },
     priority: false,
   },
@@ -90,14 +90,14 @@ const sections = [
     eyebrow: "Meeting points",
     heading: "Set a meeting point your crew can actually find",
     body: [
-      "Splitting up is fine as long as everyone knows where to come back to. Drop a pin on a gate, a stage or a food van, give it a label, choose who it goes to, and set how long it lasts — 45 minutes, or whatever fits the set times.",
-      "The pin relays to your crew over the mesh exactly like a message does, then shows on their map with the time remaining on it. The sheet tells you the venue and the location accuracy your phone reported, and states plainly that only selected friends can see the pin.",
+      "Splitting up is fine as long as everyone knows where to come back to. Meeting points are not in the shipped app yet. When they arrive you will drop a pin on a gate, a stage or a food van, give it a label and set how long it lasts — 45 minutes, or whatever fits the set times.",
+      "The pin will show the time remaining on it, and the sheet will tell you the venue and the location accuracy your phone reported.",
     ],
     shot: {
       src: "/app-screens/14-meeting-point.png",
-      alt: "Blip Create meeting point sheet over a stadium map with a Gate D pin, fields for Label Gate D, Share with Festival Crew and Expires in 45 minutes, a Share meeting point button, and a note that only selected friends can see this pin",
+      alt: "Blip Create meeting point sheet over a stadium map with a Gate D pin, fields for Label Gate D and Expires in 45 minutes, and a Share meeting point button",
       caption:
-        "Label the pin, pick who it goes to, give it an expiry. The venue and reported accuracy sit under the fields, above the sharing note.",
+        "Label the pin and give it an expiry. The venue and reported accuracy sit under the fields.",
     },
     priority: false,
   },
@@ -122,16 +122,12 @@ const sections = [
 
 const controlPoints = [
   {
-    title: "Location sharing, scoped",
-    text: "The Profile screen carries a location sharing setting. Set to friends only, it means friends only.",
+    title: "Location sharing, off by default",
+    text: "Location sharing is off until you switch it on from the Nearby map. While it is on, any nearby Blip phone can receive your position, and when a phone has internet so can every Blip phone connected to our relay.",
   },
   {
     title: "Nearby visibility toggle",
-    text: "A separate switch decides whether you show up in other people's Nearby list at all.",
-  },
-  {
-    title: "Pins that run out",
-    text: "A meeting point goes to the people you pick and expires on the timer you set when you shared it.",
+    text: "A separate switch decides whether your name is announced to phones around you.",
   },
 ];
 
@@ -159,8 +155,8 @@ export default function NearbyClient({ faqs }: Props) {
               You find your friends at a festival with no signal by using an app
               that skips the network entirely. Blip&apos;s Nearby tab shows which
               friends are within Bluetooth range and roughly how far away they
-              are, plots them on a friend map, and lets you drop a meeting point
-              your whole crew can walk to.
+              are, and plots them on a friend map. Meeting points are coded but not
+              in the shipped app yet.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -257,12 +253,15 @@ export default function NearbyClient({ faqs }: Props) {
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--muted-strong)] md:text-[17px] md:leading-[1.75]">
               A friend finder app with no signal only earns its place if the
-              sharing is honest. Blip has no server collecting your position, so
-              there is nothing central to track. What is shared travels
-              peer-to-peer over the mesh, to the people you chose.
+              sharing is honest. Blip keeps no database of your position, so
+              there is nothing central to track. What is shared travels over
+              the mesh as a signed broadcast that nearby phones relay and can
+              read. When a phone has internet our relay forwards it to every
+              Blip phone connected to the relay. It is off until you switch it
+              on.
             </p>
 
-            <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--border)] md:grid-cols-3">
+            <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--border)] md:grid-cols-2">
               {controlPoints.map((point) => (
                 <div key={point.title} className="bg-[var(--background)] p-6">
                   <h3 className="text-base font-semibold text-[var(--foreground)]">

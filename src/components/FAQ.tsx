@@ -29,12 +29,12 @@ const faqs: FAQItem[] = [
   {
     question: "Is there a messaging app that works offline without internet?",
     answer:
-      "Yes. Blip is an iOS messaging app that works entirely offline using Bluetooth mesh networking. It does not require Wi-Fi, mobile data, or any server connection to send and receive messages between nearby users. Messages, voice notes, and photos all work the same way they do on a regular messenger — they just travel over Bluetooth instead of the internet.",
+      "Yes. Once set up, Blip is an iOS messaging app that works offline using Bluetooth mesh networking. Creating your account needs internet once, to verify your email; after that it does not require Wi-Fi, mobile data, or any server connection to send and receive messages between nearby users. Messages, voice notes, and photos all work the same way they do on a regular messenger — they just travel over Bluetooth instead of the internet.",
   },
   {
     question: "What app should I use to find my friends at a music festival?",
     answer:
-      "Blip is built for crews at festivals, conferences, concerts, sporting events, and long-course events where reception can fall apart. It helps you see nearby friends, message them through the local mesh, and share approximate location with people you choose.",
+      "Blip is built for crews at festivals, conferences, concerts, sporting events, and long-course events where reception can fall apart. It helps you see nearby friends, message them through the local mesh, and share your precise position only after you switch sharing on; any Blip phone that receives the signed broadcast can plot it, including every phone connected to our relay when a phone has internet.",
   },
   {
     question: "Is Blip free to use?",
@@ -44,7 +44,7 @@ const faqs: FAQItem[] = [
   {
     question: "Is Blip end-to-end encrypted?",
     answer:
-      "Yes. Every direct message on Blip is end-to-end encrypted using the Noise protocol framework (Noise_XX_25519_ChaChaPoly_SHA256) with Ed25519 packet signing. The phones that relay your messages through the mesh cannot read them — only the intended recipient's device can decrypt the content.",
+      "Direct messages, yes. Every direct message on Blip is end-to-end encrypted using the Noise protocol framework (Noise_XX_25519_ChaChaPoly_SHA256) with Ed25519 packet signing, so the phones that relay it through the mesh cannot read it. Private group chats are encrypted with AES-256-GCM sender keys exchanged over those Noise sessions. Public event channels are Ed25519-signed but not encrypted, because anyone at the event can join them.",
   },
   {
     question: "What phones does Blip work on?",
@@ -59,12 +59,12 @@ const faqs: FAQItem[] = [
   {
     question: "Does Blip collect my location or personal data?",
     answer:
-      "No. Blip does not collect precise GPS location, contacts, browsing history, or advertising identifiers. The only data stored server-side is your email, username, cryptographic public keys, and push notification token — the minimum required to deliver messages. Location is only shared with your friends during an active Friend Finder session and is not persisted on the server.",
+      "Blip does not collect contacts, browsing history, or advertising identifiers, and we keep no database of GPS coordinates. Server-side we store a SHA-256 hash of your email (not the address itself), your username, your cryptographic public keys, your push notification token, your avatar if you upload one, and your notification preferences. While the app is connected to our relay it also holds, in memory only, a 5-character geohash (a cell roughly 5 km across) from your presence announcements. Friend Finder positions are broadcast over the mesh, forwarded by our relay to every connected Blip phone when a phone has internet, and not stored on the server. One exception: when someone accepts your SOS alert, the packet carrying your precise position is addressed to them, and our relay stores every addressed packet it routes until it is acknowledged or an hour passes.",
   },
   {
     question: "Can Blip send an emergency SOS without signal?",
     answer:
-      "Yes. Blip includes a dedicated Emergency SOS broadcast that reaches every nearby Blip user through the Bluetooth mesh. SOS packets relay at 100% probability (unlike regular messages, which throttle in dense crowds) and persist until resolved, so they propagate as far through the crowd as possible even when the mobile network has collapsed.",
+      "Yes. Blip includes a dedicated Emergency SOS broadcast that reaches every nearby Blip user through the Bluetooth mesh, and every phone connected to our relay when a phone has internet. SOS packets relay at 100% probability (unlike regular messages, which throttle in dense crowds) and persist until resolved, so they propagate as far through the crowd as possible even when the mobile network has collapsed.",
   },
 ];
 
