@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "Does Blip work without internet?",
     answer:
-      "Yes. Blip needs no Wi-Fi or mobile data to send a message; when a phone has internet the message also passes through our relay. Your iPhone talks straight to other iPhones nearby over Bluetooth Low Energy, and those phones pass the message along until it reaches your crew. The one requirement is simple: someone within Bluetooth range has to be running Blip too.",
+      "Yes. Blip needs no Wi-Fi or mobile data to send a message; when a phone has internet the message also passes through our relay. Your iPhone talks straight to other iPhones nearby over Bluetooth Low Energy, and those phones pass the message along until it reaches your crew. Without internet, someone within Bluetooth range has to be running Blip too.",
   },
   {
     question: "Are Blip messages encrypted?",
