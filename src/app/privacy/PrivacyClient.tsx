@@ -79,7 +79,7 @@ export default function PrivacyClient() {
                 <li><strong>Neon</strong> — managed Postgres database that stores user account records and public keys.</li>
                 <li><strong>Resend</strong> — sends transactional emails (verification codes). Receives your email address for delivery only.</li>
                 <li><strong>Apple Push Notification service (APNs)</strong> — delivers push notifications to your device.</li>
-                <li><strong>Sentry</strong> — crash reporting and performance monitoring. We disable Sentry&apos;s default personal-data collection and do not attach message data to a report, but a report may include a screenshot of whatever was on screen at the moment of the crash, and that screenshot can show messages that were open. Reports carry your username and an app-generated account identifier so we can group them per account. Your email is not sent.</li>
+                <li><strong>Sentry</strong> — crash reporting and performance monitoring. We disable Sentry&apos;s default personal-data collection and do not attach message data to a report, but a report may include a screenshot of whatever was on screen at the moment of the crash, and that screenshot can show messages that were open. Reports carry your username and an app-generated account identifier so we can group them per account. Your email is not included in a report, except that the log line recording your sign-in code request can appear in the breadcrumb trail of a crash in the same sign-in session.</li>
               </ul>
             </div>
 
