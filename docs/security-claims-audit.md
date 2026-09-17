@@ -136,7 +136,7 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 96 | "If you lose access to your device without having backed up your keys, your encrypted message history may be unrecoverable." (`terms/TermsClient.tsx:42` at `fcb4eac`) | false | No backup or key export ships (`SecuritySettings.swift:5-6,26-27`; `ProfileViewModel.swift:623-631` has no view callers). | "If you lose access to your device, your keys and your message history are lost with it; the current app has no backup or key export." |
 | 97 | "encrypted group chat" (`features/page.tsx:7` meta at `fcb4eac`) | overstated | Public event channels are plaintext (`SendPipeline.swift:471-491`); only DMs and private groups are encrypted. | "group chat, end-to-end encrypted direct messages" |
 | 98 | "end-to-end encrypted messaging" (`features/page.tsx:35` at `fcb4eac`) | overstated | Same as 97. | "end-to-end encrypted direct messages" |
-| 99 | "encrypted messaging" (`public/llms.txt:16`) and "Noise XX + Ed25519 encryption" (`llms.txt:24`, `features/FeaturesClient.tsx:139`) at `fcb4eac` | overstated | Noise XX encrypts direct messages only; Ed25519 signs packets, it does not encrypt (`NoiseHandshake.swift:7`; `Signer.swift:31-56`). | "end-to-end encrypted direct messages" / "Noise XX encrypted direct messages with Ed25519 packet signing" |
+| 99 | "encrypted messaging" (`public/llms.txt:16`) and "Noise XX + Ed25519 encryption" (`llms.txt:24`, `features/FeaturesClient.tsx:139`, `tech/page.tsx:7` meta, the last found by the round-3 phrase sweep) at `fcb4eac` | overstated | Noise XX encrypts direct messages only; Ed25519 signs packets, it does not encrypt (`NoiseHandshake.swift:7`; `Signer.swift:31-56`). | "end-to-end encrypted direct messages" / "Noise XX encrypted direct messages with Ed25519 packet signing" |
 | 100 | Alt text "Blip end-to-end encrypted group chat ..." (`components/Hero.tsx:33,64`, `features/FeaturesClient.tsx:21`, `components/AppScreens.tsx:17` at `fcb4eac`) | overstated | The screenshot (`public/app-screens/08-encrypted-chat.png`) shows the "Festival Crew" private group, which uses AES-256-GCM sender keys (`SenderKeyManager.swift`); an unqualified "group chat" reads as covering public channels, which are plaintext. | "Blip end-to-end encrypted private group chat ..." in all four alts. |
 
 Totals: 100 claims. 23 accurate (10 of them made more specific), 48 overstated, 29 false, 0 unverifiable. Row 42 (account deletion) moved from accurate to false in round 2 once the abuse-report table and the missing avatar deletion path were checked. Round 3 added rows 89 to 100 (5 overstated, 7 false) and revised the corrected wording of rows 11, 34, 36, 40, 41, 57, 60, 71, 79 to 82 and 86.
@@ -218,7 +218,7 @@ Found during the round-2 sweep. Each is hidden in the shipped app by `Sources/Ut
 
 ## Before and after, every changed sentence
 
-122 before/after pairs. Round-1 pairs are against `fc883c0`; round-2 pairs (from the recovery-kit entry for `SupportClient.tsx` onward) are against the round-1 copy at `76dccbd`; round-3 pairs (own subsection at the end) are against `fcb4eac`. Where round 2 revised a round-1 sentence, the round-1 pair's `after` shows the final wording. Each `before` string occurred exactly once in its file when applied.
+123 before/after pairs. Round-1 pairs are against `fc883c0`; round-2 pairs (from the recovery-kit entry for `SupportClient.tsx` onward) are against the round-1 copy at `76dccbd`; round-3 pairs (own subsection at the end) are against `fcb4eac`. Where round 2 revised a round-1 sentence, the round-1 pair's `after` shows the final wording. Each `before` string occurred exactly once in its file when applied.
 
 - `src/components/Hero.tsx`
   - before: '{ label: "Privacy", value: "E2E encrypted" }'
@@ -589,3 +589,6 @@ Found during the round-2 sweep. Each is hidden in the shipped app by `Sources/Ut
 - `src/components/AppScreens.tsx:17`
   - before: 'Blip end-to-end encrypted group chat where messages keep sending with no signal'
   - after: 'Blip end-to-end encrypted private group chat where messages keep sending with no signal'
+- `src/app/tech/page.tsx:7`
+  - before: 'Bluetooth Low Energy 5.0 mesh, Noise XX + Ed25519 encryption, adaptive gossip routing,'
+  - after: 'Bluetooth Low Energy 5.0 mesh, Noise XX encrypted direct messages with Ed25519 packet signing, adaptive gossip routing,'
