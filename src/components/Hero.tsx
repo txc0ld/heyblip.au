@@ -30,7 +30,7 @@ function PhoneMockup() {
         <div className="relative aspect-[853/1844]">
           <Image
             src="/app-screens/08-encrypted-chat.png"
-            alt="Blip end-to-end encrypted group chat still sending messages with no signal"
+            alt="Blip end-to-end encrypted private group chat still sending messages with no signal"
             fill
             priority
             sizes="(min-width: 1024px) 282px, 250px"
@@ -61,7 +61,7 @@ function MobilePhoneStack() {
         <div className="relative aspect-[853/1844]">
           <Image
             src="/app-screens/08-encrypted-chat.png"
-            alt="Blip end-to-end encrypted group chat still sending messages with no signal"
+            alt="Blip end-to-end encrypted private group chat still sending messages with no signal"
             fill
             sizes="155px"
             className="object-cover"

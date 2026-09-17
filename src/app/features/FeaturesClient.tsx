@@ -18,7 +18,7 @@ type Feature = {
 const screens: Record<string, { src: string; alt: string }> = {
   "/features/chat": {
     src: "/app-screens/08-encrypted-chat.png",
-    alt: "Blip end-to-end encrypted group chat still sending messages with no signal",
+    alt: "Blip end-to-end encrypted private group chat still sending messages with no signal",
   },
   "/features/safety": {
     src: "/app-screens/11-medical-sos.png",
@@ -136,8 +136,8 @@ export default function FeaturesClient({ features }: { features: Feature[] }) {
                     How it all works
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-                    BLE 5.0 mesh, Noise XX + Ed25519 encryption, adaptive gossip
-                    routing, and a 7-hop TTL. The full protocol is documented on
+                    BLE 5.0 mesh, Noise XX encrypted direct messages with Ed25519
+                    packet signing, adaptive gossip routing, and a 7-hop TTL. The full protocol is documented on
                     the tech page.
                   </p>
                 </div>

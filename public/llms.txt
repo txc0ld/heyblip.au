@@ -13,7 +13,7 @@ Key facts:
 
 ## Features
 
-- [Chat](https://heyblip.au/features/chat): Group chat, encrypted messaging, and voice push-to-talk with no internet or signal
+- [Chat](https://heyblip.au/features/chat): Group chat, end-to-end encrypted direct messages, and voice push-to-talk with no internet or signal
 - [Safety & SOS](https://heyblip.au/features/safety): Emergency SOS broadcast and medical assistance over mesh when networks are down
 - [Events](https://heyblip.au/features/events): Event discovery, schedules, and live updates that work offline on site
 - [Nearby & Friends](https://heyblip.au/features/nearby): Find your friends at a festival with no reception — nearby list, friend map, meeting points
@@ -21,7 +21,7 @@ Key facts:
 
 ## Docs
 
-- [How Blip works — technical specs](https://heyblip.au/tech): BLE 5.0 mesh, Noise XX + Ed25519 encryption, adaptive gossip routing, 7-hop TTL
+- [How Blip works — technical specs](https://heyblip.au/tech): BLE 5.0 mesh, Noise XX encrypted direct messages with Ed25519 packet signing, adaptive gossip routing, 7-hop TTL
 - [Download](https://heyblip.au/download): Get Blip for iPhone
 - [For event organisers](https://heyblip.au/organisers): Mesh comms for event safety and operations teams
 - [Support](https://heyblip.au/support): Help and contact

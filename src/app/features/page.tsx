@@ -4,7 +4,7 @@ import FeaturesClient from "./FeaturesClient";
 
 const TITLE = "Blip Features — Chat, SOS & Events With No Signal";
 const DESCRIPTION =
-  "Everything Blip does without internet: encrypted group chat, voice push-to-talk, emergency SOS, event schedules, and finding friends — all over Bluetooth mesh.";
+  "Everything Blip does without internet: group chat, end-to-end encrypted direct messages, voice push-to-talk, emergency SOS, event schedules, and finding friends — all over Bluetooth mesh.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -32,7 +32,7 @@ const features = [
     name: "Chat",
     href: "/features/chat",
     description:
-      "Group chats, end-to-end encrypted messaging, voice notes, and push-to-talk that relay phone-to-phone over Bluetooth mesh — no internet or signal required.",
+      "Group chats, end-to-end encrypted direct messages, voice notes, and push-to-talk that relay phone-to-phone over Bluetooth mesh — no internet or signal required.",
   },
   {
     name: "Safety & SOS",

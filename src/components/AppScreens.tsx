@@ -14,7 +14,7 @@ const productShots = [
   },
   {
     src: "/app-screens/08-encrypted-chat.png",
-    alt: "Blip end-to-end encrypted group chat where messages keep sending with no signal",
+    alt: "Blip end-to-end encrypted private group chat where messages keep sending with no signal",
     label: "02",
     title: "Encrypted chat",
   },

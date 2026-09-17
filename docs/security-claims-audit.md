@@ -134,6 +134,10 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 94 | "A meeting point goes to the people you pick and expires on the timer you set when you shared it." (`NearbyClient.tsx:134` at `fcb4eac`) | false | Meeting points live only in view state and are never broadcast; the share target does nothing (`V1LaunchFlags.swift:29-33`). | Control point removed; grid reduced to two columns. |
 | 95 | "maps your crew and shares meeting points" (`nearby/page.tsx:7` meta at `fcb4eac`) | false | Same as 94. | "and maps your crew" |
 | 96 | "If you lose access to your device without having backed up your keys, your encrypted message history may be unrecoverable." (`terms/TermsClient.tsx:42` at `fcb4eac`) | false | No backup or key export ships (`SecuritySettings.swift:5-6,26-27`; `ProfileViewModel.swift:623-631` has no view callers). | "If you lose access to your device, your keys and your message history are lost with it; the current app has no backup or key export." |
+| 97 | "encrypted group chat" (`features/page.tsx:7` meta at `fcb4eac`) | overstated | Public event channels are plaintext (`SendPipeline.swift:471-491`); only DMs and private groups are encrypted. | "group chat, end-to-end encrypted direct messages" |
+| 98 | "end-to-end encrypted messaging" (`features/page.tsx:35` at `fcb4eac`) | overstated | Same as 97. | "end-to-end encrypted direct messages" |
+| 99 | "encrypted messaging" (`public/llms.txt:16`) and "Noise XX + Ed25519 encryption" (`llms.txt:24`, `features/FeaturesClient.tsx:139`) at `fcb4eac` | overstated | Noise XX encrypts direct messages only; Ed25519 signs packets, it does not encrypt (`NoiseHandshake.swift:7`; `Signer.swift:31-56`). | "end-to-end encrypted direct messages" / "Noise XX encrypted direct messages with Ed25519 packet signing" |
+| 100 | Alt text "Blip end-to-end encrypted group chat ..." (`components/Hero.tsx:33,64`, `features/FeaturesClient.tsx:21`, `components/AppScreens.tsx:17` at `fcb4eac`) | overstated | The screenshot (`public/app-screens/08-encrypted-chat.png`) shows the "Festival Crew" private group, which uses AES-256-GCM sender keys (`SenderKeyManager.swift`); an unqualified "group chat" reads as covering public channels, which are plaintext. | "Blip end-to-end encrypted private group chat ..." in all four alts. |
 
 Totals: 88 claims. 23 accurate (10 of them made more specific), 43 overstated, 22 false, 0 unverifiable. Row 42 (account deletion) moved from accurate to false in round 2 once the abuse-report table and the missing avatar deletion path were checked.
 
@@ -555,3 +559,24 @@ Found during the round-2 sweep. Each is hidden in the shipped app by `Sources/Ut
 - `src/app/terms/TermsClient.tsx:42`
   - before: 'If you lose access to your device without having backed up your keys, your encrypted message history may be unrecoverable.'
   - after: 'If you lose access to your device, your keys and your message history are lost with it; the current app has no backup or key export.'
+- `src/app/features/page.tsx:7`
+  - before: 'Everything Blip does without internet: encrypted group chat, voice push-to-talk,'
+  - after: 'Everything Blip does without internet: group chat, end-to-end encrypted direct messages, voice push-to-talk,'
+- `src/app/features/page.tsx:35`
+  - before: 'Group chats, end-to-end encrypted messaging, voice notes, and push-to-talk'
+  - after: 'Group chats, end-to-end encrypted direct messages, voice notes, and push-to-talk'
+- `public/llms.txt:16`
+  - before: 'Group chat, encrypted messaging, and voice push-to-talk with no internet or signal'
+  - after: 'Group chat, end-to-end encrypted direct messages, and voice push-to-talk with no internet or signal'
+- `public/llms.txt:24`
+  - before: 'BLE 5.0 mesh, Noise XX + Ed25519 encryption, adaptive gossip routing, 7-hop TTL'
+  - after: 'BLE 5.0 mesh, Noise XX encrypted direct messages with Ed25519 packet signing, adaptive gossip routing, 7-hop TTL'
+- `src/app/features/FeaturesClient.tsx:139`
+  - before: 'BLE 5.0 mesh, Noise XX + Ed25519 encryption, adaptive gossip routing, and a 7-hop TTL.'
+  - after: 'BLE 5.0 mesh, Noise XX encrypted direct messages with Ed25519 packet signing, adaptive gossip routing, and a 7-hop TTL.'
+- `src/components/Hero.tsx:33,64` (two occurrences), `src/app/features/FeaturesClient.tsx:21`
+  - before: 'Blip end-to-end encrypted group chat still sending messages with no signal'
+  - after: 'Blip end-to-end encrypted private group chat still sending messages with no signal'
+- `src/components/AppScreens.tsx:17`
+  - before: 'Blip end-to-end encrypted group chat where messages keep sending with no signal'
+  - after: 'Blip end-to-end encrypted private group chat where messages keep sending with no signal'
