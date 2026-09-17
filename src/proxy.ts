@@ -74,7 +74,7 @@ Canonical page: https://heyblip.au/tech
 - Jitter: 8-25ms random per relay
 - Congestion backoff: Queue fill >80% reduces relay to 20%
 - DM routing at scale: DirectedRouter with 5-min route expiry
-- Store-and-forward: 10MB LRU cache, DMs cached 2hrs, SOS until resolved
+- Store-and-forward: 10MB LRU cache on relay phones: private group messages 30 min, public channel and location packets 5 min, SOS until resolved; direct messages are not cached by relay phones (our internet relay holds them up to 1 hour)
 
 ## Encryption
 

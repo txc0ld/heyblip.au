@@ -54,7 +54,7 @@ const faqs = [
   {
     question: "What happens if a mate is out of mesh range?",
     answer:
-      "The message waits. Blip stores undelivered messages and forwards them when a path opens up, holding direct messages for about two hours. Crowds move constantly, so phones bridge gaps that were not there a minute ago. A message often lands the moment someone walks into the space between you.",
+      "The message waits. Relay phones hold undelivered group and channel messages for a short window (30 minutes for private groups, 5 minutes for public channels) and forward them when a path opens up. A direct message is not cached by relay phones; when a phone has internet our relay holds it for up to an hour. Crowds move constantly, so phones bridge gaps that were not there a minute ago. A message often lands the moment someone walks into the space between you.",
   },
 ];
 

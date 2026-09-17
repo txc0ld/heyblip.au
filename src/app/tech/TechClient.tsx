@@ -35,7 +35,7 @@ const specs = [
       { label: "Jitter", value: "8-25ms random per relay (prevents synchronized flooding)" },
       { label: "Congestion backoff", value: "Queue fill >80% reduces relay to 20%" },
       { label: "DM routing (at scale)", value: "DirectedRouter with 5-min route expiry" },
-      { label: "Store-and-forward", value: "10MB LRU cache, DMs cached 2hrs, SOS until resolved" },
+      { label: "Store-and-forward", value: "10MB LRU cache on relay phones: private group messages 30 min, public channel and location packets 5 min, SOS until resolved; direct messages are not cached by relay phones (our internet relay holds them up to 1 hour)" },
     ],
   },
   {
