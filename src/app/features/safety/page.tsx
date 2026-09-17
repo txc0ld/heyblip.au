@@ -29,7 +29,7 @@ const faqs: FaqItem[] = [
   {
     question: "Does Blip's SOS call Triple Zero (000)?",
     answer:
-      "No. Blip has no connection to emergency services. An SOS broadcasts over Bluetooth mesh to nearby phones running Blip, so people around you know you need help and where you are. Always call 000 if you can. Use Blip when the network is down, or as well as calling.",
+      "No. Blip has no connection to emergency services. An SOS broadcasts over Bluetooth mesh to nearby phones running Blip, and when a phone has internet our relay forwards it to every Blip phone connected to it, so people around you know you need help and where you are. Always call 000 if you can. Use Blip when the network is down, or as well as calling.",
   },
   {
     question: "Who sees my SOS?",
