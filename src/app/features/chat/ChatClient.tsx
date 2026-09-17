@@ -89,7 +89,7 @@ const sections = [
     eyebrow: "Voice",
     heading: "Push-to-talk that works like a walkie talkie without service",
     body: [
-      "Hold the mic, talk, release to send. The clip compresses and relays phone-to-phone through the same mesh your text uses — no tower, no Wi-Fi, no Zello-style server in the middle.",
+      "Hold the mic, talk, release to send. The clip compresses and relays phone-to-phone through the same mesh your text uses — no tower or Wi-Fi needed, and when a phone has internet the clip also passes through our relay.",
       "It is the walkie talkie behaviour people want at a festival, minus the requirement that everyone has bars. Sent clips are marked so you can see they went out via mesh rather than the network.",
       "Keep them short when the crowd is thick. Bigger payloads take more hops and more time.",
     ],

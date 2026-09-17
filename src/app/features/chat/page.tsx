@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "Can you send voice messages without service?",
     answer:
-      "Yes. Voice notes and push-to-talk both run over the mesh. Hold the mic button, talk, release to send, and the clip relays phone-to-phone exactly like a text message does. No walkie talkie server sits in the middle. Keep clips short when the crowd is dense, because bigger payloads take more hops and more time.",
+      "Yes. Voice notes and push-to-talk both run over the mesh. Hold the mic button, talk, release to send, and the clip relays phone-to-phone exactly like a text message does. No tower or Wi-Fi needed; when a phone has internet the clip also passes through our relay. Keep clips short when the crowd is dense, because bigger payloads take more hops and more time.",
   },
   {
     question: "Do I need a phone number to use Blip group chats?",
