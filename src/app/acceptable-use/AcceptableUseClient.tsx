@@ -44,7 +44,7 @@ export default function AcceptableUseClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">Mesh relay responsibilities</h2>
-              <p>Your device participates in the Bluetooth mesh network by relaying encrypted messages for other users. This is automatic and essential to how Blip works. While you cannot read relayed direct or group messages (they are encrypted), you should not attempt to interfere with, block, or selectively filter relay traffic.</p>
+              <p>Your device participates in the Bluetooth mesh network by relaying packets for other users: encrypted direct and group messages, and unencrypted public channel messages and location packets. This is automatic and essential to how Blip works. While you cannot read relayed direct or group messages (they are encrypted), you should not attempt to interfere with, block, or selectively filter relay traffic.</p>
             </div>
 
             <div>

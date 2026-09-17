@@ -142,7 +142,8 @@ export default function ChatClient({ faqs }: Props) {
               You group chat with no signal by letting phones talk to each other
               directly. Blip uses Bluetooth Low Energy mesh: your message
               broadcasts to nearby iPhones running Blip, and each one relays it
-              onward, up to seven hops. No towers, no Wi-Fi, no server. Direct
+              onward, up to seven hops. No towers or Wi-Fi needed, and when a phone
+              has internet the message also passes through our relay. Direct
               messages stay end-to-end encrypted along the way.
             </p>
 
