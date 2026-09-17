@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "How accurate is the distance to a friend?",
     answer:
-      "The metres next to a friend's name are an estimate, not a GPS fix. Bluetooth range shifts constantly at a packed event, because bodies, tents and structures all absorb signal. Read it as a guide: whether someone is beside you, across the field, or a few hops away. Use the friend map and a meeting point for the rest.",
+      "The metres next to a friend's name are an estimate, not a GPS fix. Bluetooth range shifts constantly at a packed event, because bodies, tents and structures all absorb signal. Read it as a guide: whether someone is beside you, across the field, or a few hops away. Use the friend map for the rest.",
   },
   {
     question: "Can I set a meeting point without signal?",
