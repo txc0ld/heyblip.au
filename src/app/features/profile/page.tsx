@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "Who can see my location on Blip?",
     answer:
-      "You decide. Location sharing is off until you switch it on from the Nearby map, and while it is on your position goes out as a signed, unencrypted mesh broadcast that any nearby Blip phone can receive. Nearby visibility is a separate toggle that controls your presence announcement, so you can adjust one without touching the other.",
+      "You decide. Location sharing is off until you switch it on from the Nearby map, and while it is on your position goes out as a signed, unencrypted broadcast that any nearby Blip phone can receive, and that our relay forwards to every Blip phone connected to it when a phone has internet. Nearby visibility is a separate toggle that controls your presence announcement, so you can adjust one without touching the other.",
   },
   {
     question: "Can I stop people nearby from seeing me?",

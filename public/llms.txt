@@ -8,7 +8,7 @@ Key facts:
 - Emergency SOS broadcast reaches every nearby Blip phone at priority (it does not call emergency services)
 - Group chats, encrypted DMs, voice notes, push-to-talk, photos
 - Find friends nearby, friend map, and crew meeting points without internet
-- No phone number required; location sharing is off until you switch it on, and shared positions are signed mesh broadcasts that nearby Blip phones can read
+- No phone number required; location sharing is off until you switch it on, and shared positions are signed, unencrypted broadcasts that nearby Blip phones can read and that, when a phone has internet, our relay forwards to every Blip phone connected to it
 - iOS (iPhone) only; free download
 
 ## Features

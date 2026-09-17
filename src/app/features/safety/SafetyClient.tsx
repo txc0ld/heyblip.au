@@ -38,7 +38,7 @@ const relayFacts = [
   },
   {
     label: "Encryption",
-    value: "SOS alerts are Ed25519-signed broadcasts, left unencrypted so every nearby phone can read them",
+    value: "SOS alerts are Ed25519-signed broadcasts, left unencrypted so every nearby phone can read them; when a phone has internet our relay forwards them to every Blip phone connected to it",
   },
 ];
 

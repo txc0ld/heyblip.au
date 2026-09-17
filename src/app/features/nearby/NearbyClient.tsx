@@ -74,7 +74,7 @@ const sections = [
     heading: "Find my friends without internet — on a live event map",
     body: [
       "Find Friends puts your crew on a map of the venue you are at. Each pin carries a name and how far away they are, or how long it takes to walk there. The event and date sit in the header, so there is no guessing which map you are looking at.",
-      "One tap on I'm here shares your position as a signed, unencrypted mesh broadcast that nearby Blip phones relay, and any phone running Blip that receives it can plot it. Sharing is off until you switch it on, and the control sits on the map where you can see it rather than buried in settings.",
+      "One tap on I'm here shares your position as a signed, unencrypted broadcast. Nearby Blip phones relay it, and when a phone has internet our relay forwards it to every Blip phone connected to the relay, not only nearby ones. Any phone running Blip that receives it can plot it. Sharing is off until you switch it on, and the control sits on the map where you can see it rather than buried in settings.",
       "Positions do not need a Blip server. They travel over the mesh phone to phone, hop by hop, through the crowd, as signed location packets. Unlike direct messages they are not encrypted, and when a phone has internet they also pass through our relay.",
     ],
     shot: {
@@ -123,7 +123,7 @@ const sections = [
 const controlPoints = [
   {
     title: "Location sharing, off by default",
-    text: "Location sharing is off until you switch it on from the Nearby map. While it is on, any nearby Blip phone can receive your position.",
+    text: "Location sharing is off until you switch it on from the Nearby map. While it is on, any nearby Blip phone can receive your position, and when a phone has internet so can every Blip phone connected to our relay.",
   },
   {
     title: "Nearby visibility toggle",
@@ -260,7 +260,9 @@ export default function NearbyClient({ faqs }: Props) {
               sharing is honest. Blip keeps no database of your position, so
               there is nothing central to track. What is shared travels over
               the mesh as a signed broadcast that nearby phones relay and can
-              read, and it is off until you switch it on.
+              read. When a phone has internet our relay forwards it to every
+              Blip phone connected to the relay. It is off until you switch it
+              on.
             </p>
 
             <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--border)] md:grid-cols-3">

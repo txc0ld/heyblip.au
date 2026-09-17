@@ -90,7 +90,7 @@ const sections = [
 const privacyControls = [
   {
     title: "Location sharing",
-    text: "Off until you switch it on from the Nearby map. While it is on, your position is a signed mesh broadcast that any nearby Blip phone can receive.",
+    text: "Off until you switch it on from the Nearby map. While it is on, your position is a signed, unencrypted broadcast that any nearby Blip phone can receive, and that reaches every Blip phone connected to our relay when a phone has internet.",
   },
   {
     title: "Nearby visibility",
