@@ -148,7 +148,7 @@ export default function SupportClient() {
                     Blip says &ldquo;no internet&rdquo; / I can&apos;t connect to friends
                   </h3>
                   <p>
-                    Blip works over Bluetooth mesh, so it does not require internet to chat with friends physically near you. If you&apos;re trying to reach someone who is far away, the WebSocket relay handles off-mesh delivery — that does need internet on at least one side. If both you and your friend are stuck offline and not in Bluetooth range, messages will queue and deliver when one of you regains connectivity. If you&apos;re seeing &ldquo;Bluetooth required&rdquo; on a fresh install, check that Bluetooth permission is granted under iOS Settings → Blip.
+                    Blip works over Bluetooth mesh, so it does not require internet to chat with friends physically near you. If you&apos;re trying to reach someone who is far away, the WebSocket relay handles off-mesh delivery. That needs both phones to reach the internet within an hour of each other: the relay holds a message for up to 1 hour and deletes it if the recipient has not collected it. If both you and your friend are offline and not in Bluetooth range, the message is delivered only once you are online to hand it to the relay and your friend connects within the following hour. If you&apos;re seeing &ldquo;Bluetooth required&rdquo; on a fresh install, check that Bluetooth permission is granted under iOS Settings → Blip.
                   </p>
                 </div>
 
