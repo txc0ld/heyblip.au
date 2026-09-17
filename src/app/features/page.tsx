@@ -38,7 +38,7 @@ const features = [
     name: "Safety & SOS",
     href: "/features/safety",
     description:
-      "An emergency SOS broadcast that reaches every nearby Blip phone at priority when networks are down, plus a medical assistance flow for events.",
+      "An emergency SOS broadcast that reaches every nearby Blip phone at priority when networks are down, and every phone connected to our relay when a phone has internet, plus a medical assistance flow for events.",
   },
   {
     name: "Events",

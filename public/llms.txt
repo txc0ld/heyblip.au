@@ -5,7 +5,7 @@
 Key facts:
 - Works with zero signal: messages relay phone-to-phone via BLE mesh
 - Direct messages are end-to-end encrypted (Noise XX + Ed25519) and private groups use AES-256-GCM sender keys; relay phones cannot read them. Public event channels are signed, not encrypted
-- Emergency SOS broadcast reaches every nearby Blip phone at priority (it does not call emergency services)
+- Emergency SOS broadcast reaches every nearby Blip phone at priority, and every phone connected to our relay when a phone has internet (it does not call emergency services)
 - Group chats, encrypted DMs, voice notes, push-to-talk, photos
 - Find friends nearby and a friend map, all without internet
 - No phone number required; location sharing is off until you switch it on, and shared positions are signed, unencrypted broadcasts that nearby Blip phones can read and that, when a phone has internet, our relay forwards to every Blip phone connected to it

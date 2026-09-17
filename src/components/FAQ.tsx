@@ -64,7 +64,7 @@ const faqs: FAQItem[] = [
   {
     question: "Can Blip send an emergency SOS without signal?",
     answer:
-      "Yes. Blip includes a dedicated Emergency SOS broadcast that reaches every nearby Blip user through the Bluetooth mesh. SOS packets relay at 100% probability (unlike regular messages, which throttle in dense crowds) and persist until resolved, so they propagate as far through the crowd as possible even when the mobile network has collapsed.",
+      "Yes. Blip includes a dedicated Emergency SOS broadcast that reaches every nearby Blip user through the Bluetooth mesh, and every phone connected to our relay when a phone has internet. SOS packets relay at 100% probability (unlike regular messages, which throttle in dense crowds) and persist until resolved, so they propagate as far through the crowd as possible even when the mobile network has collapsed.",
   },
 ];
 

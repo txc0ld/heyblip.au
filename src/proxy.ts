@@ -15,7 +15,7 @@ Blip is a Bluetooth mesh chat app for festivals, concerts, conferences, ultra ma
 - **Works without signal.** No Wi-Fi, no mobile data, no problem. Relays messages through other phones via Bluetooth.
 - **Find your crew.** See who's nearby, add friends with a tap.
 - **Chat, voice notes, photos.** Same features as any messenger.
-- **Emergency SOS.** Unthrottled broadcast that reaches every nearby phone.
+- **Emergency SOS.** Unthrottled broadcast that reaches every nearby Blip phone, and every phone connected to our relay when a phone has internet.
 - **Private by default.** Direct and group messages are encrypted before they leave your phone. Relay phones cannot read them. Public event channels are open to everyone at the event.
 - **Built for festivals; useful at any event.** Stage / track / set-time channels, crowd density info, meeting points — generic enough for conferences, marathons, and hikes.
 
