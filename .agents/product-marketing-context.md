@@ -16,14 +16,14 @@ This file grounds every marketing-skill pass on heyblip.au. Read before producin
 1. **Festival-goers (consumer)** — 18–35, attend multi-day events (Beyond The Valley, Splendour, Rainbow Serpent, Strawberry Fields, Groovin the Moo), pain is "lost friends in the crowd + no signal"
 2. **Ultra-endurance athletes & crews** — runners, support crews, trail events where phones don't work
 3. **Festival / event organisers (B2B)** — safety officers, operations leads who want mesh comms as part of their event tech stack; served by `/organisers` application form
-4. **Security-conscious users** — care that messages are end-to-end encrypted (Noise XX) and don't pass through a server
+4. **Security-conscious users** — care that direct messages and private groups are end-to-end encrypted (Noise XX, AES-256-GCM sender keys). Public event channels, positions and SOS are signed but not encrypted, and packets also pass through the Blip relay when a phone has internet; do not claim server-free or blanket E2EE
 
 ## Core positioning
 
 - **One-liner:** "Mesh chat for festivals. Stay connected with your crew — no signal required."
 - **Primary differentiators:**
   1. Works without Wi-Fi, cellular, or any infrastructure
-  2. End-to-end encrypted via Noise XX + Ed25519 (messages unreadable by relay phones)
+  2. End-to-end encrypted direct messages (Noise XX) and private groups (AES-256-GCM sender keys), unreadable by relay phones; Ed25519 signs every packet. Public channels are not encrypted
   3. Native SwiftUI app — not a hybrid or web-wrapped app
   4. Emergency SOS broadcast — unthrottled, reaches every nearby phone
   5. Voice notes, photos, DMs, group chats — feature parity with regular messengers
@@ -52,7 +52,7 @@ Blip's wedge: the only iOS-first, phone-only, event-optimised mesh chat that act
 - "festival chat app" / "festival messenger" / "festival communication"
 - "chat without internet" / "messaging no signal" / "offline messaging"
 - "emergency SOS app" / "mesh SOS"
-- "end-to-end encrypted mesh chat"
+- "end-to-end encrypted direct messages" (qualify E2EE to DMs and private groups; see docs/security-claims-audit.md)
 - Event-specific: "beyond the valley chat app", "splendour communication", etc.
 
 ## Priority AI-search (GEO) queries

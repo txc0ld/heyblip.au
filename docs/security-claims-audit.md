@@ -1,6 +1,6 @@
 # Security and pricing claims audit (BDEV-251)
 
-Ground truth is the iOS app and server source at `iamjohnnymac/heyblip-live` commit `e9a38e8`. File references below are relative to that repository. Site references are relative to this repository at `fc883c0` (before the fixes in this branch). Rows 68 onward were added in round 2 and cite line numbers in the round-1 copy (`76dccbd`).
+Ground truth is the iOS app and server source at `iamjohnnymac/heyblip-live` commit `e9a38e8`. File references below are relative to that repository. Site references are relative to this repository: rows 1 to 67 cite `fc883c0` (before the fixes in this branch), rows 68 to 88 were added in round 2 and cite the round-1 copy (`76dccbd`), and rows 89 to 100 were added in round 3 and cite the audited head `fcb4eac`. Round-3 notes inside earlier rows are marked "Round 3" and also cite `fcb4eac`.
 
 ## Ground truth summary
 
@@ -18,9 +18,9 @@ Ground truth is the iOS app and server source at `iamjohnnymac/heyblip-live` com
 | What the relay sees | Sender and recipient PeerID hex from the header, packet type byte, timestamps (rate limiting and logs), the geohash from announce packets (in-memory `Map`, dropped on disconnect), and whatever is plaintext on the wire (public channel text, announces, location shares, SOS). Every addressed packet the relay routes is written to storage before delivery, whether or not the recipient is online (`relay-room.ts:584` calls `queuePacket` on the unicast path before `send`), and the entry is removed only on relay ack or after the 1 hour TTL (`packet-router.ts:235-240`, `store-forward.ts:33-34`). There is no type filter, so a `.sosPreciseLocation` packet is stored with plaintext coordinates, and so is the unencrypted `.sessionLostNack` (`MessageService.swift:3229-3235`). Addressed packets that are encrypted: `.noiseEncrypted` DMs and the friend controls carried inside them (`EncryptedSubType.swift:25-27,62`). Recipient-less packets (location shares, I'm Here beacons, SOS alerts, public channel text) are fanned out to every peer connected to the single `"global-relay"` Durable Object, so "nearby" does not bound their audience once a phone has internet; only announces are scoped by geohash (`packet-router.ts:220-230`, `index.ts:90,195`). | `server/relay/src/relay-room.ts:414-478`; `server/relay/src/index.ts:90,195`; `packet-router.ts:43-71,173-230`; `presence/presence.ts:44-45,344`; `store-forward/store-forward.ts:33-34` |
 | Push notifications | Relay asks the auth worker to push; the APNs payload carries the sender's username only (`senderDisplayName` and `channelName` are passed as null) and a `thread-id`, which for DMs is a synthetic UUID derived from the sender PeerID hex and for other types is the sender PeerID hex. Bodies are generic. | `server/auth/src/devices/push.ts:204-218`; `server/relay/src/relay-room.ts:767-781`; `server/auth/src/apns/payloads.ts:71-110,226-227` |
 | Auth database | `users(email_hash SHA-256 hex, username, is_verified, message_balance, noise_public_key, signing_public_key, peer_id_hex, timestamps)`, `device_tokens(token, platform, bundle_id, locale, app_version, sandbox)`, `notification_prefs`, `abuse_reports`. No plaintext email, no display name, no phone number. | `server/auth/schema.sql:1-40`; `migrations/005_abuse_reports.sql` |
-| Plaintext email | Received by the OTP endpoint. Used as two Workers KV keys: `code:<email>` for the code's TTL (default 600 s) and `rate:<email>` for send-code rate limiting with a 3,600 s TTL. Passed to Resend to deliver the code. Never written to Postgres. | `server/auth/src/challenge-session/otp.ts:89,300-309,381-387` |
+| Plaintext email | Received by the OTP endpoint. Used as two Workers KV keys: `code:<email>` for the code's TTL (default 600 s, overridable by the `CODE_TTL_SECONDS` env var, `otp.ts:89`) and `rate:<email>` for send-code rate limiting with a 3,600 s TTL. Passed to Resend to deliver the code. Never written to Postgres. | `server/auth/src/challenge-session/otp.ts:89,300-309,381-387` |
 | Avatars | Uploaded images are stored in a Cloudflare bucket. | `server/cdn/src/avatars/avatars.ts:56` |
-| Auth mechanism | Ed25519 challenge-response, then an HMAC JWT with a default lifetime of 3,600 s. | `server/auth/src/challenge-session/session.ts:33,154`; `server/shared/src/jwt.ts:61` |
+| Auth mechanism | Ed25519 challenge-response, then an HMAC JWT with a default lifetime of 3,600 s (overridable by `JWT_TTL_SECONDS` or `JWT_EXPIRY_SECONDS`, `session.ts:56`; the site's "one hour" describes the default). | `server/auth/src/challenge-session/session.ts:33,154`; `server/shared/src/jwt.ts:61` |
 | Key storage on device | iOS Keychain, `kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly`. Not the Secure Enclave. | `Packages/BlipCrypto/Sources/KeyManager.swift:72-84` |
 | Recovery kit (account export) | Implemented in `KeyManager` (AES-256-GCM; key derived with HKDF-SHA-256 from the password and a random 32-byte salt; HKDF is not a password-hardening KDF) and wrapped by `ProfileViewModel.exportRecoveryKit` / `importRecoveryKit`, but no view calls either. The only UI is a disabled "Recovery Kit Export" row subtitled "Unavailable in this build until file export is wired". Unshipped, so not published. | `KeyManager.swift:39-42,170-172`; `Sources/ViewModels/ProfileViewModel.swift:623-631`; `Sources/Views/Tabs/ProfileTab/Settings/SecuritySettings.swift:5-6,20,26-27` |
 | TLS | Certificate pinning on the auth, relay and CDN worker hostnames. | `Sources/Services/ServerConfig.swift:38-42`; `CertificatePinningDelegate.swift` |
@@ -34,7 +34,7 @@ Forward secrecy is not claimed anywhere on the site. If it is added later, the a
 
 ## Claims table
 
-Verdicts: accurate, overstated, false, unverifiable. Page and line are from the site at `fc883c0`.
+Verdicts: accurate, overstated, false, unverifiable. Page and line are from the site at `fc883c0` for rows 1 to 67, `76dccbd` for rows 68 to 88, and `fcb4eac` for rows 89 onward.
 
 | # | Claim as written (page, line) | Verdict | Ground truth (heyblip-live @ e9a38e8) | Corrected wording |
 |---|---|---|---|---|
@@ -86,7 +86,7 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 46 | "Are Blip messages encrypted? Yes. ..." (`app/features/chat/page.tsx:37`) | overstated | Same as 9. | Qualified to DMs and private groups; public channels named. |
 | 47 | "Encrypted chat with no signal, and no relay can read it" / "Every thread runs end-to-end encrypted." (`app/features/chat/ChatClient.tsx:73,75`) | false | Public channel threads are plaintext. | "Every direct message and private group runs end-to-end encrypted ... Public event channels are signed but not encrypted". |
 | 48 | "the relay only ever sees enough to forward the packet" (`ChatClient.tsx:76`) | accurate but vague | Header: sender, recipient, TTL, type. | Names the header fields. |
-| 49 | "The header of every thread says end-to-end encrypted" (`ChatClient.tsx:83`) | false | The app shows the label only for `channel.type == .dm` (`Sources/Views/Tabs/ChatsTab/ChatView.swift:326,401`). | "the header of a direct message thread says end-to-end encrypted". |
+| 49 | "The header of every thread says end-to-end encrypted" (`ChatClient.tsx:83`) | false | The padlock is driven by `isEncrypted`, which is false for any conversation with `ringStyle == .none` (groups) and true only when a connected peer holds a Noise public key (`Sources/Views/Tabs/ChatsTab/ChatView.swift:307-313`). | "the header of a direct message thread says end-to-end encrypted". |
 | 50 | "Everything stays end-to-end encrypted along the way." (`ChatClient.tsx:145-146`) | overstated | Same as 1. | "Direct messages stay end-to-end encrypted along the way." See row 89 for the neighbouring "no server" sentence. |
 | 51 | "Your iPhone generates an Ed25519 key pair ... that key is your identity on the mesh." (`app/features/profile/page.tsx:32`, `ProfileClient.tsx:48,59,128-129`) | overstated | PeerID is a hash of the Curve25519 Noise key; Ed25519 is the signing key (`KeyManager.swift:9-21`). | "a Curve25519 key pair for encryption and an Ed25519 key pair for signing ... a hash of the Curve25519 public key is your identity on the mesh". |
 | 52 | "Blip never asks for your mobile number" / "No phone number goes anywhere." (`profile/page.tsx:32`, `ProfileClient.tsx:57-59,411`) | accurate | No phone number code paths in `Sources/`. | Unchanged. |
@@ -139,7 +139,7 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 99 | "encrypted messaging" (`public/llms.txt:16`) and "Noise XX + Ed25519 encryption" (`llms.txt:24`, `features/FeaturesClient.tsx:139`) at `fcb4eac` | overstated | Noise XX encrypts direct messages only; Ed25519 signs packets, it does not encrypt (`NoiseHandshake.swift:7`; `Signer.swift:31-56`). | "end-to-end encrypted direct messages" / "Noise XX encrypted direct messages with Ed25519 packet signing" |
 | 100 | Alt text "Blip end-to-end encrypted group chat ..." (`components/Hero.tsx:33,64`, `features/FeaturesClient.tsx:21`, `components/AppScreens.tsx:17` at `fcb4eac`) | overstated | The screenshot (`public/app-screens/08-encrypted-chat.png`) shows the "Festival Crew" private group, which uses AES-256-GCM sender keys (`SenderKeyManager.swift`); an unqualified "group chat" reads as covering public channels, which are plaintext. | "Blip end-to-end encrypted private group chat ..." in all four alts. |
 
-Totals: 88 claims. 23 accurate (10 of them made more specific), 43 overstated, 22 false, 0 unverifiable. Row 42 (account deletion) moved from accurate to false in round 2 once the abuse-report table and the missing avatar deletion path were checked.
+Totals: 100 claims. 23 accurate (10 of them made more specific), 48 overstated, 29 false, 0 unverifiable. Row 42 (account deletion) moved from accurate to false in round 2 once the abuse-report table and the missing avatar deletion path were checked. Round 3 added rows 89 to 100 (5 overstated, 7 false) and revised the corrected wording of rows 11, 34, 36, 40, 41, 57, 60, 71, 79 to 82 and 86.
 
 ## Additions requested by the ticket
 
@@ -198,6 +198,15 @@ Each sentence below asserted, as present-tense behaviour, a feature that `Source
 
 The screenshots at `public/app-screens/05-nearby.png` and `13-profile.png` still show the hidden Friends-only row, sharing control and meeting-point pin; the alt texts no longer describe them.
 
+## Flag dependencies
+
+Flipping a `V1LaunchFlags` value does not by itself make the older copy true. Check before restoring any sentence from the table above.
+
+- `showMeetingPoints` (`V1LaunchFlags.swift:29-33`): shows the drop button and sheets, but points still live only in view state and are never persisted or broadcast, so "goes to the people you pick" and "shares meeting points" stay false until the mesh broadcast and share target are built.
+- `showMessagePackStore` (`V1LaunchFlags.swift:69-79`): re-enables the Message Packs store and paywall, which contradicts every "free" sentence in the pricing table above (`Pricing.tsx`, `FAQ.tsx:42`, `CTA.tsx:34`, `download/page.tsx:7`, `proxy.ts:9,35`, `llms.txt:3,12`, the JSON-LD `Offer`).
+- `showLocationPrecisionControls` (`V1LaunchFlags.swift:45-51`): shows the precision picker and per-friend rows, but `broadcastLocation()` ignores them and sends full accuracy, so "any nearby Blip phone can receive" and the relay fan-out sentences stay true and "Friends only" stays false.
+- `showMedicalResponder` (`V1LaunchFlags.swift:53-67`): the SOS-accept path in the sign-off table depends on it. Today no shipped UI sends `.sosAccept`; the owner-side handler still answers any accept packet on the wire.
+
 ## Unshipped features the site markets (out of scope for BDEV-251, needs John's decision)
 
 Found during the round-2 sweep. Each is hidden in the shipped app by `Sources/Utilities/V1LaunchFlags.swift` and left as written because removing a feature section is a product call, not a claims fix. The false audience and behaviour sentences that sat inside these sections were fixed in round 3 (table above).
@@ -209,7 +218,7 @@ Found during the round-2 sweep. Each is hidden in the shipped app by `Sources/Ut
 
 ## Before and after, every changed sentence
 
-91 before/after pairs. Round-1 pairs are against `fc883c0`; round-2 pairs (from the recovery-kit entry for `SupportClient.tsx` onward) are against the round-1 copy at `76dccbd`. Where round 2 revised a round-1 sentence, the round-1 pair's `after` shows the final wording. Each `before` string occurred exactly once in its file when applied.
+122 before/after pairs. Round-1 pairs are against `fc883c0`; round-2 pairs (from the recovery-kit entry for `SupportClient.tsx` onward) are against the round-1 copy at `76dccbd`; round-3 pairs (own subsection at the end) are against `fcb4eac`. Where round 2 revised a round-1 sentence, the round-1 pair's `after` shows the final wording. Each `before` string occurred exactly once in its file when applied.
 
 - `src/components/Hero.tsx`
   - before: '{ label: "Privacy", value: "E2E encrypted" }'
