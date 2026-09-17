@@ -34,7 +34,7 @@ const faqs: FAQItem[] = [
   {
     question: "What app should I use to find my friends at a music festival?",
     answer:
-      "Blip is built for crews at festivals, conferences, concerts, sporting events, and long-course events where reception can fall apart. It helps you see nearby friends, message them through the local mesh, and share approximate location with people you choose.",
+      "Blip is built for crews at festivals, conferences, concerts, sporting events, and long-course events where reception can fall apart. It helps you see nearby friends, message them through the local mesh, and share your precise position only after you switch sharing on; any Blip phone that receives the signed broadcast can plot it, including every phone connected to our relay when a phone has internet.",
   },
   {
     question: "Is Blip free to use?",

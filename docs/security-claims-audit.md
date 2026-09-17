@@ -1,6 +1,6 @@
 # Security and pricing claims audit (BDEV-251)
 
-Ground truth is the iOS app and server source at `iamjohnnymac/heyblip-live` commit `e9a38e8`. File references below are relative to that repository. Site references are relative to this repository: rows 1 to 67 cite `fc883c0` (before the fixes in this branch), rows 68 to 88 were added in round 2 and cite the round-1 copy (`76dccbd`), rows 89 to 100 were added in round 3 and cite the audited head `fcb4eac`, and rows 101 onward were added in round 4 and cite the round-3 head `38844a4`. Round-3 and round-4 notes inside earlier rows are marked "Round 3" or "Round 4" and cite the same heads.
+Ground truth is the iOS app and server source at `iamjohnnymac/heyblip-live` commit `e9a38e8`. File references below are relative to that repository. Site references are relative to this repository: rows 1 to 67 cite `fc883c0` (before the fixes in this branch), rows 68 to 88 were added in round 2 and cite the round-1 copy (`76dccbd`), rows 89 to 100 were added in round 3 and cite the audited head `fcb4eac`, rows 101 to 110 were added in round 4 and cite the round-3 head `38844a4`, and rows 111 onward were added in round 5 and cite the round-4 head `fb177ad`. Round-3, round-4 and round-5 notes inside earlier rows are marked "Round 3", "Round 4" or "Round 5" and cite the same heads.
 
 ## Ground truth summary
 
@@ -148,8 +148,9 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 108 | "Register a fresh account with the same email; friends will need to re-add you." (`support/SupportClient.tsx:119` at `38844a4`) | false | Registering again with a verified email whose row exists is case 3b: the server UPDATEs the stored keys and keeps the username, answering `recovered: true` (`server/auth/src/registration/register.ts:166-169,236-254`); the app shows a recovery confirmation screen with the existing username (`Sources/Views/Launch/CreateProfileStep.swift:680-686`). No fresh account is created. | "Verify the same email again on the new phone and confirm the takeover; your username comes back with new keys, and friends will need to re-add you." |
 | 109 | "whether you show up in other people's Nearby list at all" (`nearby/NearbyClient.tsx:130`), "With it off you stop appearing to other people running Blip around you" (`profile/page.tsx:47`), "Turn it off and you stop appearing to other people running Blip around you" (`profile/ProfileClient.tsx:97`) at `38844a4` | overstated | The toggle gates only the presence announce (`Sources/Services/MessageService.swift:926`). Every BLE-connected peer is still upserted into the peer store (`Sources/Services/AppLifecycleController.swift:466-476`) and `refreshNearbyFriends` matches accepted friends against that set by key (`Sources/ViewModels/MeshViewModel.swift:262,310-313`), so a friend whose phone already holds your key this session still lists you. | "decides whether your name is announced to phones around you" / "your phone stops announcing your name to people running Blip around you" |
 | 110 | "works entirely offline" (`components/FAQ.tsx:32` at `38844a4`) | overstated | Registration needs the auth server: the email code and the register call are HTTPS requests (`server/auth/src/challenge-session/otp.ts:147`; `server/auth/src/registration/register.ts`); there is no offline onboarding path. | "Once set up, Blip is an iOS messaging app that works offline using Bluetooth mesh networking. Creating your account needs internet once, to verify your email; after that it does not require ..." |
+| 111 | "share approximate location with people you choose" (`components/FAQ.tsx:37` at `fb177ad`) | false | Same falsehood as rows 71, 79 to 86 and 101, missed in round 4: the payload is full-precision Float64 latitude and longitude (`Packages/BlipProtocol/Sources/LocationPayload.swift:5-18`), sent as a plaintext `.locationShare` broadcast (`Sources/ViewModels/FriendFinderViewModel.swift:235-248`); the receiver plots every position it gets with no friend filter (`FriendFinderViewModel.swift:158-199`; the per-friend controls are hidden, `Sources/Utilities/V1LaunchFlags.swift:51`); the relay fans recipient-less packets to every connected phone (`server/relay/src/packet-router.ts:220-230`). | "share your precise position only after you switch sharing on; any Blip phone that receives the signed broadcast can plot it, including every phone connected to our relay when a phone has internet." |
 
-Totals: 110 claims. 23 accurate (10 of them made more specific), 52 overstated, 35 false, 0 unverifiable. Row 42 (account deletion) moved from accurate to false in round 2 once the abuse-report table and the missing avatar deletion path were checked. Round 3 added rows 89 to 100 (5 overstated, 7 false) and revised the corrected wording of rows 11, 34, 36, 40, 41, 57, 60, 71, 79 to 82 and 86. Round 4 added rows 101 to 110 (4 overstated, 6 false) and revised row 41 again.
+Totals: 111 claims. 23 accurate (10 of them made more specific), 52 overstated, 36 false, 0 unverifiable. Row 42 (account deletion) moved from accurate to false in round 2 once the abuse-report table and the missing avatar deletion path were checked. Round 3 added rows 89 to 100 (5 overstated, 7 false) and revised the corrected wording of rows 11, 34, 36, 40, 41, 57, 60, 71, 79 to 82 and 86. Round 4 added rows 101 to 110 (4 overstated, 6 false) and revised row 41 again. Round 5 added row 111 (1 false).
 
 ## Additions requested by the ticket
 
@@ -239,7 +240,7 @@ Found during the round-2 and round-4 sweeps. Each is hidden in the shipped app b
 
 ## Before and after, every changed sentence
 
-147 before/after pairs. Round-1 pairs are against `fc883c0`; round-2 pairs (from the recovery-kit entry for `SupportClient.tsx` onward) are against the round-1 copy at `76dccbd`; round-3 pairs (own subsection) are against `fcb4eac`; round-4 pairs (own subsection at the end, 24 pairs) are against `38844a4`. Where round 2 revised a round-1 sentence, the round-1 pair's `after` shows the final wording. Each `before` string occurred exactly once in its file when applied.
+148 before/after pairs. Round-1 pairs are against `fc883c0`; round-2 pairs (from the recovery-kit entry for `SupportClient.tsx` onward) are against the round-1 copy at `76dccbd`; round-3 pairs (own subsection) are against `fcb4eac`; round-4 pairs (own subsection, 24 pairs) are against `38844a4`; round-5 pairs (own subsection at the end, 1 pair) are against `fb177ad`. Where round 2 revised a round-1 sentence, the round-1 pair's `after` shows the final wording. Each `before` string occurred exactly once in its file when applied.
 
 - `src/components/Hero.tsx`
   - before: '{ label: "Privacy", value: "E2E encrypted" }'
@@ -688,3 +689,9 @@ Found during the round-2 and round-4 sweeps. Each is hidden in the shipped app b
 - `src/components/FAQ.tsx:32`
   - before: 'Yes. Blip is an iOS messaging app that works entirely offline using Bluetooth mesh networking. It does not require'
   - after: 'Yes. Once set up, Blip is an iOS messaging app that works offline using Bluetooth mesh networking. Creating your account needs internet once, to verify your email; after that it does not require'
+
+### Round 5 (fact-check REVISE, against `fb177ad`)
+
+- `src/components/FAQ.tsx:37`
+  - before: 'and share approximate location with people you choose.'
+  - after: 'and share your precise position only after you switch sharing on; any Blip phone that receives the signed broadcast can plot it, including every phone connected to our relay when a phone has internet.'
