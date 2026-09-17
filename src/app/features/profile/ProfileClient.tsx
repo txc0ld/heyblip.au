@@ -62,7 +62,7 @@ const sections = [
     ],
     shot: {
       src: "/app-screens/13-profile.png",
-      alt: "Blip Profile screen for Maya Wilson, handle @maya.wa, showing 18 friends and 6 events above rows for Location sharing set to Friends only, Nearby visibility On, Notifications, Safety and SOS, Privacy and Security, and Battery mode set to All day",
+      alt: "Blip Profile screen for Maya Wilson, handle @maya.wa, showing 18 friends and 6 events above rows for Location, Nearby visibility On, Notifications, Safety and SOS, Privacy and Security, and Battery mode set to All day",
       caption:
         "One screen: who you are, your friends and events counts, and every control over what other people can see.",
     },
@@ -305,7 +305,7 @@ export default function ProfileClient({ faqs }: Props) {
                 On the profile screen
               </h3>
               <ul className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--muted)]">
-                <li>Location sharing — Friends only</li>
+                <li>Location — proximity alerts; sharing itself is switched on from the Nearby map</li>
                 <li>Nearby visibility — On</li>
                 <li>Notifications</li>
                 <li>Safety &amp; SOS</li>

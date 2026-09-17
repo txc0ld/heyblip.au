@@ -39,7 +39,7 @@ export default function TermsClient() {
 
             <div>
               <h2 className="text-xl font-semibold text-[var(--foreground)] mb-3">4. Your Account</h2>
-              <p>To use Blip, you register with an email address and create a username. Your account is secured via Ed25519 challenge-response authentication and JWT session tokens. You are responsible for maintaining the security of your device and your account credentials. Your cryptographic keys are generated and stored locally on your device. If you lose access to your device without having backed up your keys, your encrypted message history may be unrecoverable.</p>
+              <p>To use Blip, you register with an email address and create a username. Your account is secured via Ed25519 challenge-response authentication and JWT session tokens. You are responsible for maintaining the security of your device and your account credentials. Your cryptographic keys are generated and stored locally on your device. If you lose access to your device, your keys and your message history are lost with it; the current app has no backup or key export.</p>
             </div>
 
             <div>

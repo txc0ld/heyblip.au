@@ -34,7 +34,7 @@ const faqs: FaqItem[] = [
   {
     question: "Who sees my SOS?",
     answer:
-      "Every Blip user within mesh range at your event, and when a phone has internet, every Blip phone connected to our relay. The alert hops phone to phone, so it reaches people you have never met, not just your crew. It carries the severity you picked and your approximate zone. If your event runs a Blip-equipped medical team, they see it too.",
+      "Every Blip user within mesh range at your event, and when a phone has internet, every Blip phone connected to our relay. The alert hops phone to phone, so it reaches people you have never met, not just your crew. It carries the severity you picked and your approximate zone.",
   },
   {
     question: "Does SOS work with no reception at all?",

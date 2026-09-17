@@ -4,7 +4,7 @@ import NearbyClient from "./NearbyClient";
 
 const TITLE = "Find Your Friends at a Festival With No Signal";
 const DESCRIPTION =
-  "Find your friends at a festival with no signal. Blip shows who's nearby over Bluetooth mesh, maps your crew and shares meeting points. iPhone, no internet.";
+  "Find your friends at a festival with no signal. Blip shows who's nearby over Bluetooth mesh and maps your crew. iPhone, no internet.";
 
 export const metadata: Metadata = {
   title: TITLE,

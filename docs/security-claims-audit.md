@@ -128,6 +128,12 @@ Verdicts: accurate, overstated, false, unverifiable. Page and line are from the 
 | 88 | "Delete account + server data from app settings." (`proxy.ts:189`) | overstated | Same as 42. | "removes the account row, device tokens and notification prefs; abuse reports keyed by peer ID are retained; avatar removed on request" |
 | 89 | "No towers, no Wi-Fi, no server." (`chat/ChatClient.tsx:144` at `fcb4eac`) | false | Group broadcasts go to the WebSocket relay whenever it is running (`TransportCoordinator.swift:306-315`). | "No towers or Wi-Fi needed, and when a phone has internet the message also passes through our relay." |
 | 90 | "relaying encrypted messages for other users" (`acceptable-use/AcceptableUseClient.tsx:47` at `fcb4eac`) | overstated | Relayed traffic includes plaintext public channel text (`SendPipeline.swift:471-491`) and location packets (`FriendFinderViewModel.swift:235-265`). | "relaying packets for other users: encrypted direct and group messages, and unencrypted public channel messages and location packets" |
+| 91 | "Location sharing — Friends only" (`profile/ProfileClient.tsx:308` at `fcb4eac`, live list of profile rows) | false | No such row ships: the precision picker and per-friend controls are hidden (`V1LaunchFlags.swift:51`, `LocationSettings.swift:31-34`); the visible Location group holds only a Proximity Alerts toggle (`LocationSettings.swift:47-52`) and the on/off share control is on the Nearby map. | "Location — proximity alerts; sharing itself is switched on from the Nearby map" |
+| 92 | Alt texts "Location sharing set to Friends only" (`ProfileClient.tsx:65`) and "a Gate D meeting point with 45 min left, an I'm here button and a Friends only sharing control" (`nearby/NearbyClient.tsx:82`) at `fcb4eac` | false | Same as 91; meeting points are never broadcast (`V1LaunchFlags.swift:29-33`). The screenshots still show the hidden UI. | Friends-only and meeting-point phrases removed from both alts. |
+| 93 | "If your event runs a Blip-equipped medical team, they see it too." (`safety/page.tsx:37` at `fcb4eac`) | false | `showMedicalResponder = false` hides the responder dashboard and a received SOS is not persisted (`V1LaunchFlags.swift:53-67`). | Sentence removed. |
+| 94 | "A meeting point goes to the people you pick and expires on the timer you set when you shared it." (`NearbyClient.tsx:134` at `fcb4eac`) | false | Meeting points live only in view state and are never broadcast; the share target does nothing (`V1LaunchFlags.swift:29-33`). | Control point removed; grid reduced to two columns. |
+| 95 | "maps your crew and shares meeting points" (`nearby/page.tsx:7` meta at `fcb4eac`) | false | Same as 94. | "and maps your crew" |
+| 96 | "If you lose access to your device without having backed up your keys, your encrypted message history may be unrecoverable." (`terms/TermsClient.tsx:42` at `fcb4eac`) | false | No backup or key export ships (`SecuritySettings.swift:5-6,26-27`; `ProfileViewModel.swift:623-631` has no view callers). | "If you lose access to your device, your keys and your message history are lost with it; the current app has no backup or key export." |
 
 Totals: 88 claims. 23 accurate (10 of them made more specific), 43 overstated, 22 false, 0 unverifiable. Row 42 (account deletion) moved from accurate to false in round 2 once the abuse-report table and the missing avatar deletion path were checked.
 
@@ -172,15 +178,29 @@ Each sentence below is accurate against `e9a38e8` and already in the branch, but
 | A removed group member can decrypt until the next 100-message rotation | `TechClient.tsx:50`, `proxy.ts:87` | `SenderKeyManager.swift:241-242`; `rotateKey(forChannel:reason:)` has no callers |
 | No working backup or recovery kit | `SupportClient.tsx:119` | `SecuritySettings.swift:5-6,26-27` |
 
+## Unshipped features, copy removed or reworded (round 3)
+
+Each sentence below asserted, as present-tense behaviour, a feature that `Sources/Utilities/V1LaunchFlags.swift` hides in the shipped app. Round 3 rewrote or removed them (claims rows 91 to 96). The `before` wording is kept here so it can be restored when the flag flips.
+
+| Where (at `fcb4eac`) | Before | Now | Flag |
+|---|---|---|---|
+| `profile/ProfileClient.tsx:308` | "Location sharing — Friends only" | "Location — proximity alerts; sharing itself is switched on from the Nearby map" | `showLocationPrecisionControls` (`V1LaunchFlags.swift:45-51`) |
+| `profile/ProfileClient.tsx:65` (alt) | "rows for Location sharing set to Friends only, Nearby visibility On, ..." | "rows for Location, Nearby visibility On, ..." | `showLocationPrecisionControls` |
+| `nearby/NearbyClient.tsx:82` (alt) | "Priya 2 min away, a Gate D meeting point with 45 min left, an I'm here button and a Friends only sharing control" | "Priya 2 min away, and an I'm here button" | `showMeetingPoints`, `showLocationPrecisionControls` |
+| `nearby/NearbyClient.tsx:134` | Control point "Pins that run out": "A meeting point goes to the people you pick and expires on the timer you set when you shared it." | Removed; control-point grid is now two columns | `showMeetingPoints` (`V1LaunchFlags.swift:29-33`) |
+| `nearby/page.tsx:7` (meta) | "maps your crew and shares meeting points" | "and maps your crew" | `showMeetingPoints` |
+| `safety/page.tsx:37` | "If your event runs a Blip-equipped medical team, they see it too." | Removed | `showMedicalResponder` (`V1LaunchFlags.swift:53-67`) |
+| `terms/TermsClient.tsx:42` | "If you lose access to your device without having backed up your keys, your encrypted message history may be unrecoverable." | "If you lose access to your device, your keys and your message history are lost with it; the current app has no backup or key export." | none (recovery kit has no UI: `SecuritySettings.swift:5-6,26-27`) |
+
+The screenshots at `public/app-screens/05-nearby.png` and `13-profile.png` still show the hidden Friends-only row, sharing control and meeting-point pin; the alt texts no longer describe them.
+
 ## Unshipped features the site markets (out of scope for BDEV-251, needs John's decision)
 
-Found during the round-2 sweep. Each is hidden in the shipped app by `Sources/Utilities/V1LaunchFlags.swift` and left as written because removing a feature section is a product call, not a claims fix.
+Found during the round-2 sweep. Each is hidden in the shipped app by `Sources/Utilities/V1LaunchFlags.swift` and left as written because removing a feature section is a product call, not a claims fix. The false audience and behaviour sentences that sat inside these sections were fixed in round 3 (table above).
 
 | Where | What the site says | What ships |
 |---|---|---|
-| `app/features/nearby/page.tsx:7,50-52`, `nearby/NearbyClient.tsx:84-98,134,162`, `app/features/page.tsx:53`, `proxy.ts:20,130`, `public/llms.txt:10,19`, `organisers/OrganisersClient.tsx:25`, `chat/ChatClient.tsx:113` | Meeting points you can drop, label, share with chosen people, and expire on a timer | `showMeetingPoints = false` (`V1LaunchFlags.swift:29-33`): points live only in view state, are never persisted or broadcast, and the share target does nothing. `NearbyClient.tsx:134` ("goes to the people you pick") is therefore also a false audience claim. |
-| `app/features/safety/page.tsx:37` | "If your event runs a Blip-equipped medical team, they see it too." | `showMedicalResponder = false` (`V1LaunchFlags.swift:53-67`): responder registration and dashboard are hidden; received SOS alerts are not persisted. |
-| `app/features/profile/ProfileClient.tsx:65,308`, `nearby/NearbyClient.tsx:82` (alt texts describing the screenshots) | Profile screen with a "Location sharing: Friends only" row; Find Friends map with a "Friends only" sharing control | `showLocationPrecisionControls = false` (`V1LaunchFlags.swift:45-51`): the precision picker and per-friend controls are hidden; the only live control is the Share location button on the Nearby map. The screenshot shows hidden UI. |
+| `app/features/nearby/page.tsx:50-52`, `nearby/NearbyClient.tsx:84-98,162`, `app/features/page.tsx:53`, `proxy.ts:20,130`, `public/llms.txt:10,19`, `organisers/OrganisersClient.tsx:25`, `chat/ChatClient.tsx:113` | Meeting points you can drop, label, share with chosen people, and expire on a timer | `showMeetingPoints = false` (`V1LaunchFlags.swift:29-33`): points live only in view state, are never persisted or broadcast, and the share target does nothing. |
 | `app/layout.tsx:39` | SEO keyword "end-to-end encrypted messenger" | Only direct messages and private groups are end-to-end encrypted. Left as a keyword; change if John wants keywords held to the same standard as copy. |
 
 ## Before and after, every changed sentence
@@ -514,3 +534,24 @@ Found during the round-2 sweep. Each is hidden in the shipped app by `Sources/Ut
 - `src/app/acceptable-use/AcceptableUseClient.tsx:47`
   - before: 'relaying encrypted messages for other users'
   - after: 'relaying packets for other users: encrypted direct and group messages, and unencrypted public channel messages and location packets'
+- `src/app/features/profile/ProfileClient.tsx:308`
+  - before: 'Location sharing — Friends only'
+  - after: 'Location — proximity alerts; sharing itself is switched on from the Nearby map'
+- `src/app/features/profile/ProfileClient.tsx:65`
+  - before: 'above rows for Location sharing set to Friends only, Nearby visibility On,'
+  - after: 'above rows for Location, Nearby visibility On,'
+- `src/app/features/nearby/NearbyClient.tsx:82`
+  - before: "Priya 2 min away, a Gate D meeting point with 45 min left, an I'm here button and a Friends only sharing control"
+  - after: "Priya 2 min away, and an I'm here button"
+- `src/app/features/nearby/NearbyClient.tsx:132-135`
+  - before: 'title: "Pins that run out", text: "A meeting point goes to the people you pick and expires on the timer you set when you shared it."'
+  - after: (removed; `md:grid-cols-3` became `md:grid-cols-2` at the control-point grid)
+- `src/app/features/safety/page.tsx:37`
+  - before: ' If your event runs a Blip-equipped medical team, they see it too.'
+  - after: (removed)
+- `src/app/features/nearby/page.tsx:7`
+  - before: "Blip shows who's nearby over Bluetooth mesh, maps your crew and shares meeting points."
+  - after: "Blip shows who's nearby over Bluetooth mesh and maps your crew."
+- `src/app/terms/TermsClient.tsx:42`
+  - before: 'If you lose access to your device without having backed up your keys, your encrypted message history may be unrecoverable.'
+  - after: 'If you lose access to your device, your keys and your message history are lost with it; the current app has no backup or key export.'

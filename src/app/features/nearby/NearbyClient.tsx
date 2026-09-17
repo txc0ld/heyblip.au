@@ -79,7 +79,7 @@ const sections = [
     ],
     shot: {
       src: "/app-screens/06-friend-map.png",
-      alt: "Blip Find Friends map for AC Milan v Inter at Optus Stadium with pins for Maya at 35 m, Jake nearby and Priya 2 min away, a Gate D meeting point with 45 min left, an I'm here button and a Friends only sharing control",
+      alt: "Blip Find Friends map for AC Milan v Inter at Optus Stadium with pins for Maya at 35 m, Jake nearby and Priya 2 min away, and an I'm here button",
       caption:
         "Friend pins with distance or walking time, the crew's Gate D meeting point on the map, an I'm here button, and the sharing control.",
     },
@@ -128,10 +128,6 @@ const controlPoints = [
   {
     title: "Nearby visibility toggle",
     text: "A separate switch decides whether you show up in other people's Nearby list at all.",
-  },
-  {
-    title: "Pins that run out",
-    text: "A meeting point goes to the people you pick and expires on the timer you set when you shared it.",
   },
 ];
 
@@ -265,7 +261,7 @@ export default function NearbyClient({ faqs }: Props) {
               on.
             </p>
 
-            <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--border)] md:grid-cols-3">
+            <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--border)] md:grid-cols-2">
               {controlPoints.map((point) => (
                 <div key={point.title} className="bg-[var(--background)] p-6">
                   <h3 className="text-base font-semibold text-[var(--foreground)]">
