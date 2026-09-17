@@ -57,7 +57,7 @@ export default function PrivacyClient() {
                 <li><strong>Authentication</strong> — your email address is used to verify your identity during registration via a one-time verification code.</li>
                 <li><strong>Encryption</strong> — your public keys are shared with other users so they can initiate end-to-end encrypted conversations with you.</li>
                 <li><strong>Push notifications</strong> — your APNs device token is used solely to deliver notifications when you receive messages while the app is in the background.</li>
-                <li><strong>Friend Finder</strong> — off until you switch sharing on. While it is on, your precise position is broadcast as a signed, unencrypted packet that any nearby Blip phone can receive and that our relay forwards to every connected Blip phone when a phone has internet. It is forwarded, not stored.</li>
+                <li><strong>Friend Finder</strong> — off until you switch sharing on. While it is on, your precise position is broadcast as a signed, unencrypted packet that any nearby Blip phone can receive and that our relay forwards to every connected Blip phone when a phone has internet. Our relay forwards it and does not store it; relay phones may hold it in memory for up to five minutes.</li>
               </ul>
             </div>
 
