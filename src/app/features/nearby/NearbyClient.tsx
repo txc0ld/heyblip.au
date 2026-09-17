@@ -127,7 +127,7 @@ const controlPoints = [
   },
   {
     title: "Nearby visibility toggle",
-    text: "A separate switch decides whether you show up in other people's Nearby list at all.",
+    text: "A separate switch decides whether your name is announced to phones around you.",
   },
 ];
 

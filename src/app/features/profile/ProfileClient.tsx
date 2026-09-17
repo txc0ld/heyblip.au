@@ -94,7 +94,7 @@ const privacyControls = [
   },
   {
     title: "Nearby visibility",
-    text: "Its own toggle, shown On. Turn it off and you stop appearing to other people running Blip around you.",
+    text: "Its own toggle, shown On. Turn it off and your phone stops announcing your name to people running Blip around you.",
   },
   {
     title: "Privacy & Security",

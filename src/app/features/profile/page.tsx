@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "Can I stop people nearby from seeing me?",
     answer:
-      "Yes. Nearby visibility is its own toggle on your profile, shown as On in the screenshot, and you can turn it off. With it off you stop appearing to other people running Blip around you. Your friends, your chats and the SOS features are managed separately under Safety & SOS.",
+      "Yes. Nearby visibility is its own toggle on your profile, shown as On in the screenshot, and you can turn it off. With it off your phone stops announcing your name to people running Blip around you. Your friends, your chats and the SOS features are managed separately under Safety & SOS.",
   },
   {
     question: "Does Blip sell my data?",

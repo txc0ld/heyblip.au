@@ -29,7 +29,7 @@ const faqs: FAQItem[] = [
   {
     question: "Is there a messaging app that works offline without internet?",
     answer:
-      "Yes. Blip is an iOS messaging app that works entirely offline using Bluetooth mesh networking. It does not require Wi-Fi, mobile data, or any server connection to send and receive messages between nearby users. Messages, voice notes, and photos all work the same way they do on a regular messenger — they just travel over Bluetooth instead of the internet.",
+      "Yes. Once set up, Blip is an iOS messaging app that works offline using Bluetooth mesh networking. Creating your account needs internet once, to verify your email; after that it does not require Wi-Fi, mobile data, or any server connection to send and receive messages between nearby users. Messages, voice notes, and photos all work the same way they do on a regular messenger — they just travel over Bluetooth instead of the internet.",
   },
   {
     question: "What app should I use to find my friends at a music festival?",
