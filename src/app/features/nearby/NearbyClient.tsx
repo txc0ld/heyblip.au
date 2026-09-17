@@ -81,7 +81,7 @@ const sections = [
       src: "/app-screens/06-friend-map.png",
       alt: "Blip Find Friends map for AC Milan v Inter at Optus Stadium with pins for Maya at 35 m, Jake nearby and Priya 2 min away, and an I'm here button",
       caption:
-        "Friend pins with distance or walking time, the crew's Gate D meeting point on the map, an I'm here button, and the sharing control.",
+        "Friend pins with distance or walking time, a Gate D meeting point on the map, an I'm here button, and the sharing control.",
     },
     priority: false,
   },
@@ -90,14 +90,14 @@ const sections = [
     eyebrow: "Meeting points",
     heading: "Set a meeting point your crew can actually find",
     body: [
-      "Splitting up is fine as long as everyone knows where to come back to. Drop a pin on a gate, a stage or a food van, give it a label, choose who it goes to, and set how long it lasts — 45 minutes, or whatever fits the set times.",
-      "The pin relays to your crew over the mesh exactly like a message does, then shows on their map with the time remaining on it. The sheet tells you the venue and the location accuracy your phone reported, and states plainly that only selected friends can see the pin.",
+      "Splitting up is fine as long as everyone knows where to come back to. Drop a pin on a gate, a stage or a food van, give it a label, and set how long it lasts — 45 minutes, or whatever fits the set times.",
+      "In this build the pin is a marker on your own map, shown with the time remaining on it; sending it to your crew over the mesh is not in the shipped app. The sheet tells you the venue and the location accuracy your phone reported.",
     ],
     shot: {
       src: "/app-screens/14-meeting-point.png",
-      alt: "Blip Create meeting point sheet over a stadium map with a Gate D pin, fields for Label Gate D, Share with Festival Crew and Expires in 45 minutes, a Share meeting point button, and a note that only selected friends can see this pin",
+      alt: "Blip Create meeting point sheet over a stadium map with a Gate D pin, fields for Label Gate D and Expires in 45 minutes, and a Share meeting point button",
       caption:
-        "Label the pin, pick who it goes to, give it an expiry. The venue and reported accuracy sit under the fields, above the sharing note.",
+        "Label the pin and give it an expiry. The venue and reported accuracy sit under the fields.",
     },
     priority: false,
   },
@@ -155,8 +155,8 @@ export default function NearbyClient({ faqs }: Props) {
               You find your friends at a festival with no signal by using an app
               that skips the network entirely. Blip&apos;s Nearby tab shows which
               friends are within Bluetooth range and roughly how far away they
-              are, plots them on a friend map, and lets you drop a meeting point
-              your whole crew can walk to.
+              are, plots them on a friend map, and lets you mark a meeting point
+              on the map.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">

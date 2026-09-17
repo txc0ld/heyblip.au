@@ -7,7 +7,7 @@ Key facts:
 - Direct messages are end-to-end encrypted (Noise XX + Ed25519) and private groups use AES-256-GCM sender keys; relay phones cannot read them. Public event channels are signed, not encrypted
 - Emergency SOS broadcast reaches every nearby Blip phone at priority (it does not call emergency services)
 - Group chats, encrypted DMs, voice notes, push-to-talk, photos
-- Find friends nearby, friend map, and crew meeting points without internet
+- Find friends nearby, friend map, and a meeting-point marker on your own map, all without internet
 - No phone number required; location sharing is off until you switch it on, and shared positions are signed, unencrypted broadcasts that nearby Blip phones can read and that, when a phone has internet, our relay forwards to every Blip phone connected to it
 - iOS (iPhone) only; free download
 

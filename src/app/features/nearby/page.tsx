@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "What app should I use to find my friends at a music festival?",
     answer:
-      "Blip. It is an iPhone app built for exactly that: crowded events where reception dies. Friends show up in the Nearby tab over Bluetooth mesh, you can see them on a map, and you can drop a shared meeting point. Regular apps like Find My or WhatsApp need a working network. Blip does not.",
+      "Blip. It is an iPhone app built for exactly that: crowded events where reception dies. Friends show up in the Nearby tab over Bluetooth mesh, you can see them on a map, and you can mark a meeting point on your own map. Regular apps like Find My or WhatsApp need a working network. Blip does not.",
   },
   {
     question: "Does Blip track my location?",
@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "Can I set a meeting point without signal?",
     answer:
-      "Yes. Pick a spot — a gate, a stage, a food van — give it a label, choose who it goes to, and set how long it lasts. The pin travels to your crew over the mesh, the same way a message does. On the map it shows as a flagged pin with the time remaining, so nobody has to ask where again.",
+      "In this build a meeting point is a marker on your own map. Pick a spot — a gate, a stage, a food van — give it a label, and set how long it lasts; it shows as a flagged pin with the time remaining. It does not travel to your crew over the mesh; sending a pin to friends is not in the shipped app.",
   },
   {
     question: "How far away can Blip find a friend?",

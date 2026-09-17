@@ -50,7 +50,7 @@ const features = [
     name: "Nearby & Friends",
     href: "/features/nearby",
     description:
-      "See which friends are nearby and how far away they are, follow the friend map, and set crew meeting points — all without reception.",
+      "See which friends are nearby and how far away they are, follow the friend map, and mark a meeting point on it — all without reception.",
   },
   {
     name: "Profile",
